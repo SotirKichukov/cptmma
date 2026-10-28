@@ -577,12 +577,12 @@
 
     <!-- Quick Navigation Filters -->
     <div class="quick-tabs">
-      <button class="qtab active" onclick="filterSection('all')">All Programs</button>
-      <button class="qtab" onclick="filterSection('plans')">Private Coaching &amp; S&amp;C</button>
+      <button class="qtab active" onclick="filterSection('all', this)">All Programs</button>
+      <button class="qtab" onclick="filterSection('plans', this)">Private Coaching &amp; S&amp;C</button>
       <a class="qtab" href="../rashguard.html" style="text-decoration:none;display:inline-flex;align-items:center;color:var(--green);border-color:rgba(31,209,95,.4)">BJJ Rash Guard ($75)</a>
-      <button class="qtab" onclick="filterSection('speed-punching')">Speed Punching ($79)</button>
-      <button class="qtab" onclick="filterSection('calisthenics')">Calisthenics &amp; Sprints ($69)</button>
-      <button class="qtab" onclick="filterSection('mobility')">Free Mobility (Members)</button>
+      <button class="qtab" onclick="filterSection('speed-punching', this)">Speed Punching ($79)</button>
+      <button class="qtab" onclick="filterSection('calisthenics', this)">Calisthenics &amp; Sprints ($69)</button>
+      <button class="qtab" onclick="filterSection('mobility', this)">Free Mobility (Members)</button>
     </div>
   </section>
 
@@ -1500,9 +1500,9 @@ function handleCheckoutSubmit(e) {
 }
 
 // Filter sections
-function filterSection(targetId) {
+function filterSection(targetId, btnEl) {
   document.querySelectorAll('.qtab').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  if (btnEl) btnEl.classList.add('active');
 
   if (targetId === 'all') {
     document.getElementById('plans').style.display = 'block';
