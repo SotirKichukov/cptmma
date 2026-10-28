@@ -1409,10 +1409,10 @@
                 <button class="btn btn-primary btn-block" style="max-width:340px" onclick="openCheckout('Speed Punching Maximizer', 79, 'course')">
                   Unlock Lifetime Access — $79 AUD
                 </button>
-                <div style="font-size:12px;color:var(--mut)">Already purchased? Enter your access code below:</div>
+                <div style="font-size:12.5px;color:var(--soft)">Already purchased or Coach/VIP? Enter your <b>email</b> or access code:</div>
                 <div class="unlock-bar">
-                  <input type="text" id="passCodeInput" placeholder="Enter code (e.g. SPEED)">
-                  <button class="btn btn-ghost" onclick="unlockCourse()">Unlock</button>
+                  <input type="text" id="passCodeInput" placeholder="Your email or code (e.g. sotirkichukov@cptmma.com)" oninput="checkInstantVipUnlock(this.value)">
+                  <button class="btn btn-ghost" type="button" onclick="unlockCourse()">Unlock</button>
                 </div>
               </div>
             </div>
@@ -2014,7 +2014,7 @@
       </div>
       <div style="margin-bottom:12px">
         <label style="display:block;font-size:13px;color:var(--mut);margin-bottom:4px">Email Address</label>
-        <input type="email" id="chkEmail" required placeholder="you@example.com" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
+        <input type="email" id="chkEmail" required placeholder="you@example.com" oninput="if(typeof isVipOrCoachCredentials==='function' && this.value.includes('@') && isVipOrCoachCredentials(this.value)){unlockCourse(true);closeCheckout();const p=document.getElementById('speed-punching');if(p)p.scrollIntoView({behavior:'smooth'});alert('Welcome Coach Sotir! Your email was recognized — all video lessons are now unlocked for free!');}" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
       </div>
       <div style="margin-bottom:18px">
         <label style="display:block;font-size:13px;color:var(--mut);margin-bottom:4px">Mobile Number</label>
@@ -2330,17 +2330,60 @@ function selectLesson(idx) {
   iframe.src = `https://drive.google.com/file/d/${lesson.fileId}/preview`;
 }
 
+// VIP & Coach Email / Code Recognizer (Sotir Kichukov & Authorized VIPs)
+function isVipOrCoachCredentials(val) {
+  if (!val) return false;
+  const v = val.trim().toLowerCase();
+  const vipEmails = [
+    'sotirkichukov@cptmma.com',
+    'sotir@cptmma.com',
+    'info@cptmma.com',
+    'coach@cptmma.com',
+    'blacksealye.au@gmail.com',
+    'info@anchialo.com',
+    'sales@luga.bg'
+  ];
+  const vipCodes = ['speed', 'sotir', 'kichukov', 'cptspeed79', 'cptmma', 'aeterna'];
+  if (vipEmails.includes(v) || vipCodes.includes(v)) return true;
+  if (v.includes('@cptmma.com') || v.includes('@anchialo.com')) return true;
+  if ((v.includes('sotir') || v.includes('kichukov') || v.includes('blacksealye')) && (v.includes('@') || v.length >= 5)) return true;
+  return false;
+}
+
+function checkInstantVipUnlock(val) {
+  if (!isCourseUnlocked && val && val.includes('@') && isVipOrCoachCredentials(val)) {
+    unlockCourse(true);
+    const badge = document.getElementById('unlockBadge');
+    if (badge) {
+      badge.textContent = 'VIP COACH ACCESS UNLOCKED';
+      badge.style.display = 'block';
+    }
+  }
+}
+
 // Unlock Course
 function unlockCourse(silent = false) {
-  const code = (document.getElementById('passCodeInput').value || '').trim().toUpperCase();
-  if (code === 'SPEED' || code === 'SOTIR' || code === 'AETERNA' || silent) {
+  const rawVal = (document.getElementById('passCodeInput') ? document.getElementById('passCodeInput').value : '').trim();
+  if (isVipOrCoachCredentials(rawVal) || silent) {
     isCourseUnlocked = true;
     localStorage.setItem('cpt_speed_unlocked', 'true');
-    document.getElementById('playerGate').classList.add('unlocked');
-    document.getElementById('unlockBadge').style.display = 'block';
-    if (!silent) alert('Lifetime access unlocked! Enjoy the Speed Punching Maximizer.');
+    const gate = document.getElementById('playerGate');
+    if (gate) gate.classList.add('unlocked');
+    const badge = document.getElementById('unlockBadge');
+    if (badge) {
+      badge.textContent = rawVal.includes('@') ? 'VIP EMAIL UNLOCKED' : 'UNLOCKED';
+      badge.style.display = 'block';
+    }
+    // Also unlock Free Mobility automatically for VIP/Coach
+    const mobGate = document.getElementById('mobilityGate');
+    const mobRout = document.getElementById('mobilityRoutine');
+    if (mobGate && mobRout) {
+      mobGate.style.display = 'none';
+      mobRout.classList.add('active');
+    }
+    if (!silent) alert('Welcome! Full Lifetime Video Access is now unlocked — no payment required.');
   } else {
-    alert('Invalid access code. Please enter the code sent to your email after checkout, or purchase access above.');
+    alert('Invalid email or access code. Enter Sotir\'s email or your access code, or purchase access above.');
   }
 }
 
@@ -2356,15 +2399,31 @@ function handleMemberRegistration(e) {
   document.getElementById('mobilityGate').style.display = 'none';
   document.getElementById('mobilityRoutine').classList.add('active');
 
+  if (isVipOrCoachCredentials(email) || isVipOrCoachCredentials(name)) {
+    unlockCourse(true);
+    alert(`Welcome Coach ${name}! Both the Athletic Mobility program and all 40 Speed Punching video lessons are now unlocked for free.`);
+    return;
+  }
+
   alert(`Welcome, ${name}! Your CPT Membership is active and the Athletic Mobility routine is now unlocked.`);
 }
 
-// Check if already registered member
+// Check if already registered member or VIP URL param (?vip=sotir or ?unlock=1)
 function checkMemberStatus() {
-  const member = localStorage.getItem('cpt_member');
-  if (member) {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('vip') || params.get('unlock') === '1') {
+    unlockCourse(true);
+  }
+  const memberRaw = localStorage.getItem('cpt_member');
+  if (memberRaw) {
     document.getElementById('mobilityGate').style.display = 'none';
     document.getElementById('mobilityRoutine').classList.add('active');
+    try {
+      const m = JSON.parse(memberRaw);
+      if (m && (isVipOrCoachCredentials(m.email) || isVipOrCoachCredentials(m.name))) {
+        unlockCourse(true);
+      }
+    } catch (_) {}
   }
 }
 
@@ -2386,6 +2445,17 @@ function handleCheckoutSubmit(e) {
   const name = document.getElementById('chkName').value;
   const email = document.getElementById('chkEmail').value;
   const phone = document.getElementById('chkPhone').value;
+
+  // Instant free VIP unlock if Sotir enters his email or name in Checkout
+  if (isVipOrCoachCredentials(email) || isVipOrCoachCredentials(name)) {
+    localStorage.setItem('cpt_speed_unlocked', 'true');
+    unlockCourse(true);
+    closeCheckout();
+    const playerSection = document.getElementById('speed-punching');
+    if (playerSection) playerSection.scrollIntoView({ behavior: 'smooth' });
+    alert(`Welcome Coach Sotir (${email})! Your email was recognized — all video courses and training programs are unlocked immediately with $0 payment.`);
+    return;
+  }
 
   // Auto-unlock if purchasing speed punching
   if (activeCheckoutItem.title.includes('Speed Punching')) {
