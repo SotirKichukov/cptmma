@@ -19,6 +19,9 @@
       var t = $(id); if (!t) return;
       ev.preventDefault();
       closeMenu();
+      if (typeof window.filterSection === 'function' && (id === '#plans' || id === '#speed-punching' || id === '#calisthenics' || id === '#mobility' || id === '#membership')) {
+        window.filterSection('all');
+      }
       var ty = t.getBoundingClientRect().top + scrollY - 74;
       scrollTo({ top: ty, behavior: reduced ? 'auto' : 'smooth' });
     });
