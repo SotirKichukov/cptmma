@@ -3,7 +3,7 @@
    with no signal. Network always wins while online, so a cached page can never
    go stale on a visitor. The cache is only ever read when the network fails. */
 
-const CACHE = 'cpt-v23';
+const CACHE = 'cpt-v24';
 
 self.addEventListener('install', () => self.skipWaiting());
 

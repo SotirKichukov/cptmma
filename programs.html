@@ -17,7 +17,7 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/sk.css?v=31">
+<link rel="stylesheet" href="./assets/sk.css?v=32">
 <meta name="google-site-verification" content="G2RuPksRn9KZ88AvHmiol_yZ1x-yz3LFeHwcCuFgjvI" />
 <link rel="canonical" href="https://cptmma.com/programs" data-seo="sx">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" data-seo="sx">
@@ -1076,10 +1076,10 @@
               <div id="unlockBadge" style="display:none;background:rgba(31,209,95,.15);border:1px solid var(--green);color:var(--green);padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700">
                 UNLOCKED
               </div>
-              <a id="videoExternalLink" href="https://drive.google.com/file/d/1vsqzFmJu3n74PEhd11-nZzHfUkHSrISK/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-ghost" style="padding:6px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Fullscreen / External Player
-              </a>
+              <button type="button" id="btnCinemaMode" class="btn btn-ghost" onclick="openCinemaTheater()" style="padding:6px 14px;font-size:12px;display:inline-flex;align-items:center;gap:6px;border-color:rgba(31,209,95,0.4);color:var(--bone)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                Cinema / Expand View
+              </button>
             </div>
           </div>
         </div>
@@ -1866,6 +1866,8 @@ function showProLockPrompt(idx) {
   }
 }
 
+let activeLessonIndex = 0;
+
 // Switch Active Video
 function selectLesson(idx, isDemoTrigger = false) {
   if (idx > 0 && !isCourseUnlocked && !isDemoTrigger) {
@@ -1873,6 +1875,7 @@ function selectLesson(idx, isDemoTrigger = false) {
     return;
   }
 
+  activeLessonIndex = idx;
   const lesson = courseLessons[idx];
   document.querySelectorAll('.lesson-item').forEach((el, i) => {
     el.classList.toggle('active', i === idx);
@@ -1883,9 +1886,62 @@ function selectLesson(idx, isDemoTrigger = false) {
 
   const iframe = document.getElementById('videoIframe');
   iframe.src = `https://drive.google.com/file/d/${lesson.fileId}/preview`;
-  const extLink = document.getElementById('videoExternalLink');
-  if (extLink) extLink.href = `https://drive.google.com/file/d/${lesson.fileId}/view?usp=sharing`;
+  
+  // If cinema modal is actively open, sync it smoothly
+  const cinemaModal = document.getElementById('cptCinemaModal');
+  if (cinemaModal && cinemaModal.classList.contains('active')) {
+    const cinemaIframe = document.getElementById('cinemaIframe');
+    const cinemaTitle = document.getElementById('cinemaLessonTitle');
+    if (cinemaTitle) cinemaTitle.textContent = `${lesson.week}: ${lesson.title}`;
+    if (cinemaIframe) cinemaIframe.src = `https://drive.google.com/file/d/${lesson.fileId}/preview?autoplay=1`;
+  }
 }
+
+// Cinema / Expanded Theater View
+function openCinemaTheater() {
+  if (!isCourseUnlocked && activeLessonIndex > 0) {
+    showProLockPrompt(activeLessonIndex);
+    return;
+  }
+
+  const lesson = courseLessons[activeLessonIndex] || courseLessons[0];
+  const modal = document.getElementById('cptCinemaModal');
+  const cinemaIframe = document.getElementById('cinemaIframe');
+  const cinemaTitle = document.getElementById('cinemaLessonTitle');
+
+  if (cinemaTitle) {
+    cinemaTitle.textContent = `${lesson.week}: ${lesson.title}`;
+  }
+
+  if (cinemaIframe) {
+    cinemaIframe.src = `https://drive.google.com/file/d/${lesson.fileId}/preview?autoplay=1`;
+  }
+
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCinemaTheater() {
+  const modal = document.getElementById('cptCinemaModal');
+  const cinemaIframe = document.getElementById('cinemaIframe');
+
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (cinemaIframe) {
+    cinemaIframe.src = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closeCinemaTheater();
+  }
+});
 
 // VIP & Coach Email / Code Recognizer (Sotir Kichukov & Authorized VIPs)
 function isVipOrCoachCredentials(val) {
@@ -2285,7 +2341,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="./assets/sk.js?v=31" defer></script>
+<script src="./assets/sk.js?v=32" defer></script>
 <script src="https://www.paypal.com/sdk/js?client-id=BAAPoFEtOL0vuioX-w7PrLdmrQ443eCn82WBmD6b6UdeICtZKBzoI5l6Pk1mNxat3XmLoJvRS4yKzSaOEo&currency=AUD&locale=en_AU&components=buttons"></script>
 
 <!-- ===== CPT SOVEREIGN FULL-HEIGHT DIVISION RAIL ===== -->
@@ -2397,6 +2453,40 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
   </div>
 </aside>
+
+<!-- CINEMA / THEATER EXPANDED PLAYER MODAL -->
+<div id="cptCinemaModal" class="cpt-cinema-modal" role="dialog" aria-modal="true" aria-label="Cinema Player">
+  <div class="cinema-backdrop" onclick="closeCinemaTheater()"></div>
+  <div class="cinema-dialog">
+    <div class="cinema-topbar">
+      <div class="cinema-meta">
+        <span class="cinema-live-pill"><span class="demo-live-dot"></span> THEATER VIEW</span>
+        <h3 id="cinemaLessonTitle" class="cinema-title">Week 1: Welcome &amp; Introduction</h3>
+      </div>
+      <button type="button" class="cinema-close-btn" onclick="closeCinemaTheater()" aria-label="Close Theater View">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <span>Close (ESC)</span>
+      </button>
+    </div>
+    <div class="cinema-screen">
+      <iframe id="cinemaIframe" src="" allow="autoplay; fullscreen"></iframe>
+    </div>
+    <div class="cinema-bottombar">
+      <div class="cinema-bottom-copy">
+        <span class="cinema-course-tag">SPEED PUNCHING MAXIMIZER</span>
+        <span class="cinema-course-desc">40 HD Video Lessons · 6-Week Structured Combat Speed System</span>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn btn-primary" onclick="openCheckout('Speed Punching Maximizer', 79, 'course')">
+          Unlock Lifetime Access — $79 AUD
+        </button>
+        <button class="btn btn-ghost" onclick="closeCinemaTheater()" style="border-color:rgba(255,255,255,0.15)">
+          Back to Course
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
