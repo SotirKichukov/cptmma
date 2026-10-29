@@ -17,7 +17,7 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/sk.css?v=18">
+<link rel="stylesheet" href="../assets/sk.css?v=19">
 <meta name="google-site-verification" content="G2RuPksRn9KZ88AvHmiol_yZ1x-yz3LFeHwcCuFgjvI" />
 <link rel="canonical" href="https://cptmma.com/programs" data-seo="sx">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" data-seo="sx">
@@ -1396,6 +1396,12 @@
             WhatsApp
           </a>
         </div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.1);text-align:center">
+          <button type="button" onclick="simulateTestPayment()" class="btn btn-ghost" style="width:100%;font-size:12px;padding:8px 12px;border:1px dashed rgba(31,209,95,.45);color:var(--green);font-family:var(--f-cond);letter-spacing:.08em;text-transform:uppercase">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Simulate Test Payment (Demo Flow)
+          </button>
+        </div>
       </form>
     </div>
 
@@ -1882,6 +1888,51 @@ function sendCptOrderLead(subjectPrefix, extraFields) {
       body: JSON.stringify(payload)
     }).catch(function () {});
   } catch (_) {}
+}
+
+
+// Simulate Test Payment Flow (For Coach Sotir & Operator Testing)
+function simulateTestPayment() {
+  const nameInput = document.getElementById('chkName');
+  const emailInput = document.getElementById('chkEmail');
+  const phoneInput = document.getElementById('chkPhone');
+  if (nameInput && !nameInput.value) nameInput.value = 'Sotir Kichukov (Coach Test)';
+  if (emailInput && !emailInput.value) emailInput.value = 'sotirkichukov@cptmma.com';
+  if (phoneInput && !phoneInput.value) phoneInput.value = '+61 423 269 586';
+
+  const txId = 'TEST-AUD-' + Date.now().toString(36).toUpperCase();
+  const pName = (nameInput && nameInput.value) || 'Sotir Kichukov (Coach Test)';
+  const pEmail = (emailInput && emailInput.value) || 'sotirkichukov@cptmma.com';
+  const pPhone = (phoneInput && phoneInput.value) || '+61 423 269 586';
+  const paidAmt = Number((window.activeCheckoutItem && window.activeCheckoutItem.price) || 120).toFixed(2);
+  const pTitle = (window.activeCheckoutItem && window.activeCheckoutItem.title) || 'CPT Training Package';
+
+  // 1. If course, unlock immediately
+  if (window.activeCheckoutItem && (window.activeCheckoutItem.type === 'course' || pTitle.includes('Speed Punching'))) {
+    localStorage.setItem('cpt_speed_unlocked', 'true');
+    if (typeof unlockCourse === 'function') unlockCourse(true);
+  }
+
+  // 2. Dispatch real lead email to Sotir's address
+  sendCptOrderLead('TEST PAYMENT SIMULATION ($' + paidAmt + ' AUD)', {
+    transaction_id: txId,
+    name: pName,
+    email: pEmail,
+    phone: pPhone,
+    payment_status: 'SIMULATED TEST PAYMENT (DEMO VERIFIED)'
+  });
+
+  // 3. Show live receipt with complete confirmation details
+  showCheckoutReceipt({
+    statusLabel: 'TEST PAYMENT CONFIRMED · AUD',
+    headline: 'Payment Successful (Test Flow)!',
+    subtext: (window.activeCheckoutItem && window.activeCheckoutItem.type === 'course')
+      ? 'The course is now UNLOCKED on this device! An email confirmation was sent to Sotir.'
+      : 'Your booking is confirmed! Sotir has received your contact details and session request.',
+    txId: txId,
+    payer: `${pName} (${pEmail})`,
+    amount: `A$ ${paidAmt} AUD`
+  });
 }
 
 function showCheckoutReceipt(opts) {
