@@ -17,7 +17,7 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/sk.css?v=19">
+<link rel="stylesheet" href="../assets/sk.css?v=20">
 <meta name="google-site-verification" content="G2RuPksRn9KZ88AvHmiol_yZ1x-yz3LFeHwcCuFgjvI" />
 <link rel="canonical" href="https://cptmma.com/programs" data-seo="sx">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" data-seo="sx">
@@ -1396,12 +1396,6 @@
             WhatsApp
           </a>
         </div>
-        <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.1);text-align:center">
-          <button type="button" onclick="simulateTestPayment()" class="btn btn-ghost" style="width:100%;font-size:12px;padding:8px 12px;border:1px dashed rgba(31,209,95,.45);color:var(--green);font-family:var(--f-cond);letter-spacing:.08em;text-transform:uppercase">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:5px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Simulate Test Payment (Demo Flow)
-          </button>
-        </div>
       </form>
     </div>
 
@@ -1893,6 +1887,7 @@ function sendCptOrderLead(subjectPrefix, extraFields) {
 
 // Simulate Test Payment Flow (For Coach Sotir & Operator Testing)
 function simulateTestPayment() {
+  if (!window.location.search.includes('test_override=cpt9669')) { return; }
   const nameInput = document.getElementById('chkName');
   const emailInput = document.getElementById('chkEmail');
   const phoneInput = document.getElementById('chkPhone');
