@@ -15,10 +15,10 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="theme-color" content="#080a09">
-<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="./favicon.ico" sizes="32x32">
 <link rel="icon" href="../assets/img/cpt-favicon-512.png" type="image/png" sizes="512x512">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<link rel="manifest" href="../manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -90,16 +90,18 @@
 <!-- ===== NAV ===== -->
 <header class="nav">
   <div class="bar">
-    <a class="brand" href="../index.html" aria-label="CPT MMA home">
+    <a class="brand" href="./index.html" aria-label="CPT MMA home">
       <img loading="lazy" decoding="async" class="mark" src="../assets/img/cpt-mark.png" width="235" height="277" alt="" aria-hidden="true"><span class="wm">CPT MMA<small>Combat &amp; Performance</small></span>
     </a>
     <nav>
-      <a href="../index.html#coach">Coach</a>
-      <a href="../index.html#training">Training</a>
-      <a href="../canine.html">Canine</a>
-      <a href="../programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
-      <a href="../blog.html">Journal</a>
-      <a href="../intake.html">Intake</a>
+      <a href="./index.html#coach">Coach</a>
+      <a href="./index.html#training">Training</a>
+      <a href="./rashguard.html" style="color:var(--green)">Gear</a>
+      <a href="./canine.html">Canine</a>
+      <a href="#record-app" style="color:var(--green);font-weight:700">10-Week App</a>
+      <a href="./programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
+      <a href="./blog.html">Journal</a>
+      <a href="./intake.html">Intake</a>
     </nav>
     <a class="btn btn-primary cta" href="#enquire">Enquire</a>
     <button class="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
@@ -109,12 +111,14 @@
 <!-- mobile menu -->
 <div class="mobmenu" role="dialog" aria-label="Menu">
   <button class="mclose" aria-label="Close">&times;</button>
-  <a href="../index.html#coach">Coach</a>
-  <a href="../index.html#training">Training</a>
-  <a href="../canine.html">Canine</a>
-  <a href="../programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
-  <a href="../blog.html">Journal</a>
-  <a href="../intake.html">Intake</a>
+  <a href="./index.html#coach">Coach</a>
+  <a href="./index.html#training">Training</a>
+  <a href="./rashguard.html" style="color:var(--green)">CPT Fight Gear</a>
+  <a href="./canine.html">Canine</a>
+  <a href="#record-app" style="color:var(--green);font-weight:700">10-Week App</a>
+      <a href="./programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
+  <a href="./blog.html">Journal</a>
+  <a href="./intake.html">Intake</a>
   <a class="btn btn-primary btn-block" href="#enquire" style="margin-top:20px">Enquire</a>
   <div class="socials mob-socials">
     <a href="https://www.facebook.com/ProFighterAndCoach" target="_blank" rel="noopener" aria-label="Sotir Kichukov on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8.2h2.76l.41-3.2H13.5V7.55c0-.93.26-1.56 1.59-1.56h1.7V3.13A22.7 22.7 0 0 0 14.31 3c-2.46 0-4.14 1.5-4.14 4.25V9.6H7.4v3.2h2.77V21h3.33z"/></svg></a>
@@ -136,6 +140,7 @@
         <div class="canine-cta">
           <a class="btn btn-primary" href="#enquire">Enquire about your dog
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#record-app" style="color:var(--green);border-color:rgba(31,209,95,.4)">10-Week App &amp; PDF Manual</a>
           <a class="btn btn-ghost" href="#how">How it works</a>
         </div>
       </div>
@@ -166,6 +171,156 @@
     </div>
   </div>
 </section>
+
+
+<!-- ===== CPT CANINE 10-WEEK TRAINING RECORD (INTERACTIVE APP & PDF) ===== -->
+<section class="pad" id="record-app" style="background:linear-gradient(180deg,#080a09 0%,#0e1211 50%,#080a09 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="shead center reveal in">
+      <span class="eyebrow"><span class="dot"></span> Client Training Record · Interactive App</span>
+      <h2 class="big">The 10-Week <span class="grad">Canine System</span></h2>
+      <p>Built on the 5 CPT Classical Pillars (Movement &amp; S-Flow, Visual Source Focus, Vocals &amp; Markers, Drive Ignition, and Grip/Out). Use the interactive tracker below to log your daily drills or download the complete manual.</p>
+      
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px">
+        <a class="btn btn-primary" href="../assets/docs/cpt-canine-10-week-system.pdf" target="_blank" style="padding:14px 24px">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Official PDF Manual (A4 Print)
+        </a>
+        <a class="btn btn-ghost" href="../canine-record.html" style="padding:14px 24px">
+          Open Full-Screen App Mode
+        </a>
+        <a class="btn btn-ghost" href="https://wa.me/61423269586" target="_blank" rel="noopener" style="padding:14px 24px">
+          Ask Sotir on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Interactive Progress Summary Bar -->
+    <div style="max-width:880px;margin:30px auto 40px;background:var(--panel);border:1px solid var(--line2);border-radius:var(--r);padding:22px 26px;box-shadow:0 14px 40px rgba(0,0,0,.5)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <span style="font-family:var(--f-cond);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:700">CPT Client Interactive Log</span>
+          <h3 style="font-size:20px;margin-top:2px">10-Week CPT Progress Bar</h3>
+        </div>
+        <div id="embedProgressBadge" style="font-family:var(--f-disp);font-size:32px;color:var(--green)">0%</div>
+      </div>
+      <div style="width:100%;height:10px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden">
+        <div id="embedProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--red),var(--green));border-radius:999px;transition:width 0.4s var(--ease)"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13px;color:var(--soft);flex-wrap:wrap;gap:8px">
+        <span id="embedProgressDesc">0 of 10 Sessions Completed (Practice 2-3 weeks per session)</span>
+        <button onclick="syncEmbedWhatsApp()" style="background:none;border:none;color:var(--green);font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline">
+          Sync Progress to Sotir &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- 10 Sessions Accordion Cards -->
+    <div id="embedSessionsWrap" style="max-width:880px;margin:0 auto"></div>
+  </div>
+</section>
+
+<!-- SCRIPT FOR EMBEDDED CANINE TRACKER -->
+<script>
+const EMBED_SESSIONS = [
+  { num: 1, title: "Food Drive Ignition & Hand Magnet", period: "Practice: 2 Weeks", pillar: "Pillar 4: Drive", why: "Eliminate bowl feeding. The entire daily meal is converted into high-speed hand-chasing drive so the dog craves training with you.", drills: ["Zero bowl feeding: 100% of daily food earned through hand work", "Hand Chasing (Magnet Hand): Dog pushes nose into palm while handler retreats 3-5m", "Opposition Reflex drill: Pull hand slightly away to trigger intense pursuit", "Conducted in hallway or zero-distraction indoor space"] },
+  { num: 2, title: "Visual Source Focus & The BREAK Release", period: "Practice: 2 Weeks", pillar: "Pillars 2 & 3: Visuals + Markers", why: "Teaching the dog that eye contact with the handler is the trigger that releases the food. Introduces the explosive BREAK release marker.", drills: ["The Power Stare: Food held in closed fist at chest; reward only on eye contact", "5-second locked focus: Dog ignores hand and maintains handler gaze", "The BREAK Marker: Announce energetic 'BREAK!' & throw treat backward to release tension", "10 reps per day alternating focus lock and explosive release"] },
+  { num: 3, title: "S-Flow Movement & 3 Kinesthetic Positions", period: "Practice: 2 Weeks", pillar: "Pillar 1: Movement & S-Flow", why: "Using the handler's lateral curved walking lines (S-Flow) to teach Sit, Down, Stand and a snug Contact Heel without verbal nagging.", drills: ["Puppy Push-Ups: Upward lure (Sit) -> Downward lure (Down) -> Forward draw (Stand)", "S-Flow Contact Heel: Hand pinned to left hip seam walking gentle figure-8s", "Body wrapping: Dog learns to tuck rear quarters cleanly around curves", "3 sessions weekly of 8-10 minutes continuous flow"] },
+  { num: 4, title: "Fading the Lure, Duration & Street Heel", period: "Practice: 2–3 Weeks", pillar: "Pillars 1 & 3: Leash + Duration", why: "Removing the bribe from the hand, introducing the 'GOOD' duration marker, and building true loose-leash sidewalk walking.", drills: ["Fading the Lure: Empty hand guides position; reward pulled from pocket post-marker", "The GOOD Marker: 15-30 second stay with periodic treat reinforcement before BREAK", "Street Heel on loose leash: Zero tension; immediate S-turn pivot upon any pulling", "Daily 15-minute neighborhood walk with 50% heel and 50% free sniffing"] },
+  { num: 5, title: "Ball Drive, Full Grip & Positive OUT", period: "Practice: 2 Weeks", pillar: "Pillar 5: Grip & Play", why: "Channelling prey drive into a ball or tug, developing a confident full-mouth grip, and teaching clean releases without conflict or resource guarding.", drills: ["Prey Drag: Ball on string moved erratically away from dog like prey", "Full Molar Grip: 5 seconds of confident, controlled tugging without head shaking", "Two-Ball Positive Out: Ball 1 goes dead -> Command 'OUT' -> Ball 2 explodes alive as reward", "3 sessions weekly of 5 minutes high-intensity 2-ball play"] },
+  { num: 6, title: "Distraction Proofing During Positions", period: "Practice: 2 Weeks", pillar: "Pillar 4: Impulse Control", why: "Proofing positions (Sit-Stay / Down-Stay) against external temptation so the dog learns that ignoring distractions is the only path to reward.", drills: ["Food Drop Denial: High-value treat dropped 1m away during Down-Stay; reward eye contact", "Toy Fly-By: Ball rolled past dog while in Sit; reward calm posture", "360-Degree Handler Orbit: Walking full circle around the dog without position break", "10 drop trials per session in front yard or quiet park"] },
+  { num: 7, title: "The Magnet Long-Line Recall", period: "Practice: 2 Weeks", pillar: "Pillars 2 & 4: Visuals + Speed", why: "Building an explosive recall reflex from 10 to 15 meters using a long check-cord and enthusiastic jackpot rewards.", drills: ["Restrained Recall: Helper holds dog; handler sprints away 15m calling 'COME!' & helper releases", "Sprint velocity reward: High-energy jackpot or ball throw upon reaching front sit", "Check-cord safety: Line drags on grass; step on line if dog hesitates", "5 recalls daily; never recall dog to administer discipline or baths"] },
+  { num: 8, title: "The Super Recall (Emergency Stop / High Arousal)", period: "Practice: 2 Weeks", pillar: "Pillars 3 & 4: Audio Override", why: "A specialized emergency whistle or distinctive cue ('SUPER!') reserved exclusively for life-or-death situations and high-drive prey call-offs.", drills: ["Charging Recall: Whistle blown while dog is actively running away from handler", "Prey Call-Off: Calling dog off a rolling ball with 180-degree emergency turnaround", "Mega Reward Vault: Fresh roast chicken, liver, or unique high-value tug only for this cue", "Tested only 1-2 times weekly to maintain maximum explosive value"] },
+  { num: 9, title: "The Neutrality Crucible (Trigger Proofing)", period: "Practice: 2 Weeks", pillar: "Pillars 1 & 2: Threshold Management", why: "The critical proofing bridge before retail stores: complete behavioral indifference toward passing dogs, scooters, prams, and outdoor cafe crowds.", drills: ["Parallel Sidewalk Pass: Walking past another dog with a 3m gap in locked Contact Heel", "Cafe Settle: 20-minute Down-Stay under outdoor table while strangers pass within 1m", "Arousal De-Escalation: Dropping dog from high sprint arousal into calm rest in under 60 seconds", "3 sessions weekly outside busy parks or shopping strips"] },
+  { num: 10, title: "Bunnings Warehouse Challenge & Graduation", period: "Graduation Field Test", pillar: "All 5 CPT Pillars", why: "The ultimate public stability test: automatic sliding doors, polished concrete floors, reverberating forklifts, and rattling flatbed trolleys.", drills: ["Automatic Door Entry: Confident entry on loose lead without balking or lunging", "Narrow Hardware Aisle Heeling: Zero sniffing of merchandise or shelf corners", "Trolley Down-Stay: 3-minute Down-Stay while metal trolleys rattle past", "Graduation Sign-Off & CPT Tag awarded by Coach Sotir Kichukov"] }
+];
+
+function getEmbedData() {
+  try { return JSON.parse(localStorage.getItem('cpt_canine_tracker') || '{}'); } catch(e) { return {}; }
+}
+function setEmbedData(d) {
+  localStorage.setItem('cpt_canine_tracker', JSON.stringify(d));
+  renderEmbedTracker();
+}
+
+function renderEmbedTracker() {
+  const container = document.getElementById('embedSessionsWrap');
+  if (!container) return;
+  const d = getEmbedData();
+  let doneCount = 0;
+  EMBED_SESSIONS.forEach(s => { if (d[s.num] && d[s.num].completed) doneCount++; });
+  const pct = Math.round((doneCount / EMBED_SESSIONS.length) * 100);
+  document.getElementById('embedProgressBar').style.width = pct + '%';
+  document.getElementById('embedProgressBadge').textContent = pct + '%';
+  document.getElementById('embedProgressDesc').textContent = `${doneCount} of 10 Sessions Completed (${pct}% finished)`;
+
+  container.innerHTML = '';
+  EMBED_SESSIONS.forEach(s => {
+    const sData = d[s.num] || { completed: false, checks: {}, notes: '' };
+    const div = document.createElement('div');
+    div.style.cssText = 'background:var(--panel);border:1px solid ' + (sData.completed ? 'var(--green)' : 'var(--line)') + ';border-radius:var(--r);margin-bottom:14px;overflow:hidden;transition:border-color .2s';
+    
+    let checksHtml = '';
+    s.drills.forEach((dr, i) => {
+      const isC = sData.checks && sData.checks[i];
+      checksHtml += '<div onclick="toggleEmbedCheck(' + s.num + ',' + i + ')" style="display:flex;gap:10px;align-items:flex-start;padding:6px 0;cursor:pointer;border-bottom:1px solid var(--line)">' +
+        '<div style="width:18px;height:18px;border-radius:4px;border:1.5px solid var(--line2);background:' + (isC ? 'var(--green)' : 'var(--panel2)') + ';color:#04140a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:2px">' + (isC ? '✓' : '') + '</div>' +
+        '<span style="font-size:13.5px;color:' + (isC ? 'var(--mut)' : 'var(--bone)') + ';' + (isC ? 'text-decoration:line-through' : '') + '">' + dr + '</span>' +
+      '</div>';
+    });
+
+    div.innerHTML = '<div onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === \'none\' ? \'block\' : \'none\'" style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer">' +
+      '<div style="display:flex;align-items:center;gap:12px">' +
+        '<div style="font-family:var(--f-disp);font-size:18px;width:34px;height:34px;border-radius:6px;background:' + (sData.completed ? 'var(--green)' : 'var(--panel2)') + ';color:' + (sData.completed ? '#04140a' : 'var(--bone)') + ';display:flex;align-items:center;justify-content:center">' + s.num + '</div>' +
+        '<div><h4 style="font-size:16px;margin:0">' + s.title + '</h4><span style="font-size:12px;color:var(--mut)">' + s.period + ' · ' + s.pillar + '</span></div>' +
+      '</div>' +
+      '<span style="font-family:var(--f-cond);font-size:12px;padding:3px 10px;border-radius:999px;background:' + (sData.completed ? 'rgba(31,209,95,.2)' : 'rgba(255,255,255,.05)') + ';color:' + (sData.completed ? 'var(--green)' : 'var(--mut)') + ';font-weight:700">' + (sData.completed ? '✓ Completed' : 'In Progress') + '</span>' +
+    '</div>' +
+    '<div style="display:' + (s.num === 1 ? 'block' : 'none') + ';padding:0 20px 20px;border-top:1px solid var(--line)">' +
+      '<div style="background:var(--panel2);border-left:3px solid var(--green);padding:10px 12px;font-size:13px;color:var(--soft);margin:14px 0">' + s.why + '</div>' +
+      '<div style="margin-bottom:14px">' + checksHtml + '</div>' +
+      '<textarea oninput="saveEmbedNotes(' + s.num + ', this.value)" placeholder="Field notes & date for Coach Sotir..." style="width:100%;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;padding:8px 10px;color:var(--bone);font-size:13px;min-height:50px">' + (sData.notes || '') + '</textarea>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">' +
+        '<button onclick="toggleEmbedComplete(' + s.num + ')" class="btn btn-ghost" style="padding:8px 16px;font-size:12.5px;color:' + (sData.completed ? 'var(--bone)' : 'var(--green)') + '">' + (sData.completed ? 'Mark Incomplete' : '✓ Mark Session ' + s.num + ' Complete') + '</button>' +
+        '<span style="font-size:11px;color:var(--mut)">Saved to phone</span>' +
+      '</div>' +
+    '</div>';
+    container.appendChild(div);
+  });
+}
+
+function toggleEmbedCheck(sNum, dIdx) {
+  const d = getEmbedData();
+  if (!d[sNum]) d[sNum] = { completed: false, checks: {}, notes: '' };
+  if (!d[sNum].checks) d[sNum].checks = {};
+  d[sNum].checks[dIdx] = !d[sNum].checks[dIdx];
+  setEmbedData(d);
+}
+
+function saveEmbedNotes(sNum, val) {
+  const d = getEmbedData();
+  if (!d[sNum]) d[sNum] = { completed: false, checks: {}, notes: '' };
+  d[sNum].notes = val;
+  localStorage.setItem('cpt_canine_tracker', JSON.stringify(d));
+}
+
+function toggleEmbedComplete(sNum) {
+  const d = getEmbedData();
+  if (!d[sNum]) d[sNum] = { completed: false, checks: {}, notes: '' };
+  d[sNum].completed = !d[sNum].completed;
+  setEmbedData(d);
+}
+
+function syncEmbedWhatsApp() {
+  const d = getEmbedData();
+  let done = [];
+  EMBED_SESSIONS.forEach(s => { if (d[s.num] && d[s.num].completed) done.push('Session ' + s.num + ': ' + s.title); });
+  const msg = encodeURIComponent('Hi Coach Sotir, here is my CPT Canine 10-Week Training Record progress: ' + done.length + '/10 Sessions Complete. ' + (done.length ? 'Completed: ' + done.join(', ') : 'Starting Session 1.'));
+  window.open('https://wa.me/61423269586?text=' + msg, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', renderEmbedTracker);
+</script>
 
 <!-- ===== WHO IT IS FOR ===== -->
 <section class="pad-sm" id="who">
@@ -299,7 +454,7 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <a class="brand" href="../index.html">
+        <a class="brand" href="./index.html">
           <img decoding="async" class="logo" src="../assets/img/cpt-logo.png" width="1100" height="227" alt="CPT MMA, Combat and Performance Training">
         </a>
         <p style="color:var(--soft);font-size:14.5px;margin-top:16px;max-width:34ch">Canine Personal Training is part of CPT. The same coaching standards Sotir holds his fighters to, applied to your dog.</p>
@@ -319,11 +474,12 @@
       </div>
       <div>
         <h4>CPT</h4>
-        <a href="../index.html#coach">The coach</a>
-        <a href="../index.html#training">Training</a>
-        <a href="../programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
-        <a href="../blog.html">Journal</a>
-        <a href="../magnesium.html">Anchialo Magnesium</a>
+        <a href="./index.html#coach">The coach</a>
+        <a href="./index.html#training">Training</a>
+        <a href="#record-app" style="color:var(--green);font-weight:700">10-Week App</a>
+      <a href="./programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
+        <a href="./blog.html">Journal</a>
+        <a href="./magnesium.html">Anchialo Magnesium</a>
       </div>
       <div class="contact">
         <h4>Get in touch</h4>

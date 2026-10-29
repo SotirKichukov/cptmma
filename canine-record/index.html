@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<title>CPT Canine Training Record — 10-Week Interactive App</title>
+<meta name="description" content="Official 10-Week Canine Personal Training interactive tracker based on the 5 CPT pillars. Coached by Sotir Kichukov in Melbourne.">
+<meta name="theme-color" content="#080a09">
+<link rel="icon" href="./favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/sk.css?v=14">
+<style>
+  :root {
+    --green-bright: #22e065;
+  }
+  body {
+    background: #080a09;
+    color: var(--bone);
+  }
+  .app-wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+  }
+  .app-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(31,209,95,.15);
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-family: var(--f-cond);
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .app-title {
+    font-family: var(--f-disp);
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .app-lead {
+    font-size: 16px;
+    color: var(--soft);
+    max-width: 58ch;
+    margin: 0 auto 20px;
+  }
+  
+  /* Progress Bar Block */
+  .progress-card {
+    background: var(--panel);
+    border: 1px solid var(--line2);
+    border-radius: var(--r);
+    padding: 22px 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-bar-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(255,255,255,.08);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--red), var(--green));
+    border-radius: 999px;
+    transition: width 0.4s var(--ease);
+  }
+  .app-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .app-btn {
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: var(--f-cond);
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .08em;
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .app-btn-green {
+    background: var(--green);
+    color: #04140a;
+  }
+  .app-btn-green:hover {
+    background: var(--green2);
+    transform: translateY(-2px);
+  }
+  .app-btn-ghost {
+    background: var(--panel2);
+    border-color: var(--line2);
+    color: var(--bone);
+  }
+  .app-btn-ghost:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  /* 10 Session Cards */
+  .session-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .session-card.completed {
+    border-color: var(--green);
+    background: linear-gradient(180deg, rgba(31,209,95,.06) 0%, var(--panel) 25%);
+  }
+  .card-top {
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+  }
+  .session-card.open .card-top {
+    border-bottom-color: var(--line);
+  }
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card-badge-num {
+    font-family: var(--f-disp);
+    font-size: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--panel2);
+    border: 1px solid var(--line2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bone);
+  }
+  .session-card.completed .card-badge-num {
+    background: var(--green);
+    color: #04140a;
+    border-color: var(--green);
+  }
+  .card-titles h4 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .card-titles span {
+    font-size: 13px;
+    color: var(--mut);
+    display: block;
+    margin-top: 2px;
+  }
+  .card-status-pill {
+    font-family: var(--f-cond);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    color: var(--mut);
+  }
+  .session-card.completed .card-status-pill {
+    background: rgba(31,209,95,.18);
+    color: var(--green);
+    border: 1px solid var(--green);
+    font-weight: 700;
+  }
+
+  .card-body {
+    padding: 20px 22px;
+    display: none;
+  }
+  .session-card.open .card-body {
+    display: block;
+  }
+  .drill-why {
+    background: var(--panel2);
+    border-left: 3px solid var(--green);
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: var(--soft);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 18px;
+    line-height: 1.45;
+  }
+  .checklist {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+  }
+  .check-item:last-child {
+    border-bottom: none;
+  }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1.5px solid var(--line2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: var(--panel2);
+    transition: all .2s;
+  }
+  .check-item.done .check-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: #04140a;
+  }
+  .check-item.done .check-text {
+    text-decoration: line-through;
+    color: var(--mut);
+  }
+  .check-text {
+    font-size: 14px;
+    color: var(--bone);
+  }
+  .notes-area {
+    width: 100%;
+    background: var(--panel2);
+    border: 1px solid var(--line2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--bone);
+    font-size: 13.5px;
+    margin-top: 6px;
+    min-height: 60px;
+    resize: vertical;
+  }
+  .notes-area:focus {
+    outline: none;
+    border-color: var(--green);
+  }
+  .session-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header class="nav stuck">
+  <div class="bar">
+    <a class="brand" href="./canine.html">
+      <img loading="lazy" decoding="async" class="mark" src="./assets/img/cpt-mark.png" width="235" height="277" alt="" aria-hidden="true">
+      <span class="wm">CPT CANINE<small>Interactive App</small></span>
+    </a>
+    <nav>
+      <a href="./canine.html">Canine Home</a>
+      <a href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank" style="color:var(--green)">Download PDF Manual</a>
+      <a href="https://wa.me/61423269586" target="_blank" style="color:var(--green)">Coach Sotir</a>
+    </nav>
+    <a class="btn btn-primary cta" href="./canine.html#enquire">Enquire</a>
+  </div>
+</header>
+
+<main class="app-wrap">
+  <div class="app-header">
+    <span class="app-badge"><span class="dot" style="width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block"></span> 5 CPT Classical Pillars</span>
+    <h1 class="app-title">CPT CANINE <span class="grad">TRAINING RECORD</span></h1>
+    <p class="app-lead">Official 10-week progressive log book by ONE Championship veteran Sotir Kichukov. Track your daily repetitions, mark sessions completed, and sync with Coach Sotir.</p>
+  </div>
+
+  <!-- Overall Progress Card -->
+  <div class="progress-card">
+    <div class="progress-header">
+      <div>
+        <h3 style="font-size:18px;font-family:var(--f-cond);letter-spacing:.06em;text-transform:uppercase">Course Completion</h3>
+        <span id="progressStatsLabel" style="font-size:13px;color:var(--mut)">0 of 10 Sessions Completed (0%)</span>
+      </div>
+      <div id="progressPercentBadge" style="font-family:var(--f-disp);font-size:28px;color:var(--green)">0%</div>
+    </div>
+    <div class="progress-bar-track">
+      <div id="progressBarFill" class="progress-bar-fill"></div>
+    </div>
+    <div class="app-actions">
+      <a class="app-btn app-btn-green" href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Official PDF Manual
+      </a>
+      <button class="app-btn app-btn-ghost" onclick="syncWhatsAppProgress()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.53 11.51c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3Z"/></svg>
+        Sync Progress to Sotir (WhatsApp)
+      </button>
+      <button class="app-btn app-btn-ghost" onclick="resetAllProgress()">
+        Reset Tracker
+      </button>
+    </div>
+  </div>
+
+  <!-- Sessions Container -->
+  <div id="sessionsContainer"></div>
+</main>
+
+<script>
+const SESSIONS = [
+  {
+    num: 1,
+    title: "Food Drive Ignition & Hand Magnet",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 4: Drive Ignition",
+    why: "Eliminate bowl feeding. The entire daily meal is converted into high-speed hand-chasing drive so the dog craves training with you.",
+    drills: [
+      "Zero bowl feeding: 100% of daily food earned through hand work",
+      "Hand Chasing (Magnet Hand): Dog pushes nose into palm while handler retreats 3-5m",
+      "Opposition Reflex drill: Pull hand slightly away to trigger intense pursuit",
+      "Conducted in hallway or zero-distraction indoor space"
+    ]
+  },
+  {
+    num: 2,
+    title: "Visual Source Focus & The BREAK Release",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 2 & 3: Visuals + Marker Architecture",
+    why: "Teaching the dog that eye contact with the handler is the trigger that releases the food. Introduces the explosive BREAK release marker.",
+    drills: [
+      "The Power Stare: Food held in closed fist at chest; reward only on eye contact",
+      "5-second locked focus: Dog ignores hand and maintains handler gaze",
+      "The BREAK Marker: Announce energetic 'BREAK!' & throw treat backward to release tension",
+      "10 reps per day alternating focus lock and explosive release"
+    ]
+  },
+  {
+    num: 3,
+    title: "S-Flow Movement & 3 Kinesthetic Positions",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 1: Movement & S-Flow",
+    why: "Using the handler's lateral curved walking lines (S-Flow) to teach Sit, Down, Stand and a snug Contact Heel without verbal nagging.",
+    drills: [
+      "Puppy Push-Ups: Upward lure (Sit) &rarr; Nose-to-paws lure (Down) &rarr; Forward draw (Stand)",
+      "S-Flow Contact Heel: Hand pinned to left hip seam walking gentle figure-8s",
+      "Body wrapping: Dog learns to tuck rear quarters cleanly around curves",
+      "3 sessions weekly of 8-10 minutes continuous flow"
+    ]
+  },
+  {
+    num: 4,
+    title: "Fading the Lure, Duration & Street Heel",
+    period: "Practice: 2–3 Weeks",
+    pillar: "Pillar 1 & 3: Leash Mechanics + Duration Bridge",
+    why: "Removing the bribe from the hand, introducing the 'GOOD' duration marker, and building true loose-leash sidewalk walking.",
+    drills: [
+      "Fading the Lure: Empty hand guides position; reward pulled from pocket post-marker",
+      "The GOOD Marker: 15-30 second stay with periodic treat reinforcement before BREAK",
+      "Street Heel on loose leash: Zero tension; immediate S-turn pivot upon any pulling",
+      "Daily 15-minute neighborhood walk with 50% heel and 50% free sniffing"
+    ]
+  },
+  {
+    num: 5,
+    title: "Ball Drive, Full Grip & Positive OUT",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 5: Grip & Play Mechanics",
+    why: "Channelling prey drive into a ball or tug, developing a confident full-mouth grip, and teaching clean releases without conflict or resource guarding.",
+    drills: [
+      "Prey Drag: Ball on string moved erratically away from dog like prey",
+      "Full Molar Grip: 5 seconds of confident, controlled tugging without head shaking",
+      "Two-Ball Positive Out: Ball 1 goes dead &rarr; Command 'OUT' &rarr; Ball 2 explodes alive as reward",
+      "3 sessions weekly of 5 minutes high-intensity 2-ball play"
+    ]
+  },
+  {
+    num: 6,
+    title: "Distraction Proofing During Positions",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 4: Impulse Control",
+    why: "Proofing positions (Sit-Stay / Down-Stay) against external temptation so the dog learns that ignoring distractions is the only path to reward.",
+    drills: [
+      "Food Drop Denial: High-value treat dropped 1m away during Down-Stay; reward eye contact",
+      "Toy Fly-By: Ball rolled past dog while in Sit; reward calm posture",
+      "360-Degree Handler Orbit: Walking full circle around the dog without position break",
+      "10 drop trials per session in front yard or quiet park"
+    ]
+  },
+  {
+    num: 7,
+    title: "The Magnet Long-Line Recall",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 2 & 4: Visuals + Speed Reinforcement",
+    why: "Building an explosive recall reflex from 10 to 15 meters using a long check-cord and enthusiastic jackpot rewards.",
+    drills: [
+      "Restrained Recall: Helper holds dog; handler sprints away 15m calling 'COME!' & helper releases",
+      "Sprint velocity reward: High-energy jackpot or ball throw upon reaching front sit",
+      "Check-cord safety: Line drags on grass; step on line if dog hesitates",
+      "5 recalls daily; never recall dog to administer discipline or baths"
+    ]
+  },
+  {
+    num: 8,
+    title: "The Super Recall (Emergency Stop / High Arousal)",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 3 & 4: High-Arousal Audio Override",
+    why: "A specialized emergency whistle or distinctive cue ('SUPER!') reserved exclusively for life-or-death situations and high-drive prey call-offs.",
+    drills: [
+      "Charging Recall: Whistle blown while dog is actively running away from handler",
+      "Prey Call-Off: Calling dog off a rolling ball with 180-degree emergency turnaround",
+      "Mega Reward Vault: Fresh roast chicken, liver, or unique high-value tug only for this cue",
+      "Tested only 1-2 times weekly to maintain maximum explosive value"
+    ]
+  },
+  {
+    num: 9,
+    title: "The Neutrality Crucible (Trigger Proofing)",
+    period: "Practice: 2 Weeks",
+    pillar: "Pillar 1 & 2: Threshold Management & Neutrality",
+    why: "The critical proofing bridge before retail stores: complete behavioral indifference toward passing dogs, scooters, prams, and outdoor cafe crowds.",
+    drills: [
+      "Parallel Sidewalk Pass: Walking past another dog with a 3m gap in locked Contact Heel",
+      "Cafe Settle: 20-minute Down-Stay under outdoor table while strangers pass within 1m",
+      "Arousal De-Escalation: Dropping dog from high sprint arousal into calm rest in under 60 seconds",
+      "3 sessions weekly outside busy parks or shopping strips"
+    ]
+  },
+  {
+    num: 10,
+    title: "Bunnings Warehouse Challenge & Graduation",
+    period: "Graduation Field Test",
+    pillar: "All 5 CPT Pillars Integrated",
+    why: "The ultimate public stability test: automatic sliding doors, polished concrete floors, reverberating forklifts, and rattling flatbed trolleys.",
+    drills: [
+      "Automatic Door Entry: Confident entry on loose lead without balking or lunging",
+      "Narrow Hardware Aisle Heeling: Zero sniffing of merchandise or shelf corners",
+      "Trolley Down-Stay: 3-minute Down-Stay while metal trolleys rattle past",
+      "Graduation Sign-Off & CPT Tag awarded by Coach Sotir Kichukov"
+    ]
+  }
+];
+
+function loadTrackerData() {
+  try {
+    return JSON.parse(localStorage.getItem('cpt_canine_tracker') || '{}');
+  } catch(e) {
+    return {};
+  }
+}
+
+function saveTrackerData(data) {
+  localStorage.setItem('cpt_canine_tracker', JSON.stringify(data));
+  updateProgressUI();
+}
+
+function updateProgressUI() {
+  const data = loadTrackerData();
+  let completedCount = 0;
+  SESSIONS.forEach(s => {
+    if (data[s.num] && data[s.num].completed) completedCount++;
+  });
+  const pct = Math.round((completedCount / SESSIONS.length) * 100);
+  document.getElementById('progressBarFill').style.width = pct + '%';
+  document.getElementById('progressPercentBadge').textContent = pct + '%';
+  document.getElementById('progressStatsLabel').textContent = `${completedCount} of 10 Sessions Completed (${pct}%)`;
+
+  SESSIONS.forEach(s => {
+    const card = document.getElementById(`session-card-${s.num}`);
+    const statusPill = document.getElementById(`status-pill-${s.num}`);
+    const btn = document.getElementById(`btn-toggle-${s.num}`);
+    const isDone = data[s.num] && data[s.num].completed;
+    if (card) card.classList.toggle('completed', !!isDone);
+    if (statusPill) statusPill.textContent = isDone ? '✓ Completed' : 'In Progress';
+    if (btn) btn.textContent = isDone ? 'Mark as Incomplete' : '✓ Mark Session Completed';
+  });
+}
+
+function renderSessions() {
+  const container = document.getElementById('sessionsContainer');
+  const data = loadTrackerData();
+  container.innerHTML = '';
+
+  SESSIONS.forEach(s => {
+    const sData = data[s.num] || { completed: false, checks: {}, notes: '' };
+    const card = document.createElement('div');
+    card.id = `session-card-${s.num}`;
+    card.className = `session-card ${sData.completed ? 'completed' : ''} ${s.num === 1 ? 'open' : ''}`;
+
+    let drillsHtml = '';
+    s.drills.forEach((drill, dIdx) => {
+      const isChecked = sData.checks && sData.checks[dIdx];
+      drillsHtml += `
+        <li class="check-item ${isChecked ? 'done' : ''}" onclick="toggleDrillCheck(${s.num}, ${dIdx})">
+          <div class="check-box">${isChecked ? '✓' : ''}</div>
+          <span class="check-text">${drill}</span>
+        </li>
+      `;
+    });
+
+    card.innerHTML = `
+      <div class="card-top" onclick="toggleCardOpen(${s.num})">
+        <div class="card-left">
+          <div class="card-badge-num">${s.num}</div>
+          <div class="card-titles">
+            <h4>${s.title}</h4>
+            <span>${s.period} · ${s.pillar}</span>
+          </div>
+        </div>
+        <span class="card-status-pill" id="status-pill-${s.num}">
+          ${sData.completed ? '✓ Completed' : 'In Progress'}
+        </span>
+      </div>
+      <div class="card-body">
+        <div class="drill-why">
+          <strong>Coach's Objective:</strong> ${s.why}
+        </div>
+        <h5 style="font-size:14px;text-transform:uppercase;margin-bottom:10px;color:var(--bone);font-family:var(--f-cond)">Core Drills & Checkpoints:</h5>
+        <ul class="checklist" id="checklist-${s.num}">
+          ${drillsHtml}
+        </ul>
+        <div style="margin-top:14px">
+          <label style="font-size:12.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond)">Handler Field Notes & Dates:</label>
+          <textarea class="notes-area" placeholder="e.g. Practiced 10m hand magnet on Oct 29. Dog was locked on food with high speed..." oninput="saveNotes(${s.num}, this.value)">${sData.notes || ''}</textarea>
+        </div>
+        <div class="session-footer-actions">
+          <button class="app-btn ${sData.completed ? 'app-btn-ghost' : 'app-btn-green'}" id="btn-toggle-${s.num}" onclick="toggleSessionComplete(${s.num})">
+            ${sData.completed ? 'Mark as Incomplete' : '✓ Mark Session Completed'}
+          </button>
+          <span style="font-size:12px;color:var(--mut)">Auto-saved to device</span>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  updateProgressUI();
+}
+
+function toggleCardOpen(num) {
+  const card = document.getElementById(`session-card-${num}`);
+  if (card) card.classList.toggle('open');
+}
+
+function toggleDrillCheck(sNum, dIdx) {
+  const data = loadTrackerData();
+  if (!data[sNum]) data[sNum] = { completed: false, checks: {}, notes: '' };
+  if (!data[sNum].checks) data[sNum].checks = {};
+  data[sNum].checks[dIdx] = !data[sNum].checks[dIdx];
+  saveTrackerData(data);
+  renderSessions();
+}
+
+function saveNotes(sNum, val) {
+  const data = loadTrackerData();
+  if (!data[sNum]) data[sNum] = { completed: false, checks: {}, notes: '' };
+  data[sNum].notes = val;
+  localStorage.setItem('cpt_canine_tracker', JSON.stringify(data));
+}
+
+function toggleSessionComplete(sNum) {
+  const data = loadTrackerData();
+  if (!data[sNum]) data[sNum] = { completed: false, checks: {}, notes: '' };
+  data[sNum].completed = !data[sNum].completed;
+  saveTrackerData(data);
+  renderSessions();
+}
+
+function resetAllProgress() {
+  if (confirm("Reset all 10 session logs and checklists?")) {
+    localStorage.removeItem('cpt_canine_tracker');
+    renderSessions();
+  }
+}
+
+function syncWhatsAppProgress() {
+  const data = loadTrackerData();
+  let completed = [];
+  SESSIONS.forEach(s => {
+    if (data[s.num] && data[s.num].completed) {
+      completed.push(`Session ${s.num}: ${s.title}`);
+    }
+  });
+  const text = encodeURIComponent(
+    `Hi Coach Sotir, here is my CPT Canine 10-Week Training Record:\n` +
+    `Progress: ${completed.length}/10 Sessions Completed.\n` +
+    (completed.length > 0 ? `Completed: ${completed.join(', ')}\n` : `Currently on Session 1.\n`) +
+    `Ready for review and my next drill check!`
+  );
+  window.open(`https://wa.me/61423269586?text=${text}`, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', renderSessions);
+</script>
+</body>
+</html>

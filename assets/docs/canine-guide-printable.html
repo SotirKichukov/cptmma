@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CPT Canine Personal Training — 10-Session Training System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap');
+  
+  @page {
+    size: A4;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    color: #1a1a1a;
+    background: #fff;
+    line-height: 1.45;
+    font-size: 9.8pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .page {
+    page-break-after: always;
+    position: relative;
+    height: 273mm;
+    max-height: 273mm;
+    overflow: hidden;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+  
+  /* Header & Footer */
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #080a09;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .doc-header .brand {
+    font-family: 'Anton', sans-serif;
+    font-size: 15pt;
+    letter-spacing: 0.05em;
+    color: #080a09;
+  }
+  .doc-header .brand span { color: #12b551; }
+  .doc-header .meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #666;
+  }
+  
+  .doc-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.8pt;
+    color: #777;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Cover Page */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 273mm;
+    background: #080a09;
+    color: #f3f4ef;
+    padding: 24mm 18mm;
+    border-radius: 4px;
+  }
+  .cover-top .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #1fd15f;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cover-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 40pt;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+  }
+  .cover-title span { color: #1fd15f; }
+  .cover-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #c9cfca;
+    max-width: 38ch;
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+  .cover-pillars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 20px 0;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .pillar-box {
+    background: #141a18;
+    border: 1px solid #1fd15f;
+    border-radius: 6px;
+    padding: 8px 6px;
+    text-align: center;
+  }
+  .pillar-box .num {
+    font-family: 'Anton', sans-serif;
+    font-size: 13pt;
+    color: #1fd15f;
+    line-height: 1;
+  }
+  .pillar-box .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+    color: #f3f4ef;
+  }
+  
+  .cover-coach {
+    background: #111513;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 4px solid #e5231b;
+    padding: 14px 18px;
+    border-radius: 6px;
+  }
+  .cover-coach h4 {
+    font-family: 'Anton', sans-serif;
+    font-size: 14pt;
+    color: #f3f4ef;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .cover-coach p {
+    font-size: 9.2pt;
+    color: #8b938d;
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+
+  /* Headings & Content */
+  h1.sec-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 21pt;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #080a09;
+    margin-bottom: 8px;
+  }
+  h1.sec-title span { color: #12b551; }
+  
+  .manifesto-box {
+    background: #080a09;
+    color: #f3f4ef;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border-left: 4px solid #1fd15f;
+  }
+  .manifesto-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 11.5pt;
+    text-transform: uppercase;
+    color: #1fd15f;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .manifesto-text {
+    font-size: 8.8pt;
+    line-height: 1.4;
+    color: #d1d5db;
+  }
+  
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .phil-card {
+    background: #f7f9f8;
+    border: 1px solid #e2e8e4;
+    border-left: 3px solid #12b551;
+    border-radius: 4px;
+    padding: 8px 10px;
+  }
+  .phil-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9.2pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #080a09;
+    margin-bottom: 3px;
+  }
+  .phil-card p {
+    font-size: 8.2pt;
+    line-height: 1.32;
+    color: #333;
+  }
+
+  /* Pillar Table */
+  table.p-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+  }
+  table.p-table th {
+    background: #080a09;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 8.8pt;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  table.p-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e2e8e4;
+    font-size: 8.2pt;
+    vertical-align: top;
+    line-height: 1.3;
+  }
+  table.p-table tr:nth-child(even) td { background: #fafbfc; }
+
+  /* Session Cards */
+  .session-card {
+    border: 1px solid #dcdfdc;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1.5px solid #12b551;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
+  }
+  .session-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 11.5pt;
+    color: #080a09;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .session-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #12b551;
+    letter-spacing: 0.08em;
+  }
+  .session-why {
+    font-size: 8.3pt;
+    color: #444;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .session-why strong { color: #080a09; }
+  
+  .exercise-list {
+    list-style: none;
+    margin-top: 4px;
+  }
+  .exercise-list li {
+    position: relative;
+    padding-left: 15px;
+    font-size: 8pt;
+    color: #222;
+    margin-bottom: 3px;
+    line-height: 1.26;
+  }
+  .exercise-list li::before {
+    content: "■";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #12b551;
+    font-size: 6pt;
+  }
+  
+  .session-hw {
+    background: #f0f7f2;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 6px;
+    font-size: 7.8pt;
+    color: #0f5132;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+  
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Log Page */
+  .log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  .log-table th, .log-table td {
+    border: 1px solid #ccc;
+    padding: 5px 7px;
+    font-size: 8pt;
+  }
+  .log-table th {
+    background: #f0f2f0;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.08em;
+  }
+  .box-check {
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid #444;
+    display: inline-block;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-top">
+      <div class="eyebrow">CPT COMBAT & PERFORMANCE TRAINING · MELBOURNE</div>
+      <div class="cover-title">CANINE PERSONAL<br><span>TRAINING SYSTEM</span></div>
+      <div class="cover-sub">10-Session Dog Training System with Individual Practice Periods Based on the 5 CPT Classical Pillars</div>
+      
+      <div class="cover-pillars">
+        <div class="pillar-box">
+          <div class="num">01</div>
+          <div class="name">Movement & S-Flow</div>
+        </div>
+        <div class="pillar-box">
+          <div class="num">02</div>
+          <div class="name">Reward Source Focus</div>
+        </div>
+        <div class="pillar-box">
+          <div class="num">03</div>
+          <div class="name">Vocals & Drive Switch</div>
+        </div>
+        <div class="pillar-box">
+          <div class="num">04</div>
+          <div class="name">Drive Ignition</div>
+        </div>
+        <div class="pillar-box">
+          <div class="num">05</div>
+          <div class="name">Grip & Positive Out</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cover-coach">
+      <h4>Developed by Sotir Kichukov</h4>
+      <p>ONE Championship Veteran · Bulgarian Striking & MMA Champion · Head Coach at CPT MMA & Canine Personal Training Melbourne. Applying 19 years of championship athletic conditioning and practical canine behavioural science to build motivation, clear communication, and an enjoyable partnership between dog and handler.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: CORE PHILOSOPHY & THE 5 CPT PILLARS -->
+<div class="page">
+  <div class="doc-header">
+    <div class="brand">CPT <span>CANINE</span></div>
+    <div class="meta">Core Philosophy & 5 Pillars</div>
+  </div>
+  
+  <h1 class="sec-title">CANINE PERSONAL TRAINING <span>PHILOSOPHY</span></h1>
+  
+  <div class="manifesto-box">
+    <div class="manifesto-title">Partnership, Motivation & Clear Communication</div>
+    <div class="manifesto-text">
+      <strong>Canine Personal Training builds motivation, clear communication and a rewarding partnership between dog and owner.</strong> The dog is allowed to look at the food. Eye contact with the handler is not a requirement for earning a reward. We build food drive through enjoyable chasing and luring, then use the lure to guide the dog into positions. Owners learn how their hand movements, footwork and timing influence the dog. As these handling skills improve, guiding the dog forward, backward, through turns and into positions becomes smoother and more enjoyable. That feeling of working together is something every dog owner should experience.
+    </div>
+  </div>
+
+  <div class="philosophy-grid">
+    <div class="phil-card">
+      <h4>Ball Drive & Drive Switching (The "BREAK" Marker)</h4>
+      <p>We develop ball drive and teach the dog to switch between activities and rewards. For example, during a ball-chasing exercise, the handler can use an established marker such as <strong>“Yes,” “Ya” or “Break”</strong>, according to the meaning taught to that dog, to redirect the dog back to them for a single piece of kibble. <strong>The dog learns that returning to the handler and taking that piece of kibble gives access to the bigger reward—in this case, the ball or the opportunity to chase the moving ball.</strong> This understanding is built progressively through clear, consistent practice.</p>
+    </div>
+    <div class="phil-card">
+      <h4>Emergency Down & Realistic Progression</h4>
+      <p>You can also teach an <strong>emergency down</strong>, first in a quiet setting, then gradually practise it during more exciting activities as the dog’s understanding and reliability improve. Training begins at home, where the owner develops technique and handling skills while the dog learns the exercises. We then introduce manageable distractions, starting somewhere familiar, such as in front of the house. Later, we progress to suitable dog-friendly cafés or hardware shops.</p>
+    </div>
+    <div class="phil-card">
+      <h4>Assess Handling Skills & Dog Abilities Together</h4>
+      <p>At every stage, assess <strong>both your handling skills and your dog’s current abilities</strong>. If the dog has not yet learned to walk beside you or remain calm around other dogs, those skills need to be built through consistent training and gradual exposure. Simply taking the dog into a busy environment does not teach it how to behave there.</p>
+    </div>
+    <div class="phil-card">
+      <h4>Appropriate Socialisation & Puppy Foundations</h4>
+      <p>Regular, appropriate socialisation helps build these foundations, ideally beginning during puppyhood. This means learning to feel comfortable and respond to the handler around different people, dogs, sounds and places. It does not require greeting or playing with every dog. Older dogs can also develop these skills through practice suited to their individual needs.</p>
+    </div>
+  </div>
+  
+  <h3 style="font-family:'Anton';font-size:12pt;text-transform:uppercase;margin:8px 0 4px;color:#080a09">The 5 CPT Classical Pillars</h3>
+  <table class="p-table">
+    <thead>
+      <tr>
+        <th style="width:20%">Pillar</th>
+        <th style="width:38%">Core Mechanism</th>
+        <th style="width:42%">Pet Dog Real-World Application</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Movement & S-Flow</strong></td>
+        <td>Linear walking causes opposition pulling. S-Flow uses curvilinear loose leash geometry and handler body movement.</td>
+        <td>Eliminates lead pulling on Melbourne sidewalks. Handler body leads; the dog follows naturally without neck wrestling.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Reward Source Focus</strong></td>
+        <td>Dog is allowed to focus directly on food or reward without compulsory eye contact. Chasing and luring shape behavior.</td>
+        <td>The dog eagerly tracks the lure and positions. No stress or frustration over forced staring; pure motivation and speed.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Vocals & Drive Switching</strong></td>
+        <td>Clear marker system using <em>YES</em>, <em>YA</em>, <em>GOOD</em>, and <em>BREAK</em> to switch and redirect drives cleanly.</td>
+        <td>Dog learns returning to handler for a piece of kibble unlocks access to higher rewards (the ball or chase).</td>
+      </tr>
+      <tr>
+        <td><strong>4. Drive Modulation</strong></td>
+        <td>Developing food drive, ball drive and handling skills before increasing environmental distractions.</td>
+        <td>All daily food is earned through focus and fun handling. Destructive household energy is channeled into teamwork.</td>
+      </tr>
+      <tr>
+        <td><strong>5. Grip & Play (The Out)</strong></td>
+        <td>Full-mouth bite mechanics on tugs/balls, followed by the conflict-free positive OUT (second toy or reward swap).</td>
+        <td>Prevents resource guarding and possession aggression over toys or dropped items. Teaches immediate clean release.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="doc-footer">
+    <span>CPT Canine Personal Training · Sotir Kichukov</span>
+    <span>Page 2 · Philosophy & 5 Pillars</span>
+  </div>
+</div>
+
+<!-- PAGE 3: SESSIONS 1 TO 4 (FOUNDATIONS & CONTACT HEEL) -->
+<div class="page">
+  <div class="doc-header">
+    <div class="brand">CPT <span>CANINE</span></div>
+    <div class="meta">Phase 1: Foundations & Handling Skills (Sessions 1 – 4)</div>
+  </div>
+  
+  <h1 class="sec-title">PHASE 1: <span>DRIVE, HANDLING SKILLS & LEASH HEEL</span></h1>
+  
+  <div class="two-col">
+    <!-- Session 1 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 1</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Food Drive Ignition & Hand Magnet</strong><br>Eliminate bowl feeding. Build food drive through enjoyable chasing and luring in a quiet, zero-distraction room.</div>
+      <ul class="exercise-list">
+        <li><strong>Magnet Hand:</strong> Kibble held between thumb & palm. Dog pushes eagerly into hand while handler moves backward.</li>
+        <li><strong>Opposition Reflex:</strong> Handler pulls away slightly as dog commits to reinforce forward chasing drive.</li>
+        <li><strong>Home Environment:</strong> Conducted entirely inside hallway or quiet room; no external distractions.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 2x 5-min sessions daily</span>
+        <span>Goal: High-speed chasing & hand push</span>
+      </div>
+    </div>
+
+    <!-- Session 2 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 2</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Reward Focus & Drive Switching (BREAK)</strong><br>The dog is allowed to look at the food—eye contact is not a requirement. Practice hand and footwork timing.</div>
+      <ul class="exercise-list">
+        <li><strong>Reward Source Focus:</strong> Lure dog into movement; reward direct focus on the food source without demanding eye contact.</li>
+        <li><strong>Drive Switching (BREAK):</strong> Announce marker (<em>“Yes,” “Ya” or “Break”</em>) to redirect dog back for kibble, unlocking next movement.</li>
+        <li><strong>Handling Mechanics:</strong> Practice hand placement and footwork rhythm before stepping outside.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 10 drive-switching reps</span>
+        <span>Goal: Fluid lure guidance & responsive turn</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- Session 3 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 3</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: S-Flow Movement & 3 Kinesthetic Positions</strong><br>Using hand lures and curved footwork to guide the dog into Sit, Down, and Stand smoothly without verbal friction.</div>
+      <ul class="exercise-list">
+        <li><strong>Position Shaping:</strong> Upward lure for Sit &rarr; nose-to-paws downward for Down &rarr; forward draw for Stand.</li>
+        <li><strong>S-Flow Contact Heel:</strong> Lure at hip seam. Walk figure-8s; dog wraps body into handler's leg as handling skills improve.</li>
+        <li><strong>Working Together:</strong> Guiding forward, backward and through turns becomes a rewarding cooperative dance.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 3x 8-min S-Flow drills</span>
+        <span>Goal: Clean position transitions on lure</span>
+      </div>
+    </div>
+
+    <!-- Session 4 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 4</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Lure Fading, Emergency Down Prep & Loose Leash</strong><br>Fading the food lure, introducing the <em>GOOD</em> duration marker, and building emergency down in quiet settings.</div>
+      <ul class="exercise-list">
+        <li><strong>Fading the Lure:</strong> Hand mimics lure gesture empty; reward drawn from pouch or pocket post-marker.</li>
+        <li><strong>Emergency Down (Quiet Setting):</strong> Rapid drop into Down from motion in a low-distraction hallway or living room.</li>
+        <li><strong>Loose Leash Street Walking:</strong> Zero tension in leash. Immediate gentle directional turn upon any forward pull.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 15-min daily street walk</span>
+        <span>Goal: Calm loose leash + rapid down response</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>CPT Canine Personal Training · Sotir Kichukov</span>
+    <span>Page 3 · Phase 1 Curriculum</span>
+  </div>
+</div>
+
+<!-- PAGE 4: SESSIONS 5 TO 8 (BALL DRIVE, SWITCHING & PROOFING) -->
+<div class="page">
+  <div class="doc-header">
+    <div class="brand">CPT <span>CANINE</span></div>
+    <div class="meta">Phase 2: Ball Drive & Distraction Proofing (Sessions 5 – 8)</div>
+  </div>
+  
+  <h1 class="sec-title">PHASE 2: <span>BALL DRIVE, REWARD SWITCHING & RECALL</span></h1>
+  
+  <div class="two-col">
+    <!-- Session 5 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 5</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Ball Drive & Activity Switching Mechanics</strong><br>Develop ball drive and teach the dog to switch between activities and rewards through clear, consistent practice.</div>
+      <ul class="exercise-list">
+        <li><strong>Ball Drive Ignition:</strong> Ball on string dragged erratically like moving prey to trigger enthusiasm and focus.</li>
+        <li><strong>Drive Switching Loop:</strong> During ball chase, use <em>“Yes,” “Ya” or “Break”</em> to redirect dog back for a piece of kibble.</li>
+        <li><strong>Bigger Reward Access:</strong> Dog learns returning and taking kibble unlocks the bigger reward—the ball chase!</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 3x 5-min switching sessions</span>
+        <span>Goal: Enthusiastic return to handler from ball</span>
+      </div>
+    </div>
+
+    <!-- Session 6 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 6</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Progressive Distraction & Familiar Setting Exposure</strong><br>Introduce manageable distractions, starting somewhere familiar (in front of the house) before busier locations.</div>
+      <ul class="exercise-list">
+        <li><strong>Front-of-House Practice:</strong> Step just outside the front door where environmental cues begin, maintaining handler focus.</li>
+        <li><strong>Food Drop Control:</strong> High-value food dropped at safe distance; redirect focus back to handler's lure.</li>
+        <li><strong>Handler Mechanics Audit:</strong> Assess both your handling footwork and your dog's current threshold capacity.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 10 front-of-house setups</span>
+        <span>Goal: Calm responsiveness outside front door</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- Session 7 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 7</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: The Magnet Recall (10m Long Line)</strong><br>Building an enjoyable reflex where returning to the handler is consistently rewarded and never associated with punishment.</div>
+      <ul class="exercise-list">
+        <li><strong>Restrained Recall:</strong> Helper holds dog by chest; handler hypes up, sprints away & calls <em>COME!</em> Helper releases for sprint finish.</li>
+        <li><strong>Jackpot Reinforcement:</strong> Multiple high-value treats or an explosive game with the ball upon arrival.</li>
+        <li><strong>Positive Association:</strong> Never call the dog to end fun, bathe, or administer medication.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 5x long-line recalls daily</span>
+        <span>Goal: High-speed recall directly into front sit</span>
+      </div>
+    </div>
+
+    <!-- Session 8 -->
+    <div class="session-card">
+      <div class="session-header">
+        <span class="session-num">Session 8</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Emergency Down During Exciting Activities</strong><br>Practise the emergency down during higher-arousal games as the dog's understanding and reliability improve.</div>
+      <ul class="exercise-list">
+        <li><strong>Arousal Down:</strong> During a moving ball or toy game, give the emergency down cue. Reward instant collapse into posture.</li>
+        <li><strong>Prey Call-Off:</strong> Redirect dog off moving distractions using established markers (<em>Break / Ya / Yes</em>).</li>
+        <li><strong>Jackpot Release:</strong> After down is held calmly, release back to the moving ball as the ultimate reinforcer.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 2-3 emergency down drills</span>
+        <span>Goal: Reliable down response under excitement</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>CPT Canine Personal Training · Sotir Kichukov</span>
+    <span>Page 4 · Phase 2 Curriculum</span>
+  </div>
+</div>
+
+<!-- PAGE 5: SESSIONS 9 & 10 (NEUTRALITY & REAL-WORLD ENVIRONMENTS) -->
+<div class="page">
+  <div class="doc-header">
+    <div class="brand">CPT <span>CANINE</span></div>
+    <div class="meta">Phase 3: Real-World Socialisation & Graduation (Sessions 9 – 10)</div>
+  </div>
+  
+  <h1 class="sec-title">PHASE 3: <span>SOCIALISATION, CAFES & GRADUATION</span></h1>
+  
+  <div class="two-col">
+    <!-- Session 9 -->
+    <div class="session-card" style="border:1.5px solid #12b551;background:#fcfefd">
+      <div class="session-header">
+        <span class="session-num" style="color:#0a7a3c">Session 9: Neutral Socialisation & Cafe Settle</span>
+        <span class="session-tag">Practice Period: Individual Pace</span>
+      </div>
+      <div class="session-why"><strong>Focus: Appropriate Socialisation & Emotional Neutrality</strong><br>Socialisation means feeling comfortable and responding around people, dogs, sounds, and places—not greeting every dog.</div>
+      <ul class="exercise-list">
+        <li><strong>Comfort Around Triggers:</strong> Walking past other dogs and people at a distance where the dog can remain calm.</li>
+        <li><strong>Cafe Settle:</strong> Down-Stay under outdoor table at a dog-friendly cafe while pedestrians pass by. No greeting strangers.</li>
+        <li><strong>Gradual Exposure:</strong> If dog cannot yet walk calmly beside you, build skills at home and front of house first.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Homework: 2x 20-min outdoor cafe settles</span>
+        <span>Goal: Calm relaxation without fixation</span>
+      </div>
+    </div>
+
+    <!-- Session 10 -->
+    <div class="session-card" style="border:1.5px solid #e5231b;background:#fffcfc">
+      <div class="session-header">
+        <span class="session-num" style="color:#b81810">Session 10: Hardware Shop / Public Field Test</span>
+        <span class="session-tag">CPT Graduation Walkthrough</span>
+      </div>
+      <div class="session-why"><strong>Focus: Real-World Public Environment Mastery</strong><br>Progressing to a dog-friendly hardware shop (e.g. Bunnings) once handling skills and dog abilities are fully aligned.</div>
+      <ul class="exercise-list">
+        <li><strong>Automatic Doors & Entry:</strong> Smooth, confident entry on loose leash without pulling or hesitation.</li>
+        <li><strong>Aisle Heeling:</strong> Responsive loose-lead walking down aisles with handling skills guiding turns effortlessly.</li>
+        <li><strong>Trolley Down-Stay:</strong> Calm Down-Stay as flatbeds and shoppers pass by at a respectful distance.</li>
+        <li><strong>CPT Graduation Sign-Off:</strong> Official certification by Head Coach Sotir Kichukov.</li>
+      </ul>
+      <div class="session-hw">
+        <span>Evaluation: 45-min walkthrough</span>
+        <span>Standard: 100% loose leash & calm partnership</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Anton';font-size:12pt;text-transform:uppercase;margin:18px 0 8px;color:#080a09">Handler Code of Conduct (Sotir's Golden Rules)</h3>
+  <div style="background:#f7f9f8;border:1px solid #dcdfdc;border-radius:6px;padding:10px 14px;font-size:8.2pt;color:#333;line-height:1.38">
+    <p>1. <strong>Say It Once, Guide Smoothly:</strong> Never repeat a verbal cue. If the dog is unsure, guide kinesthetically with your body and lure. Repeating words creates background noise.</p>
+    <p style="margin-top:5px">2. <strong>Assess Both Ends of the Leash:</strong> If an exercise fails, assess both your handling timing and your dog's current capacity. Build foundations before stepping into busier spaces.</p>
+    <p style="margin-top:5px">3. <strong>Calm Handlers Create Calm Dogs:</strong> Tension in your shoulders and hands travels directly down the leash. Breathe, stay relaxed, and enjoy working together.</p>
+  </div>
+
+  <div class="doc-footer">
+    <span>CPT Canine Personal Training · Sotir Kichukov</span>
+    <span>Page 5 · Graduation Protocols</span>
+  </div>
+</div>
+
+<!-- PAGE 6: 10-SESSION HANDLER TRAINING LOG -->
+<div class="page">
+  <div class="doc-header">
+    <div class="brand">CPT <span>CANINE</span></div>
+    <div class="meta">Client 10-Session Progress Log Sheet</div>
+  </div>
+  
+  <h1 class="sec-title">OFFICIAL <span>TRAINING LOG</span></h1>
+  <p style="font-size:8.8pt;color:#555;margin-bottom:10px">Track individual practice sessions and note handler mechanics for Coach Sotir to review during progress audits.</p>
+  
+  <table class="log-table">
+    <thead>
+      <tr>
+        <th style="width:12%">Session</th>
+        <th style="width:25%">Core Milestone</th>
+        <th style="width:22%">Target Criteria</th>
+        <th style="width:23%">Handler Field Notes</th>
+        <th style="width:9%;text-align:center">Done</th>
+        <th style="width:9%">Sign</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Session 1</strong></td>
+        <td>Food Drive & Hand Magnet</td>
+        <td>Enthusiastic chasing & forward hand push</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 2</strong></td>
+        <td>Reward Focus & Drive Switch</td>
+        <td>Food focus (no eye contact requirement), BREAK marker</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 3</strong></td>
+        <td>S-Flow & 3 Positions</td>
+        <td>Smooth Sit/Down/Stand push-ups via lure</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 4</strong></td>
+        <td>Lure Fading & Emergency Down</td>
+        <td>Empty hand gesture + hallway emergency down</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 5</strong></td>
+        <td>Ball Drive & Reward Switch</td>
+        <td>Kibble redirect unlocks moving ball chase</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 6</strong></td>
+        <td>Distraction Proofing</td>
+        <td>Front-of-house calm responsiveness</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 7</strong></td>
+        <td>Magnet Long-Line Recall</td>
+        <td>Fast sprint return to handler with jackpot reward</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 8</strong></td>
+        <td>Emergency Down in Play</td>
+        <td>Reliable down response during higher arousal</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 9</strong></td>
+        <td>Neutrality & Cafe Settle</td>
+        <td>Calm settle around dogs/people without greeting</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><strong>Session 10</strong></td>
+        <td>Hardware Shop Walkthrough</td>
+        <td>Loose leash walking in dog-friendly retail space</td>
+        <td></td>
+        <td style="text-align:center"><span class="box-check"></span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:20px;padding:14px;border:1.5px dashed #12b551;border-radius:6px;background:#f9fdfa;display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div style="font-family:'Anton';font-size:13pt;text-transform:uppercase;color:#080a09">CPT Canine Graduation Certification</div>
+      <div style="font-size:8.2pt;color:#555;margin-top:2px">Official authorization signed by Head Coach Sotir Kichukov upon Session 10 walkthrough.</div>
+    </div>
+    <div style="border-bottom:1px solid #333;width:180px;text-align:center;font-size:8pt;color:#777;padding-bottom:4px">
+      Sotir Kichukov / Date
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>CPT Canine Personal Training · Melbourne, Victoria · Phone: +61 423 269 586</span>
+    <span>Page 6 · Official Verification</span>
+  </div>
+</div>
+
+</body>
+</html>
