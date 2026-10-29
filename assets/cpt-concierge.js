@@ -49,9 +49,31 @@
   // Clean Knowledge Base (Zero AI Emojis)
   var KNOWLEDGE_BASE = [
     {
+      id: 'program_match',
+      keywords: ['which', 'choose', 'compare', 'best for me', 'right for me', 'difference', 'подходящ', 'коя програма', 'избор', 'разлика', 'за мен', 'какво да избера'],
+      reply: 'Here is how to choose the right CPT program for your exact goals and lifestyle:\n\n' +
+        '1. **1-on-1 Private Coaching ($120 AUD):** Best if you are in Melbourne and want hands-on technique coaching, custom padwork, and real-time biomechanics corrections from ONE Championship veteran Sotir Kichukov.\n\n' +
+        '2. **Speed Punching Maximizer ($79 AUD):** Best if you want to dramatically increase hand speed, reaction time, and explosive counter-punching from anywhere in the world at your own schedule (includes instant free demo video on Lesson 1).\n\n' +
+        '3. **CPT Canine Division:** Best if you own a working breed or family dog in Melbourne and need bulletproof off-lead recall and stress-free obedience.',
+      actions: [
+        { label: 'Watch Free Speed Demo', type: 'link', icon: 'speed', url: BASE + 'index.html#speed-punching' },
+        { label: 'Book 1-on-1 ($120 AUD)', type: 'checkout', icon: 'card', item: 'Private Coaching - 1 Hour', price: 120, itemType: 'session' },
+        { label: 'Open Canine Portal', type: 'link', icon: 'canine', url: BASE + 'canine.html' },
+        { label: 'Ask Sotir on WhatsApp', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, help me choose the best CPT program for my goals.' }
+      ]
+    },
+    {
       id: 'private_coaching',
       keywords: ['private', 'coaching', '1-on-1', '1 on 1', 'session', 'train', 'coach', 'лични', 'тренировк', 'индивидуалн', 'цена', 'час', 'запис', 'колко струва', 'price', 'cost', 'rates', 'pricing'],
-      reply: 'Coach Sotir Kichukov offers high-intensity **1-on-1 Private Coaching** in Melbourne for **$120 AUD** per 60-minute session. We cover striking (K1 / Boxing), MMA transitions, wrestling takedowns & defense, and elite conditioning. Complete beginners to active fighters welcome.',
+      reply: 'Coach Sotir Kichukov offers high-intensity **1-on-1 Private Coaching** in Melbourne for **$120 AUD** per 60-minute session.\n\n' +
+        '• **KEY BENEFITS:**\n' +
+        '  - 100% focused biomechanics correction in real time — zero wasted hours on bad habits\n' +
+        '  - Professional combat conditioning (K1, Boxing, Wrestling & MMA) with zero injury risk\n' +
+        '  - Tailored padwork, defense footwork & counter-striking angles\n\n' +
+        '• **IDEAL FOR:**\n' +
+        '  - Complete beginners wanting safe, rapid foundations without group gym intimidation\n' +
+        '  - Active competitors seeking an elite edge in cage tactics & timing\n' +
+        '  - Busy Melbourne professionals needing high-efficiency, 60-minute maximum results.',
       actions: [
         { label: 'Book / Reserve ($120 AUD)', type: 'checkout', icon: 'card', item: 'Private Coaching - 1 Hour', price: 120, itemType: 'session' },
         { label: 'WhatsApp Coach Sotir', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I am interested in booking a 1-on-1 Private Coaching session in Melbourne.' },
@@ -60,18 +82,47 @@
     },
     {
       id: 'speed_punching',
-      keywords: ['speed', 'punching', 'course', 'video', 'maximizer', 'скорост', 'видео', 'курс', 'програма', 'удар', 'бързина', 'онлайн'],
-      reply: 'The **Speed Punching Maximizer** ($79 AUD) is Coach Sotir\'s 13-part masterclass breaking down explosive kinetic chain mechanics, micro-timing, hand speed, and counter-punching reflexes. Includes instant lifetime streaming access on all devices.',
+      keywords: ['speed', 'punching', 'course', 'video', 'maximizer', 'demo', 'sample', 'скорост', 'видео', 'курс', 'програма', 'удар', 'бързина', 'онлайн', 'демо', 'сампъл'],
+      reply: 'The **Speed Punching Maximizer** ($79 AUD) is Coach Sotir\'s comprehensive 6-Week digital masterclass (40 HD video modules + official training PDFs).\n\n' +
+        '• **KEY BENEFITS:**\n' +
+        '  - Develop the \'Kinetic Snap\' — explosive hand speed and whip mechanics with relaxed shoulders\n' +
+        '  - 40 HD step-by-step videos + downloadable PDF drill sheets for gym or home training\n' +
+        '  - Instant free demo video available directly in the player on Lesson 1\n' +
+        '  - Lifetime streaming on phone, tablet & TV — one-time payment, zero recurring subscriptions\n\n' +
+        '• **IDEAL FOR:**\n' +
+        '  - Boxers, kickboxers & MMA athletes looking to double hand speed and counter reflexes\n' +
+        '  - Fighters and fitness enthusiasts outside Melbourne who want Sotir\'s proven system worldwide.',
       actions: [
+        { label: 'Watch Free Demo Video', type: 'link', icon: 'speed', url: BASE + 'index.html#speed-punching' },
         { label: 'Buy Speed Course ($79 AUD)', type: 'checkout', icon: 'speed', item: 'Speed Punching Maximizer', price: 79, itemType: 'course' },
-        { label: 'Watch Free Preview', type: 'link', icon: 'arrow', url: BASE + 'index.html#speed-punching' },
         { label: 'Ask Sotir on WhatsApp', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I have a question about the Speed Punching Maximizer video course.' }
+      ]
+    },
+    {
+      id: 'canine_match',
+      keywords: ['suitable', 'suitability', 'dog suitable', 'is my dog', 'puppy', 'breed', 'подходящо ли е кучето', 'порода', 'кученце'],
+      reply: '**Is your dog suitable for CPT Canine?**\n\n' +
+        '• **Breeds Welcomed:** Working breeds (Belgian Malinois, German Shepherd, Dutch Shepherd, Doberman, Rottweiler) as well as medium/large family breeds.\n' +
+        '• **Core Issues Solved:** Leash pulling, selective hearing, bolting at the dog park, lack of focus, over-excitement, and weak engagement.\n' +
+        '• **Sotir\'s Approach:** No harsh intimidation — we use drive-based positive engagement, structured reward timing, and clear handler boundaries.\n\n' +
+        'You can download our official 10-Week PDF manual or message Sotir with your dog\'s breed and age.',
+      actions: [
+        { label: 'Download 10-Wk PDF Guide', type: 'link', icon: 'doc', url: BASE + 'assets/docs/cpt-canine-10-week-system.pdf', target: '_blank' },
+        { label: 'Chat with Sotir about your Dog', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I have a question about whether my dog is suitable for CPT Canine training.' },
+        { label: 'Open Canine Portal', type: 'link', icon: 'canine', url: BASE + 'canine.html' }
       ]
     },
     {
       id: 'canine_training',
       keywords: ['canine', 'dog', 'k9', 'malinois', 'cpt', 'obedience', 'working dog', 'куче', 'кучета', 'обучение', 'малиноа', 'дресура', 'кучешк'],
-      reply: 'CPT Canine Personal Training is Coach Sotir\'s specialized working dog division in Melbourne. Certified in the CPT system, Sotir provides 1-on-1 training for Belgian Malinois, German Shepherds, and family dogs. Foundations include drive building, off-lead recall, loose-lead walking, and high-engagement obedience.',
+      reply: 'CPT Canine Personal Training is Coach Sotir\'s specialized working dog division in Melbourne, certified under the world-renowned **CPT system**.\n\n' +
+        '• **KEY BENEFITS:**\n' +
+        '  - Bulletproof Off-Lead Recall: Your dog returns instantly, even with dogs, wildlife, or joggers nearby\n' +
+        '  - Stress-Free Loose-Lead Walking: Eliminates pulling, lunging, and chaotic walks\n' +
+        '  - Handler Direct Coaching: Sotir coaches *you* how to lead, channel drive, and create clear communication\n\n' +
+        '• **IDEAL FOR:**\n' +
+        '  - High-drive working breeds (Belgian Malinois, German Shepherds, Dutch Shepherds, Rottweilers)\n' +
+        '  - Family dog owners struggling with recall anxiety, lack of focus, or reactivity in public parks.',
       actions: [
         { label: 'Open Canine Portal', type: 'link', icon: 'canine', url: BASE + 'canine.html' },
         { label: 'Interactive Training Tracker', type: 'link', icon: 'doc', url: BASE + 'canine-record.html' },
@@ -82,7 +133,10 @@
     {
       id: 'location_schedule',
       keywords: ['location', 'where', 'address', 'melbourne', 'ringwood', 'gym', 'schedule', 'hours', 'time', 'къде', 'адрес', 'мелбърн', 'зала', 'график', 'часове'],
-      reply: 'CPT MMA is located in **Melbourne, Victoria**. Private indoor combat sessions are coached at our partner fight training facility in Ringwood / Melbourne, while CPT Canine outdoor field work takes place at designated Melbourne parks. Sessions are arranged 7 days a week by appointment to fit your schedule.',
+      reply: 'CPT MMA is located in **Melbourne, Victoria**.\n\n' +
+        '• **Private Combat Sessions:** Coached at our partner fight training facility in Ringwood / Melbourne (60 Charter Street, Ringwood VIC 3134).\n' +
+        '• **Canine K9 Sessions:** Conducted outdoors at designated Melbourne parklands for real-world distraction proofing.\n' +
+        '• **Schedule:** Available 7 days a week by appointment to fit your working hours.',
       actions: [
         { label: 'Get Directions (Google Maps)', type: 'external', icon: 'location', url: 'https://maps.google.com/?q=60+Charter+Street,+Ringwood+VIC+3134' },
         { label: 'Schedule Session Time', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I would like to check available training times in Melbourne.' },
@@ -92,7 +146,7 @@
     {
       id: 'sotir_bio',
       keywords: ['sotir', 'kichukov', 'who', 'bio', 'trouble', 'record', 'one championship', 'pomorie', 'bulgaria', 'fighter', 'сотир', 'кичуков', 'кой е', 'биография', 'рекорд', 'поморие'],
-      reply: 'Sotir "The Trouble" Kichukov was born in Pomorie, Bulgaria, and became the first Bulgarian fighter to compete in **ONE Championship**. With a 15-2 Pro MMA record, Max Fight Bantamweight Title, and 31 international professional bouts across Europe and Asia, he now coaches fighters and everyday athletes in Melbourne.',
+      reply: 'Sotir \'The Trouble\' Kichukov was born in Pomorie, Bulgaria, and became the first Bulgarian fighter to compete in **ONE Championship**. With a 15-2 Pro MMA record, Max Fight Bantamweight Title, and 31 international professional bouts across Europe and Asia, he now coaches fighters and everyday athletes in Melbourne.',
       actions: [
         { label: 'Read: Pomorie to the Cage', type: 'link', icon: 'arrow', url: BASE + 'blog/pomorie-to-the-cage.html' },
         { label: 'View Fight Programs', type: 'link', icon: 'arrow', url: BASE + 'programs.html' }
@@ -126,9 +180,10 @@
   ];
 
   var QUICK_CHIPS = [
+    { icon: 'combat', label: 'Which Fight Program is Right for Me?', query: 'Which fight training program is best for me?' },
+    { icon: 'speed', label: 'Speed Course: Benefits & Free Demo', query: 'What are the benefits of the Speed Punching course and how can I see a demo?' },
     { icon: 'combat', label: '1-on-1 Coaching ($120 AUD)', query: 'Tell me about 1-on-1 private coaching and pricing' },
-    { icon: 'speed', label: 'Speed Punching Program ($79 AUD)', query: 'What is the Speed Punching Maximizer course?' },
-    { icon: 'canine', label: 'CPT Canine (K9) Training', query: 'Tell me about dog training with Sotir in Melbourne' },
+    { icon: 'canine', label: 'Is CPT Canine Right for My Dog?', query: 'Is my dog suitable for CPT Canine training?' },
     { icon: 'location', label: 'Gym Location & Melbourne Schedule', query: 'Where do you train in Melbourne?' },
     { icon: 'whatsapp', label: 'Direct WhatsApp to Coach Sotir', query: 'How can I contact Sotir directly?' }
   ];
