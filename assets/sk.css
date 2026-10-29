@@ -891,222 +891,309 @@ body.menu-open .mcta,
 body.menu-open .totop{display:none}
 
 
+
 /* ==========================================================================
-   CPT SOVEREIGN DUAL-DIVISION GLASSMORPHISM DOCK
+   CPT SOVEREIGN DUAL-DIVISION GLASSMORPHISM DOCK (ENLARGED & PRO LOGOS)
    ========================================================================== */
 @keyframes cptPulseGreenGold {
   0%, 100% {
     border-color: rgba(31, 209, 95, 0.6);
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 25px rgba(31, 209, 95, 0.35), inset 0 0 12px rgba(31, 209, 95, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(31, 209, 95, 0.35), inset 0 0 15px rgba(31, 209, 95, 0.12);
   }
   50% {
     border-color: rgba(216, 180, 90, 0.7);
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 30px rgba(216, 180, 90, 0.4), inset 0 0 14px rgba(216, 180, 90, 0.18);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(216, 180, 90, 0.4), inset 0 0 16px rgba(216, 180, 90, 0.15);
   }
 }
 
 .cpt-division-dock {
   position: fixed;
-  right: 22px;
+  right: 24px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 995;
-  background: rgba(10, 14, 12, 0.88);
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  background: rgba(8, 12, 10, 0.92);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
   border: 1.5px solid rgba(31, 209, 95, 0.55);
-  border-radius: 20px;
-  padding: 12px 10px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75);
+  border-radius: 22px;
+  padding: 15px 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
   animation: cptPulseGreenGold 4.5s ease-in-out infinite;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, box-shadow 0.3s ease;
   font-family: var(--f-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  min-width: 180px;
+  min-width: 236px;
+  user-select: none;
 }
 
 .cpt-dock-inner {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 9px;
 }
 
 .cpt-dock-tag {
   font-family: var(--f-cond, inherit);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
   color: rgba(255, 255, 255, 0.5);
   text-align: center;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cpt-dock-tag::before,
+.cpt-dock-tag::after {
+  content: "";
+  height: 1px;
+  width: 22px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .cpt-dock-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border-radius: 12px;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.25s ease;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
 .cpt-dock-item:hover {
-  transform: translateX(-3px);
+  transform: translateX(-4px);
+}
+
+.cpt-dock-graphic {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.25s ease;
+}
+
+.combat-graphic {
+  box-shadow: 0 0 14px rgba(31, 209, 95, 0.25);
+}
+
+.combat-graphic img {
+  width: 24px;
+  height: auto;
+  max-height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(31, 209, 95, 0.6));
+}
+
+.canine-graphic {
+  box-shadow: 0 0 14px rgba(216, 180, 90, 0.25);
+}
+
+.canine-graphic img {
+  width: 28px;
+  height: auto;
+  max-height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(216, 180, 90, 0.6));
 }
 
 .cpt-dock-item.combat:hover {
-  background: rgba(31, 209, 95, 0.14);
-  border-color: rgba(31, 209, 95, 0.5);
+  background: rgba(31, 209, 95, 0.15);
+  border-color: rgba(31, 209, 95, 0.6);
 }
 
 .cpt-dock-item.combat.active {
-  background: linear-gradient(135deg, rgba(31, 209, 95, 0.24), rgba(12, 16, 14, 0.85));
-  border-color: rgba(31, 209, 95, 0.75);
-  box-shadow: 0 4px 15px rgba(31, 209, 95, 0.28);
+  background: linear-gradient(135deg, rgba(31, 209, 95, 0.26), rgba(8, 12, 10, 0.9));
+  border-color: rgba(31, 209, 95, 0.85);
+  box-shadow: 0 6px 20px rgba(31, 209, 95, 0.32);
 }
 
 .cpt-dock-item.canine:hover {
-  background: rgba(216, 180, 90, 0.16);
-  border-color: rgba(216, 180, 90, 0.55);
+  background: rgba(216, 180, 90, 0.18);
+  border-color: rgba(216, 180, 90, 0.65);
 }
 
 .cpt-dock-item.canine.active {
-  background: linear-gradient(135deg, rgba(216, 180, 90, 0.26), rgba(12, 16, 14, 0.85));
-  border-color: rgba(216, 180, 90, 0.85);
-  box-shadow: 0 4px 15px rgba(216, 180, 90, 0.3);
-}
-
-.cpt-dock-icon {
-  font-size: 20px;
-  line-height: 1;
+  background: linear-gradient(135deg, rgba(216, 180, 90, 0.28), rgba(8, 12, 10, 0.9));
+  border-color: rgba(216, 180, 90, 0.9);
+  box-shadow: 0 6px 20px rgba(216, 180, 90, 0.34);
 }
 
 .cpt-dock-meta {
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .cpt-dock-title {
   font-family: var(--f-cond, inherit);
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #fff;
 }
 
 .cpt-dock-sub {
-  font-size: 9.5px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.65);
   font-weight: 500;
 }
 
-.cpt-dock-live {
-  font-size: 8.5px;
+.cpt-dock-status {
+  font-family: var(--f-cond, inherit);
+  font-size: 9.5px;
   font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 6px;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border-radius: 8px;
   margin-left: auto;
-  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.combat-live {
-  background: rgba(31, 209, 95, 0.25);
+.combat-status {
+  background: rgba(31, 209, 95, 0.22);
   color: #1fd15f;
-  border: 1px solid rgba(31, 209, 95, 0.45);
+  border: 1px solid rgba(31, 209, 95, 0.5);
 }
 
-.canine-live {
-  background: rgba(216, 180, 90, 0.25);
+.canine-status {
+  background: rgba(216, 180, 90, 0.22);
   color: #d8b45a;
   border: 1px solid rgba(216, 180, 90, 0.5);
 }
 
-.cpt-dock-badge {
-  font-size: 8.5px;
-  font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 6px;
+.cpt-dock-action {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: auto;
-  letter-spacing: 0.06em;
-  background: rgba(216, 180, 90, 0.2);
+  transition: transform 0.25s ease;
+}
+
+.canine-action {
   color: #d8b45a;
+  background: rgba(216, 180, 90, 0.16);
   border: 1px solid rgba(216, 180, 90, 0.4);
+}
+
+.combat-action {
+  color: #1fd15f;
+  background: rgba(31, 209, 95, 0.16);
+  border: 1px solid rgba(31, 209, 95, 0.4);
+}
+
+.cpt-dock-item:hover .cpt-dock-action {
+  transform: translateX(4px);
 }
 
 .cpt-dock-split {
   height: 2px;
-  background: linear-gradient(90deg, rgba(31, 209, 95, 0.75), rgba(216, 180, 90, 0.75));
+  background: linear-gradient(90deg, rgba(31, 209, 95, 0.8), rgba(216, 180, 90, 0.8));
   border-radius: 2px;
-  margin: 3px 4px;
-  opacity: 0.8;
+  margin: 4px 6px;
+  opacity: 0.85;
 }
 
-/* Quick Tray Drawer on Hover */
+/* Quick Tray Drawer */
 .cpt-dock-drawer {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .cpt-drawer-col {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .cpt-col-lbl {
-  font-size: 9px;
+  font-family: var(--f-cond, inherit);
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
+  margin-bottom: 2px;
 }
 
 .cpt-drawer-col a {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
-  padding: 3px 6px;
-  border-radius: 6px;
+  padding: 5px 8px;
+  border-radius: 8px;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cpt-drawer-col a svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: stroke 0.2s ease;
 }
 
 .combat-col a:hover {
   color: #1fd15f;
-  background: rgba(31, 209, 95, 0.12);
+  background: rgba(31, 209, 95, 0.14);
   transform: translateX(3px);
+}
+
+.combat-col a:hover svg {
+  stroke: #1fd15f;
 }
 
 .canine-col a:hover {
   color: #d8b45a;
-  background: rgba(216, 180, 90, 0.15);
+  background: rgba(216, 180, 90, 0.16);
   transform: translateX(3px);
 }
 
-/* Mobile responsive dock */
+.canine-col a:hover svg {
+  stroke: #d8b45a;
+}
+
+/* Mobile responsive dock - Clean floating bottom bar */
 @media (max-width: 860px) {
   .cpt-division-dock {
-    right: 12px;
+    right: auto;
+    left: 50%;
+    bottom: 20px;
     top: auto;
-    bottom: 24px;
-    transform: none;
+    transform: translateX(-50%);
     min-width: unset;
-    padding: 6px 10px;
-    border-radius: 16px;
-    z-index: 85;
-    background: rgba(10, 14, 12, 0.92);
+    max-width: calc(100vw - 28px);
+    padding: 8px 12px;
+    border-radius: 20px;
+    z-index: 88;
+    background: rgba(8, 12, 10, 0.95);
   }
   .cpt-dock-tag,
-  .cpt-dock-drawer {
+  .cpt-dock-drawer,
+  .cpt-dock-sub,
+  .cpt-dock-status,
+  .cpt-dock-action {
     display: none;
   }
   .cpt-dock-inner {
@@ -1116,36 +1203,24 @@ body.menu-open .totop{display:none}
   }
   .cpt-dock-split {
     width: 2px;
-    height: 24px;
+    height: 28px;
     background: linear-gradient(180deg, #1fd15f, #d8b45a);
-    margin: 0 2px;
+    margin: 0 4px;
   }
   .cpt-dock-item {
-    padding: 6px 10px;
-    gap: 6px;
+    padding: 7px 12px;
+    gap: 8px;
+    border-radius: 12px;
   }
-  .cpt-dock-sub,
-  .cpt-dock-live,
-  .cpt-dock-badge {
-    display: none;
+  .cpt-dock-graphic {
+    width: 28px;
+    height: 28px;
+  }
+  .cpt-dock-graphic img {
+    max-height: 22px;
   }
   .cpt-dock-title {
-    font-size: 12px;
-  }
-  .cpt-dock-icon {
-    font-size: 16px;
-  }
-}
-
-/* Responsive typography & word wrap safety for mobile headings */
-@media (max-width: 600px) {
-  .product h3 {
-    font-size: clamp(21px, 6.2vw, 27px) !important;
-    line-height: 1.08 !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-  }
-  .product.canine .pin h3 {
-    font-size: clamp(21px, 6.2vw, 27px) !important;
+    font-size: 13px;
+    letter-spacing: 0.08em;
   }
 }

@@ -9,7 +9,7 @@
 <link rel="icon" href="./favicon.ico" sizes="32x32">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/sk.css?v=16">
+<link rel="stylesheet" href="./assets/sk.css?v=18">
 <style>
   :root {
     --green-bright: #22e065;
@@ -622,40 +622,64 @@ function syncWhatsAppProgress() {
 document.addEventListener('DOMContentLoaded', renderSessions);
 </script>
 
-<!-- ===== CPT SOVEREIGN DUAL-DIVISION DOCK ===== -->
-<aside class="cpt-division-dock" id="cptDivisionDock" aria-label="CPT Division Switcher">
+<!-- ===== CPT SOVEREIGN DUAL-DIVISION DOCK (PRO GRAPHICS & OFFICIAL LOGOS) ===== -->
+<aside class="cpt-division-dock" id="cptDivisionDock" aria-label="CPT Dual-Division Portal">
   <div class="cpt-dock-inner">
-    <div class="cpt-dock-tag">CPT DIVISION</div>
-    <a href="./index.html" class="cpt-dock-item combat" aria-label="Combat &amp; Striking Division" title="Combat &amp; Performance Training">
-      <div class="cpt-dock-icon">🥊</div>
+    <div class="cpt-dock-tag">CPT PORTAL</div>
+    <a href="./index.html" class="cpt-dock-item combat" aria-label="Combat &amp; Striking Division" title="CPT Combat &amp; Performance Training">
+      <div class="cpt-dock-graphic combat-graphic">
+        <img src="./assets/img/cpt-combat-sm.png" alt="CPT Combat" width="24" height="28">
+      </div>
       <div class="cpt-dock-meta">
         <span class="cpt-dock-title">COMBAT</span>
-        <span class="cpt-dock-sub">MMA &amp; Striking</span>
+        <span class="cpt-dock-sub">Striking &amp; MMA</span>
       </div>
-      <span class="cpt-dock-badge combat-badge" style="background:rgba(31,209,95,0.2);color:#1fd15f;border:1px solid rgba(31,209,95,0.4)">GO →</span>
+      <span class="cpt-dock-action combat-action" title="Switch to Combat Division">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
     </a>
     <div class="cpt-dock-split" aria-hidden="true"></div>
-    <a href="./canine.html" class="cpt-dock-item canine active" aria-label="Canine Personal Training Division" title="Canine Personal Training">
-      <div class="cpt-dock-icon">🐕</div>
+    <a href="./canine.html" class="cpt-dock-item canine active" aria-label="Canine Personal Training Division" title="CPT Canine Personal Training">
+      <div class="cpt-dock-graphic canine-graphic">
+        <img src="./assets/img/canine-seal-sm.png" alt="CPT Canine Official Seal" width="28" height="28">
+      </div>
       <div class="cpt-dock-meta">
         <span class="cpt-dock-title">CANINE</span>
-        <span class="cpt-dock-sub">10-Wk CPT &amp; App</span>
+        <span class="cpt-dock-sub">CPT &amp; 10-Wk App</span>
       </div>
-      <span class="cpt-dock-live canine-live">● LIVE</span>
+      <span class="cpt-dock-status canine-status">LIVE</span>
     </a>
   </div>
   <div class="cpt-dock-drawer">
     <div class="cpt-drawer-col canine-col">
-      <span class="cpt-col-lbl">🐕 CANINE</span>
-      <a href="./canine.html#cpt-program">🐾 10-Wk Program</a>
-      <a href="./canine-record.html">📱 Interactive App</a>
-      <a href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank">📑 PDF Manual</a>
+      <span class="cpt-col-lbl">Canine Division</span>
+      <a href="./canine.html#cpt-program">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        CPT 10-Wk System
+      </a>
+      <a href="./canine-record.html">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        Interactive Tracker App
+      </a>
+      <a href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Official A4 PDF Manual
+      </a>
     </div>
-    <div class="cpt-drawer-col combat-col" style="margin-top:4px">
-      <span class="cpt-col-lbl">🥊 COMBAT</span>
-      <a href="./index.html#speed-punching">⚡ Speed Course ($79)</a>
-      <a href="./programs.html">📋 1-on-1 Prices</a>
-      <a href="./rashguard.html">🛡️ Fight Gear ($75)</a>
+    <div class="cpt-drawer-col combat-col" style="margin-top:6px">
+      <span class="cpt-col-lbl">Combat Division</span>
+      <a href="./index.html#speed-punching">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Speed Course ($79)
+      </a>
+      <a href="./programs.html">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        1-on-1 Fight Plans
+      </a>
+      <a href="./rashguard.html">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        CPT Fight Gear ($75)
+      </a>
     </div>
   </div>
 </aside>
