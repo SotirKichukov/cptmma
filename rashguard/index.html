@@ -604,7 +604,7 @@
             Order Instantly via WhatsApp ($75 AUD)
           </a>
           <button onclick="openRashguardModal()" class="btn btn-ghost btn-block" style="padding:15px 24px">
-            Reserve / Order Online Form
+            Buy Online — Card / PayPal ($75 AUD)
           </button>
         </div>
 
@@ -740,8 +740,15 @@
         </select>
       </div>
 
+      <div style="background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:12px;margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-family:var(--f-cond);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:700">🔒 Instant Payment (PayPal / Visa / Mastercard)</span>
+          <span style="font-family:var(--f-cond);font-size:13px;color:var(--bone);font-weight:700">A$ 75.00 AUD</span>
+        </div>
+        <div id="cpt-rg-paypal-container" style="min-height:45px"></div>
+      </div>
       <div style="display:flex;gap:10px">
-        <button type="submit" class="btn btn-primary" style="flex:1">Submit Order Request</button>
+        <button type="submit" class="btn btn-primary" style="flex:1">Reserve / Pay on Pickup</button>
         <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:6px">
           WhatsApp
         </a>
@@ -878,9 +885,35 @@ function closeSizeModal() {
   document.getElementById('sizeModal').classList.remove('open');
 }
 
+
+function renderRashguardPayPal() {
+  const c = document.getElementById('cpt-rg-paypal-container');
+  if (!c || typeof paypal === 'undefined' || !paypal.Buttons) return;
+  c.innerHTML = '';
+  paypal.Buttons({
+    style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 42 },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        intent: 'CAPTURE',
+        purchase_units: [{
+          description: `CPT Pro BJJ Rash Guard (${selectedColor}, Size ${selectedSize})`,
+          amount: { currency_code: 'AUD', value: '75.00' }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        closeOrderModal();
+        alert(`Payment Confirmed ($75.00 AUD)! Reference: ${details.id}. Coach Sotir will prepare your ${selectedColor} Rash Guard (Size ${selectedSize}).`);
+      });
+    }
+  }).render('#cpt-rg-paypal-container');
+}
+
 function openRashguardModal() {
   updateOrderLinks();
   document.getElementById('orderModal').classList.add('open');
+  renderRashguardPayPal();
 }
 function closeOrderModal() {
   document.getElementById('orderModal').classList.remove('open');
@@ -899,5 +932,6 @@ function handleRashguardOrderSubmit(e) {
 // Initial binding
 updateOrderLinks();
 </script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAPoFEtOL0vuioX-w7PrLdmrQ443eCn82WBmD6b6UdeICtZKBzoI5l6Pk1mNxat3XmLoJvRS4yKzSaOEo&currency=AUD&locale=en_AU&components=buttons"></script>
 </body>
 </html>

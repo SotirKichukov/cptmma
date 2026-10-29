@@ -1341,41 +1341,99 @@
 </main>
 
 <!-- ============================================================
-     CHECKOUT & BOOKING MODAL
+     CHECKOUT & LIVE PAYMENT MODAL (PAYPAL + DEBIT/CREDIT CARD)
      ============================================================ -->
 <div id="checkoutModal" class="modal-overlay">
   <div class="modal-card">
     <button class="modal-close" onclick="closeCheckout()">&times;</button>
-    <span class="eyebrow red"><span class="dot" style="background:var(--red)"></span> CPT MMA Checkout</span>
-    <h3 id="modalItemTitle" style="font-size:26px;margin:8px 0 4px">Speed Punching Maximizer</h3>
-    <div id="modalItemPrice" style="font-family:var(--f-disp);font-size:36px;color:var(--green);margin-bottom:18px">$79 AUD</div>
+    <span class="eyebrow red"><span class="dot" style="background:var(--red)"></span> CPT MMA Secure Checkout</span>
+    <h3 id="modalItemTitle" style="font-size:24px;margin:6px 0 4px">Speed Punching Maximizer</h3>
+    <div id="modalItemPrice" style="font-family:var(--f-disp);font-size:34px;color:var(--green);margin-bottom:12px">$79 AUD</div>
 
-    <p style="color:var(--soft);font-size:14px;margin-bottom:20px">
-      Complete your registration to secure your booking or digital access. 
-      Sotir will confirm your schedule and provide login details.
-    </p>
+    <!-- Step 1: Customer Details + Live Payment Gateway -->
+    <div id="checkoutLiveStep">
+      <p style="color:var(--soft);font-size:13.5px;margin-bottom:14px">
+        Enter your details and complete secure payment via <b>PayPal</b> or <b>Debit / Credit Card</b> (AUD), or reserve via WhatsApp.
+      </p>
 
-    <form onsubmit="handleCheckoutSubmit(event)">
-      <div style="margin-bottom:12px">
-        <label style="display:block;font-size:13px;color:var(--mut);margin-bottom:4px">Your Name</label>
-        <input type="text" id="chkName" required placeholder="First & Last Name" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
-      </div>
-      <div style="margin-bottom:12px">
-        <label style="display:block;font-size:13px;color:var(--mut);margin-bottom:4px">Email Address</label>
-        <input type="email" id="chkEmail" required placeholder="you@example.com" oninput="if(typeof isVipOrCoachCredentials==='function' && this.value.includes('@') && isVipOrCoachCredentials(this.value)){unlockCourse(true);closeCheckout();const p=document.getElementById('speed-punching');if(p)p.scrollIntoView({behavior:'smooth'});alert('Welcome Coach Sotir! Your email was recognized — all video lessons are now unlocked for free!');}" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
-      </div>
-      <div style="margin-bottom:18px">
-        <label style="display:block;font-size:13px;color:var(--mut);margin-bottom:4px">Mobile Number</label>
-        <input type="tel" id="chkPhone" required placeholder="04xx xxx xxx" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
-      </div>
+      <form id="cptCheckoutForm" onsubmit="handleCheckoutSubmit(event)">
+        <div style="margin-bottom:10px">
+          <label style="display:block;font-size:12.5px;color:var(--mut);margin-bottom:4px">Your Name</label>
+          <input type="text" id="chkName" required placeholder="First & Last Name" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
+        </div>
+        <div style="margin-bottom:10px">
+          <label style="display:block;font-size:12.5px;color:var(--mut);margin-bottom:4px">Email Address</label>
+          <input type="email" id="chkEmail" required placeholder="you@example.com" oninput="checkModalVipEmail(this.value)" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
+        </div>
+        <div style="margin-bottom:14px">
+          <label style="display:block;font-size:12.5px;color:var(--mut);margin-bottom:4px">Mobile Number</label>
+          <input type="tel" id="chkPhone" required placeholder="04xx xxx xxx" style="width:100%;padding:10px 12px;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;color:var(--bone)">
+        </div>
 
-      <div style="display:flex;gap:10px;margin-top:20px">
-        <button type="submit" class="btn btn-primary" style="flex:1">Proceed to Checkout</button>
-        <a href="https://wa.me/61423269586" target="_blank" rel="noopener" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:6px">
-          WhatsApp
+        <!-- VIP Coach Bypass Banner (Shown when Sotir enters his email, WITHOUT closing the modal so he can still test payment!) -->
+        <div id="vipModalBanner" style="display:none;background:rgba(31,209,95,.12);border:1px solid var(--green);border-radius:10px;padding:12px 14px;margin-bottom:14px;text-align:left">
+          <div style="font-size:13px;color:var(--bone);margin-bottom:8px">
+            <strong style="color:var(--green)">✓ Coach / VIP Email Recognized!</strong><br>
+            You can test the live <b>PayPal / Debit &amp; Credit Card</b> payment buttons below, or bypass payment completely:
+          </div>
+          <button type="button" class="btn btn-primary btn-block" style="padding:10px 14px;font-size:13.5px" onclick="triggerVipFreeUnlockFromModal()">
+            Unlock All Videos Free ($0 Coach VIP Access)
+          </button>
+        </div>
+
+        <!-- LIVE PAYPAL & DEBIT/CREDIT CARD GATEWAY -->
+        <div id="paymentGatewayBox" style="background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:14px;margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <span style="font-family:var(--f-cond);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:700">🔒 Instant Payment (PayPal / Visa / Mastercard)</span>
+            <span id="gatewayAmountBadge" style="font-family:var(--f-cond);font-size:13px;color:var(--bone);font-weight:700">A$ 79.00 AUD</span>
+          </div>
+          <div id="cpt-paypal-button-container" style="min-height:48px"></div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button type="submit" id="btnCheckoutSubmit" class="btn btn-primary" style="flex:1;padding:12px 16px;font-size:14px">Pay / Reserve Spot</button>
+          <a id="modalWhatsAppDirect" href="https://wa.me/61423269586" target="_blank" rel="noopener" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:6px;padding:12px 16px;font-size:14px">
+            WhatsApp
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Step 2: Live Payment / Booking Confirmation Receipt -->
+    <div id="checkoutReceiptStep" style="display:none;text-align:center;padding:10px 0">
+      <div style="width:54px;height:54px;border-radius:50%;background:rgba(31,209,95,.15);border:1px solid var(--green);color:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 7 9 18l-5-5"/></svg>
+      </div>
+      <span class="eyebrow" style="justify-content:center;margin-bottom:6px"><span class="dot"></span> <span id="receiptStatusLabel">PAYMENT CONFIRMED · AUD</span></span>
+      <h4 style="font-family:var(--f-disp);font-size:26px;margin-bottom:8px" id="receiptHeadline">Thank You for Your Order!</h4>
+      <p style="font-size:13.5px;color:var(--soft);margin-bottom:16px" id="receiptSubtext">
+        Your transaction has been processed and Coach Sotir Kichukov has received your details.
+      </p>
+      <div style="background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:14px;text-align:left;font-size:13px;margin-bottom:18px">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)">
+          <span style="color:var(--mut)">Reference ID:</span>
+          <strong id="receiptTxId" style="color:var(--bone)">PAYPAL-TX-001</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)">
+          <span style="color:var(--mut)">Program / Item:</span>
+          <strong id="receiptItem" style="color:var(--bone)">Speed Punching Maximizer</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--line)">
+          <span style="color:var(--mut)">Customer:</span>
+          <strong id="receiptPayer" style="color:var(--bone)">Valued Athlete</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0">
+          <span style="color:var(--mut)">Amount:</span>
+          <strong id="receiptAmount" style="color:var(--green)">A$ 79.00 AUD</strong>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a id="receiptWhatsAppBtn" href="https://wa.me/61423269586" target="_blank" rel="noopener" class="btn btn-primary btn-block">
+          Confirm with Sotir on WhatsApp
         </a>
+        <button type="button" class="btn btn-ghost btn-block" onclick="closeCheckout()">Done / Continue</button>
       </div>
-    </form>
+    </div>
   </div>
 </div>
 
@@ -1785,13 +1843,193 @@ function checkMemberStatus() {
   }
 }
 
-// Modal Checkout Handler
-let activeCheckoutItem = {};
+// Modal Checkout & Live PayPal / Card Gateway Handler
+let activeCheckoutItem = { title: 'Speed Punching Maximizer', price: 79, type: 'course' };
+let cptPayPalRenderTimer = null;
+
+function checkModalVipEmail(val) {
+  const banner = document.getElementById('vipModalBanner');
+  if (!banner) return;
+  if (val && val.includes('@') && isVipOrCoachCredentials(val)) {
+    banner.style.display = 'block';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+function triggerVipFreeUnlockFromModal() {
+  localStorage.setItem('cpt_speed_unlocked', 'true');
+  unlockCourse(true);
+  closeCheckout();
+  const playerSection = document.getElementById('speed-punching');
+  if (playerSection) playerSection.scrollIntoView({ behavior: 'smooth' });
+  alert('Coach / VIP Free Access Activated! All 40 video lessons and training PDFs are now unlocked ($0).');
+}
+
+function sendCptOrderLead(subjectPrefix, extraFields) {
+  try {
+    const cfg = window.CPT_CONFIG || { leadEmail: 'sotirkichukov@cptmma.com' };
+    const endpoint = 'https://formsubmit.co/ajax/' + encodeURIComponent(cfg.leadEmail || 'sotirkichukov@cptmma.com');
+    const payload = Object.assign({
+      _subject: subjectPrefix + ': ' + (activeCheckoutItem.title || 'CPT Order'),
+      _template: 'table',
+      item: activeCheckoutItem.title || '',
+      price_aud: '$' + (activeCheckoutItem.price || 0) + ' AUD'
+    }, extraFields || {});
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function () {});
+  } catch (_) {}
+}
+
+function showCheckoutReceipt(opts) {
+  const liveStep = document.getElementById('checkoutLiveStep');
+  const receiptStep = document.getElementById('checkoutReceiptStep');
+  if (liveStep) liveStep.style.display = 'none';
+  if (receiptStep) receiptStep.style.display = 'block';
+
+  document.getElementById('receiptStatusLabel').textContent = opts.statusLabel || 'PAYMENT CONFIRMED · AUD';
+  document.getElementById('receiptHeadline').textContent = opts.headline || 'Payment Confirmed!';
+  document.getElementById('receiptSubtext').textContent = opts.subtext || 'Your order is confirmed and Sotir Kichukov has been notified.';
+  document.getElementById('receiptTxId').textContent = opts.txId || ('CPT-' + Date.now().toString(36).toUpperCase());
+  document.getElementById('receiptItem').textContent = activeCheckoutItem.title;
+  document.getElementById('receiptPayer').textContent = opts.payer || 'Valued Athlete';
+  document.getElementById('receiptAmount').textContent = opts.amount || ('A$ ' + Number(activeCheckoutItem.price).toFixed(2) + ' AUD');
+
+  const waBtn = document.getElementById('receiptWhatsAppBtn');
+  if (waBtn) {
+    const msg = encodeURIComponent(`Hi Sotir, I have completed my order for "${activeCheckoutItem.title}" (${opts.amount || ('$' + activeCheckoutItem.price + ' AUD')}). Ref: ${opts.txId}. Customer: ${opts.payer}.`);
+    waBtn.href = `https://wa.me/61423269586?text=${msg}`;
+  }
+}
+
+function renderCptPayPalButtons() {
+  const container = document.getElementById('cpt-paypal-button-container');
+  if (!container) return;
+  const priceVal = Number(activeCheckoutItem.price || 79).toFixed(2);
+  const badge = document.getElementById('gatewayAmountBadge');
+  if (badge) badge.textContent = `A$ ${priceVal} AUD`;
+
+  if (typeof paypal === 'undefined' || !paypal.Buttons) {
+    container.innerHTML = '<div style="text-align:center;padding:12px;font-size:12.5px;color:var(--soft)">Loading Live PayPal &amp; Debit/Credit Card Gateway...</div>';
+    if (!window.__cptPaypalRetry) {
+      window.__cptPaypalRetry = true;
+      let tries = 0;
+      const t = setInterval(function () {
+        tries++;
+        if (typeof paypal !== 'undefined' && paypal.Buttons) {
+          clearInterval(t);
+          window.__cptPaypalRetry = false;
+          renderCptPayPalButtons();
+        } else if (tries > 25) {
+          clearInterval(t);
+          window.__cptPaypalRetry = false;
+        }
+      }, 250);
+    }
+    return;
+  }
+
+  clearTimeout(cptPayPalRenderTimer);
+  cptPayPalRenderTimer = setTimeout(function () {
+    container.innerHTML = '';
+    try {
+      paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color: 'gold',
+          shape: 'rect',
+          label: 'pay',
+          height: 44
+        },
+        createOrder: function (data, actions) {
+          const amt = Number(activeCheckoutItem.price || 79).toFixed(2);
+          return actions.order.create({
+            intent: 'CAPTURE',
+            purchase_units: [{
+              description: 'CPT MMA — ' + (activeCheckoutItem.title || 'Training Program'),
+              custom_id: 'CPT_MMA_' + (activeCheckoutItem.type || 'ORDER').toUpperCase(),
+              amount: {
+                currency_code: 'AUD',
+                value: amt
+              }
+            }]
+          });
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            let txId = (details && details.id) ? details.id : ('PAYPAL-' + Date.now());
+            try {
+              if (details.purchase_units[0].payments.captures[0].id) {
+                txId = details.purchase_units[0].payments.captures[0].id;
+              }
+            } catch (_) {}
+            const given = (details && details.payer && details.payer.name) ? (details.payer.name.given_name || '') : '';
+            const sur = (details && details.payer && details.payer.name) ? (details.payer.name.surname || '') : '';
+            const pEmail = (details && details.payer && details.payer.email_address) ? details.payer.email_address : (document.getElementById('chkEmail').value || '');
+            const pName = (`${given} ${sur}`.trim()) || document.getElementById('chkName').value || 'Verified Customer';
+            const paidAmt = Number(activeCheckoutItem.price || 79).toFixed(2);
+
+            // Unlock course automatically if Speed Punching or course purchase
+            if (activeCheckoutItem.type === 'course' || (activeCheckoutItem.title && activeCheckoutItem.title.includes('Speed Punching'))) {
+              localStorage.setItem('cpt_speed_unlocked', 'true');
+              unlockCourse(true);
+            }
+
+            sendCptOrderLead('PAID CPT MMA Order ($' + paidAmt + ' AUD)', {
+              transaction_id: txId,
+              name: pName,
+              email: pEmail,
+              phone: document.getElementById('chkPhone').value || '',
+              payment_status: 'PAID VIA PAYPAL / CARD (AUD)'
+            });
+
+            showCheckoutReceipt({
+              statusLabel: 'PAYMENT CONFIRMED · PAYPAL & CARD AUD',
+              headline: 'Payment Successful!',
+              subtext: activeCheckoutItem.type === 'course'
+                ? 'Your course is now UNLOCKED on this device! Sotir has also received your payment confirmation.'
+                : 'Your payment is confirmed! Sotir will contact you shortly to lock in your session time.',
+              txId: txId,
+              payer: pEmail ? `${pName} (${pEmail})` : pName,
+              amount: `A$ ${paidAmt} AUD`
+            });
+          });
+        },
+        onError: function (err) {
+          console.error('[CPT PayPal Error]', err);
+          alert('Payment gateway notice: Please check your card/PayPal details or tap the WhatsApp button to complete your order directly with Sotir.');
+        }
+      }).render('#cpt-paypal-button-container');
+    } catch (e) {
+      console.error('[CPT PayPal Render Exception]', e);
+    }
+  }, 100);
+}
+
 function openCheckout(title, price, type) {
   activeCheckoutItem = { title, price, type };
   document.getElementById('modalItemTitle').textContent = title;
   document.getElementById('modalItemPrice').textContent = `$${price} AUD`;
+
+  const liveStep = document.getElementById('checkoutLiveStep');
+  const receiptStep = document.getElementById('checkoutReceiptStep');
+  if (liveStep) liveStep.style.display = 'block';
+  if (receiptStep) receiptStep.style.display = 'none';
+
+  const waDirect = document.getElementById('modalWhatsAppDirect');
+  if (waDirect) {
+    const msg = encodeURIComponent(`Hi Sotir, I would like to book / purchase "${title}" ($${price} AUD) at CPT MMA.`);
+    waDirect.href = `https://wa.me/61423269586?text=${msg}`;
+  }
+
+  const emailEl = document.getElementById('chkEmail');
+  if (emailEl) checkModalVipEmail(emailEl.value);
+
   document.getElementById('checkoutModal').classList.add('open');
+  renderCptPayPalButtons();
 }
 
 function closeCheckout() {
@@ -1800,29 +2038,31 @@ function closeCheckout() {
 
 function handleCheckoutSubmit(e) {
   e.preventDefault();
-  const name = document.getElementById('chkName').value;
-  const email = document.getElementById('chkEmail').value;
-  const phone = document.getElementById('chkPhone').value;
+  const name = document.getElementById('chkName').value.trim();
+  const email = document.getElementById('chkEmail').value.trim();
+  const phone = document.getElementById('chkPhone').value.trim();
 
-  // Instant free VIP unlock if Sotir enters his email or name in Checkout
-  if (isVipOrCoachCredentials(email) || isVipOrCoachCredentials(name)) {
-    localStorage.setItem('cpt_speed_unlocked', 'true');
-    unlockCourse(true);
-    closeCheckout();
-    const playerSection = document.getElementById('speed-punching');
-    if (playerSection) playerSection.scrollIntoView({ behavior: 'smooth' });
-    alert(`Welcome Coach Sotir (${email})! Your email was recognized — all video courses and training programs are unlocked immediately with $0 payment.`);
-    return;
+  // Send lead to Sotir's email via FormSubmit
+  const refId = 'CPT-REQ-' + Date.now().toString(36).toUpperCase();
+  sendCptOrderLead('New CPT Booking / Checkout Request', {
+    reference_id: refId,
+    name: name,
+    email: email,
+    phone: phone,
+    payment_note: 'Customer submitted booking details; prompted to complete payment via PayPal / Card or WhatsApp'
+  });
+
+  // Highlight the live PayPal / Card box so the user or Sotir can click PayPal or Debit/Credit Card immediately
+  const gwBox = document.getElementById('paymentGatewayBox');
+  if (gwBox) {
+    gwBox.style.borderColor = 'var(--green)';
+    gwBox.style.boxShadow = '0 0 24px rgba(31,209,95,.35)';
+    gwBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-
-  // Auto-unlock if purchasing speed punching
-  if (activeCheckoutItem.title.includes('Speed Punching')) {
-    localStorage.setItem('cpt_speed_unlocked', 'true');
-    unlockCourse(true);
+  const btn = document.getElementById('btnCheckoutSubmit');
+  if (btn) {
+    btn.textContent = '✓ Details Saved — Select PayPal or Card Above';
   }
-
-  closeCheckout();
-  alert(`Thank you, ${name}! Your order for "${activeCheckoutItem.title}" ($${activeCheckoutItem.price} AUD) has been received. Coach Sotir will be in touch directly at ${phone} to confirm your schedule and access.`);
 }
 
 // Filter sections
@@ -1853,5 +2093,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script src="../assets/sk.js?v=14" defer></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAPoFEtOL0vuioX-w7PrLdmrQ443eCn82WBmD6b6UdeICtZKBzoI5l6Pk1mNxat3XmLoJvRS4yKzSaOEo&currency=AUD&locale=en_AU&components=buttons"></script>
 </body>
 </html>
