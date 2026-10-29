@@ -56,6 +56,20 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+
+.cpt-launcher-crest {
+  display: block;
+  width: 28px;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(31, 209, 95, 0.75));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.cpt-concierge-launcher:hover .cpt-launcher-crest {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(31, 209, 95, 0.95));
+}
+
 .cpt-concierge-launcher:hover {
   transform: translateY(-3px) scale(1.04);
   border-color: var(--cpt-concierge-green);
@@ -347,11 +361,11 @@
 .cpt-bot-action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
-  border-radius: 8px;
-  background: rgba(31, 209, 95, 0.15);
-  border: 1px solid rgba(31, 209, 95, 0.5);
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 9px;
+  background: rgba(31, 209, 95, 0.14);
+  border: 1px solid rgba(31, 209, 95, 0.45);
   color: #fff;
   font-size: 12px;
   font-weight: 600;
@@ -360,11 +374,22 @@
   transition: all 0.2s ease;
 }
 
+.cpt-bot-action-btn svg {
+  flex-shrink: 0;
+  color: var(--cpt-concierge-green);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
 .cpt-bot-action-btn:hover {
   background: var(--cpt-concierge-green);
   color: #070a08;
   border-color: var(--cpt-concierge-green);
   transform: translateY(-1px);
+}
+
+.cpt-bot-action-btn:hover svg {
+  color: #070a08;
+  transform: translateX(1px);
 }
 
 .cpt-bot-action-btn.gold {
@@ -427,23 +452,60 @@
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: inherit;
+  gap: 10px;
 }
 
 .cpt-faq-chip:hover {
   background: rgba(31, 209, 95, 0.12);
   border-color: rgba(31, 209, 95, 0.45);
   color: #fff;
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
-.cpt-faq-chip svg {
+.cpt-faq-chip .chip-content {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+}
+
+.cpt-faq-chip .chip-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgba(31, 209, 95, 0.12);
+  border: 1px solid rgba(31, 209, 95, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cpt-concierge-green);
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cpt-faq-chip:hover .chip-icon {
+  background: rgba(31, 209, 95, 0.26);
+  border-color: var(--cpt-concierge-green);
+  color: #fff;
+}
+
+.cpt-faq-chip .chip-text {
+  flex: 1;
+  font-weight: 500;
+  color: #e2e8e4;
+  line-height: 1.35;
+}
+
+.cpt-faq-chip .chip-arrow {
+  display: flex;
+  align-items: center;
   color: var(--cpt-concierge-green);
   flex-shrink: 0;
   transition: transform 0.2s ease;
 }
 
-.cpt-faq-chip:hover svg {
-  transform: translateX(2px);
+.cpt-faq-chip:hover .chip-arrow {
+  transform: translateX(3px);
 }
 
 /* Typing Indicator */
