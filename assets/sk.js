@@ -394,6 +394,15 @@ function toggleDivisionRail(forceState) {
   } else {
     applyInitialRail();
   }
+
+  // Close rail when clicking outside on main page content
+  document.addEventListener('click', function (e) {
+    var rail = document.getElementById('cptDivisionRail');
+    if (!rail || rail.classList.contains('collapsed')) return;
+    if (!rail.contains(e.target)) {
+      toggleDivisionRail(true);
+    }
+  });
 })();
 
 
