@@ -395,3 +395,30 @@ function toggleDivisionRail(forceState) {
     applyInitialRail();
   }
 })();
+
+
+/* ---------- CPT AI Combat & Canine Concierge Autoloader ---------- */
+(function autowireConcierge() {
+  if (typeof window.__cptConciergeInitialized !== 'undefined') return;
+  function injectConciergeScript() {
+    if (document.getElementById('cptChatbotLauncher')) return;
+    var scripts = document.getElementsByTagName('script');
+    var base = './';
+    for (var i = 0; i < scripts.length; i++) {
+      var src = scripts[i].getAttribute('src') || '';
+      if (src.indexOf('assets/sk.js') !== -1) {
+        base = src.substring(0, src.indexOf('assets/'));
+        break;
+      }
+    }
+    var s = document.createElement('script');
+    s.src = base + 'assets/cpt-concierge.js?v=2';
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectConciergeScript);
+  } else {
+    injectConciergeScript();
+  }
+})();
