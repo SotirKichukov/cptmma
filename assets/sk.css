@@ -2106,3 +2106,13 @@ body.menu-open .totop{display:none}
 .cinema-course-tag{font-family:var(--f-cond);font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--green)}
 .cinema-course-desc{font-size:13px;color:var(--soft)}
 @media(max-width:680px){.cpt-cinema-modal{padding:10px}.cinema-topbar,.cinema-bottombar{padding:10px 14px}.cinema-title{font-size:14px}.cinema-dialog{border-radius:12px}}
+
+
+/* ---------- anchialo iridescent aurora text & badge ---------- */
+.anchialo-aurora-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 18px;border-radius:999px;background:rgba(10,15,12,.75);border:1px solid rgba(31,209,95,.28);backdrop-filter:blur(8px);text-decoration:none;transition:transform .28s cubic-bezier(0.16,1,0.3,1),border-color .28s,box-shadow .28s;box-shadow:0 4px 16px rgba(0,0,0,.45);z-index:2}
+.anchialo-aurora-link:hover{transform:translateY(-2px) scale(1.04);border-color:rgba(0,240,255,.6);box-shadow:0 8px 24px rgba(0,0,0,.65),0 0 20px rgba(0,240,255,.3)}
+.anchialo-aurora-text{font-family:var(--f-cond),sans-serif;font-size:14px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;background:linear-gradient(115deg,#1fd15f 0%,#00f0ff 25%,#e2d88c 50%,#38bdf8 75%,#1fd15f 100%);background-size:260% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:anchialoAuroraShift 7s ease-in-out infinite alternate}
+.anchialo-aurora-arrow{color:#00f0ff;transition:transform .28s ease,color .28s ease;animation:anchialoArrowGlow 7s ease-in-out infinite alternate}
+.anchialo-aurora-link:hover .anchialo-aurora-arrow{transform:translate(2px,-2px);color:#1fd15f}
+@keyframes anchialoAuroraShift{0%{background-position:0% 50%;filter:drop-shadow(0 0 6px rgba(31,209,95,.4))}50%{background-position:100% 50%;filter:drop-shadow(0 0 10px rgba(0,240,255,.55))}100%{background-position:0% 50%;filter:drop-shadow(0 0 6px rgba(226,216,140,.45))}}
+@keyframes anchialoArrowGlow{0%{color:#1fd15f}50%{color:#00f0ff}100%{color:#e2d88c}}
