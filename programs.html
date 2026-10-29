@@ -17,7 +17,7 @@
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/sk.css?v=27">
+<link rel="stylesheet" href="./assets/sk.css?v=28">
 <meta name="google-site-verification" content="G2RuPksRn9KZ88AvHmiol_yZ1x-yz3LFeHwcCuFgjvI" />
 <link rel="canonical" href="https://cptmma.com/programs" data-seo="sx">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" data-seo="sx">
@@ -1056,13 +1056,19 @@
           </div>
 
           <!-- Active Video Info Bar -->
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:0 4px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:0 4px;flex-wrap:wrap;gap:10px">
             <div>
               <h4 id="activeLessonTitle" style="font-size:17px;font-weight:700">Week 1: Welcome &amp; Introduction</h4>
               <span id="activeLessonMeta" style="color:var(--mut);font-size:13px">Coach Sotir Kichukov · 6-Week Program</span>
             </div>
-            <div id="unlockBadge" style="display:none;background:rgba(31,209,95,.15);border:1px solid var(--green);color:var(--green);padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700">
-              UNLOCKED
+            <div style="display:flex;align-items:center;gap:8px">
+              <div id="unlockBadge" style="display:none;background:rgba(31,209,95,.15);border:1px solid var(--green);color:var(--green);padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700">
+                UNLOCKED
+              </div>
+              <a id="videoExternalLink" href="https://drive.google.com/file/d/1vsqzFmJu3n74PEhd11-nZzHfUkHSrISK/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-ghost" style="padding:6px 12px;font-size:12px;display:inline-flex;align-items:center;gap:6px">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Fullscreen / External Player
+              </a>
             </div>
           </div>
         </div>
@@ -1388,6 +1394,20 @@
             <span id="gatewayAmountBadge" style="font-family:var(--f-cond);font-size:13px;color:var(--bone);font-weight:700">A$ 79.00 AUD</span>
           </div>
           <div id="cpt-paypal-button-container" style="min-height:48px"></div>
+        </div>
+
+        <!-- Australian PayID / Bank Transfer Option -->
+        <div style="background:rgba(255,255,255,0.025);border:1px dashed var(--line2);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--green)"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <div style="font-size:12px;color:var(--soft);line-height:1.35">
+              <strong style="color:var(--bone)">PayID / Australian Bank Transfer</strong><br>
+              Zero-fee instant transfer in AUD via your banking app
+            </div>
+          </div>
+          <a id="modalPayIdDirect" href="https://wa.me/61423269586?text=Hi%20Sotir,%20I%20would%20like%20to%20pay%20via%20PayID%20in%20AUD." target="_blank" rel="noopener" class="btn btn-ghost" style="padding:6px 12px;font-size:11.5px;font-weight:600">
+            Request PayID Details
+          </a>
         </div>
 
         <div style="display:flex;gap:10px;margin-top:12px">
@@ -1744,6 +1764,8 @@ function selectLesson(idx) {
 
   const iframe = document.getElementById('videoIframe');
   iframe.src = `https://drive.google.com/file/d/${lesson.fileId}/preview`;
+  const extLink = document.getElementById('videoExternalLink');
+  if (extLink) extLink.href = `https://drive.google.com/file/d/${lesson.fileId}/view?usp=sharing`;
 }
 
 // VIP & Coach Email / Code Recognizer (Sotir Kichukov & Authorized VIPs)
@@ -2138,7 +2160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="./assets/sk.js?v=27" defer></script>
+<script src="./assets/sk.js?v=28" defer></script>
 <script src="https://www.paypal.com/sdk/js?client-id=BAAPoFEtOL0vuioX-w7PrLdmrQ443eCn82WBmD6b6UdeICtZKBzoI5l6Pk1mNxat3XmLoJvRS4yKzSaOEo&currency=AUD&locale=en_AU&components=buttons"></script>
 
 <!-- ===== CPT SOVEREIGN FULL-HEIGHT DIVISION RAIL ===== -->

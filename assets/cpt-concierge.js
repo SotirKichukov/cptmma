@@ -84,6 +84,7 @@
       keywords: ['location', 'where', 'address', 'melbourne', 'ringwood', 'gym', 'schedule', 'hours', 'time', 'къде', 'адрес', 'мелбърн', 'зала', 'график', 'часове'],
       reply: 'CPT MMA is located in **Melbourne, Victoria**. Private indoor combat sessions are coached at our partner fight training facility in Ringwood / Melbourne, while CPT Canine outdoor field work takes place at designated Melbourne parks. Sessions are arranged 7 days a week by appointment to fit your schedule.',
       actions: [
+        { label: 'Get Directions (Google Maps)', type: 'external', icon: 'location', url: 'https://maps.google.com/?q=60+Charter+Street,+Ringwood+VIC+3134' },
         { label: 'Schedule Session Time', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I would like to check available training times in Melbourne.' },
         { label: 'Register Your Interest', type: 'link', icon: 'arrow', url: BASE + 'index.html#apply' }
       ]
