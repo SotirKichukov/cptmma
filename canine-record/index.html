@@ -9,7 +9,7 @@
 <link rel="icon" href="./favicon.ico" sizes="32x32">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/sk.css?v=14">
+<link rel="stylesheet" href="../assets/sk.css?v=16">
 <style>
   :root {
     --green-bright: #22e065;
@@ -286,16 +286,16 @@
 
 <header class="nav stuck">
   <div class="bar">
-    <a class="brand" href="./canine.html">
-      <img loading="lazy" decoding="async" class="mark" src="./assets/img/cpt-mark.png" width="235" height="277" alt="" aria-hidden="true">
+    <a class="brand" href="../canine.html">
+      <img loading="lazy" decoding="async" class="mark" src="../assets/img/cpt-mark.png" width="235" height="277" alt="" aria-hidden="true">
       <span class="wm">CPT CANINE<small>Interactive App</small></span>
     </a>
     <nav>
-      <a href="./canine.html">Canine Home</a>
-      <a href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank" style="color:var(--green)">Download PDF Manual</a>
+      <a href="../canine.html">Canine Home</a>
+      <a href="../assets/docs/cpt-canine-10-week-system.pdf" target="_blank" style="color:var(--green)">Download PDF Manual</a>
       <a href="https://wa.me/61423269586" target="_blank" style="color:var(--green)">Coach Sotir</a>
     </nav>
-    <a class="btn btn-primary cta" href="./canine.html#enquire">Enquire</a>
+    <a class="btn btn-primary cta" href="../canine.html#enquire">Enquire</a>
   </div>
 </header>
 
@@ -319,7 +319,7 @@
       <div id="progressBarFill" class="progress-bar-fill"></div>
     </div>
     <div class="app-actions">
-      <a class="app-btn app-btn-green" href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank">
+      <a class="app-btn app-btn-green" href="../assets/docs/cpt-canine-10-week-system.pdf" target="_blank">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Official PDF Manual
       </a>
@@ -621,5 +621,44 @@ function syncWhatsAppProgress() {
 
 document.addEventListener('DOMContentLoaded', renderSessions);
 </script>
+
+<!-- ===== CPT SOVEREIGN DUAL-DIVISION DOCK ===== -->
+<aside class="cpt-division-dock" id="cptDivisionDock" aria-label="CPT Division Switcher">
+  <div class="cpt-dock-inner">
+    <div class="cpt-dock-tag">CPT DIVISION</div>
+    <a href="../index.html" class="cpt-dock-item combat" aria-label="Combat &amp; Striking Division" title="Combat &amp; Performance Training">
+      <div class="cpt-dock-icon">🥊</div>
+      <div class="cpt-dock-meta">
+        <span class="cpt-dock-title">COMBAT</span>
+        <span class="cpt-dock-sub">MMA &amp; Striking</span>
+      </div>
+      <span class="cpt-dock-badge combat-badge" style="background:rgba(31,209,95,0.2);color:#1fd15f;border:1px solid rgba(31,209,95,0.4)">GO →</span>
+    </a>
+    <div class="cpt-dock-split" aria-hidden="true"></div>
+    <a href="../canine.html" class="cpt-dock-item canine active" aria-label="Canine Personal Training Division" title="Canine Personal Training">
+      <div class="cpt-dock-icon">🐕</div>
+      <div class="cpt-dock-meta">
+        <span class="cpt-dock-title">CANINE</span>
+        <span class="cpt-dock-sub">10-Wk CPT &amp; App</span>
+      </div>
+      <span class="cpt-dock-live canine-live">● LIVE</span>
+    </a>
+  </div>
+  <div class="cpt-dock-drawer">
+    <div class="cpt-drawer-col canine-col">
+      <span class="cpt-col-lbl">🐕 CANINE</span>
+      <a href="../canine.html#cpt-program">🐾 10-Wk Program</a>
+      <a href="../canine-record.html">📱 Interactive App</a>
+      <a href="../assets/docs/cpt-canine-10-week-system.pdf" target="_blank">📑 PDF Manual</a>
+    </div>
+    <div class="cpt-drawer-col combat-col" style="margin-top:4px">
+      <span class="cpt-col-lbl">🥊 COMBAT</span>
+      <a href="../index.html#speed-punching">⚡ Speed Course ($79)</a>
+      <a href="../programs.html">📋 1-on-1 Prices</a>
+      <a href="../rashguard.html">🛡️ Fight Gear ($75)</a>
+    </div>
+  </div>
+</aside>
+
 </body>
 </html>
