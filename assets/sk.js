@@ -351,3 +351,47 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(function () {});
   });
 }
+
+
+/* ---------- CPT Sovereign Full-Height Division Rail ---------- */
+function toggleDivisionRail(forceState) {
+  var rail = document.getElementById('cptDivisionRail');
+  if (!rail) return;
+  var isCollapsed = rail.classList.contains('collapsed');
+  var shouldCollapse = (typeof forceState === 'boolean') ? !forceState : !isCollapsed;
+  
+  if (shouldCollapse) {
+    rail.classList.add('collapsed');
+    try { localStorage.setItem('cpt_rail_collapsed', 'true'); } catch (_) {}
+  } else {
+    rail.classList.remove('collapsed');
+    try { localStorage.setItem('cpt_rail_collapsed', 'false'); } catch (_) {}
+  }
+}
+
+// Initialize Rail State on Load
+(function initDivisionRail() {
+  function applyInitialRail() {
+    var rail = document.getElementById('cptDivisionRail');
+    if (!rail) return;
+    try {
+      var saved = localStorage.getItem('cpt_rail_collapsed');
+      if (saved === 'true') {
+        rail.classList.add('collapsed');
+      } else if (saved === 'false') {
+        rail.classList.remove('collapsed');
+      } else {
+        if (window.innerWidth < 1280) {
+          rail.classList.add('collapsed');
+        } else {
+          rail.classList.remove('collapsed');
+        }
+      }
+    } catch (_) {}
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyInitialRail);
+  } else {
+    applyInitialRail();
+  }
+})();
