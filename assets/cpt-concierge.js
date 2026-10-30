@@ -114,7 +114,7 @@
     },
     {
       id: 'canine_training',
-      keywords: ['canine', 'dog', 'k9', 'malinois', 'cpt', 'obedience', 'working dog', 'куче', 'кучета', 'обучение', 'малиноа', 'дресура', 'кучешк'],
+      keywords: ['canine', 'dog', 'k9', 'malinois', 'CPT', 'obedience', 'working dog', 'куче', 'кучета', 'обучение', 'малиноа', 'дресура', 'кучешк'],
       reply: 'CPT Canine Personal Training is Coach Sotir\'s specialized working dog division in Melbourne, certified under the world-renowned **CPT system**.\n\n' +
         '• **KEY BENEFITS:**\n' +
         '  - Bulletproof Off-Lead Recall: Your dog returns instantly, even with dogs, wildlife, or joggers nearby\n' +
