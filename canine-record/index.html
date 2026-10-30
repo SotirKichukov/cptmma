@@ -119,6 +119,26 @@
     border-color: var(--line2);
     color: var(--bone);
   }
+    .app-btn-wa {
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    color: #25d366;
+  }
+  .app-btn-wa:hover {
+    background: #25d366;
+    color: #04140a;
+    transform: translateY(-2px);
+  }
+  .session-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
   .app-btn-ghost:hover {
     border-color: var(--green);
     color: var(--green);
@@ -317,6 +337,26 @@
     </div>
     <div class="progress-bar-track">
       <div id="progressBarFill" class="progress-bar-fill"></div>
+    </div>
+        <!-- Handler & Dog Identification + Direct Message for Sotir -->
+    <div style="background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:14px 16px;margin:16px 0 14px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;margin-bottom:12px">
+        <div>
+          <label style="font-size:11.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);letter-spacing:.08em;display:block;margin-bottom:5px">Dog's Name (Optional):</label>
+          <input type="text" id="trackerDogName" placeholder="e.g. Ares" oninput="saveTrackerMeta()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:6px;padding:8px 12px;color:var(--bone);font-size:13.5px;box-sizing:border-box">
+        </div>
+        <div>
+          <label style="font-size:11.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);letter-spacing:.08em;display:block;margin-bottom:5px">Handler / Owner Name (Optional):</label>
+          <input type="text" id="trackerHandlerName" placeholder="e.g. Dimitar" oninput="saveTrackerMeta()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:6px;padding:8px 12px;color:var(--bone);font-size:13.5px;box-sizing:border-box">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:11.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);letter-spacing:.08em;display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+          <span>Overall Note / Question to Coach Sotir:</span>
+          <span style="font-size:11px;color:var(--green)">✓ Included in WhatsApp sync</span>
+        </label>
+        <textarea id="trackerGlobalNote" placeholder="Write any specific question, how your dog is behaving, or notes you want Sotir to read..." oninput="saveTrackerMeta()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:6px;padding:9px 12px;color:var(--bone);font-size:13px;min-height:56px;resize:vertical;box-sizing:border-box"></textarea>
+      </div>
     </div>
     <div class="app-actions">
       <a class="app-btn app-btn-green" href="../assets/docs/cpt-canine-10-week-system.pdf" target="_blank">
@@ -550,19 +590,37 @@ function renderSessions() {
           ${drillsHtml}
         </ul>
         <div style="margin-top:14px">
-          <label style="font-size:12.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond)">Handler Field Notes & Dates:</label>
+          <label style="font-size:12.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);display:flex;justify-content:space-between;align-items:center">
+            <span>Handler Field Notes &amp; Dates:</span>
+            <span style="font-size:11px;color:var(--green)">✓ Included in WhatsApp update</span>
+          </label>
           <textarea class="notes-area" placeholder="e.g. Practiced 10m hand magnet on Oct 29. Dog was locked on food with high speed..." oninput="saveNotes(${s.num}, this.value)">${sData.notes || ''}</textarea>
         </div>
         <div class="session-footer-actions">
-          <button class="app-btn ${sData.completed ? 'app-btn-ghost' : 'app-btn-green'}" id="btn-toggle-${s.num}" onclick="toggleSessionComplete(${s.num})">
-            ${sData.completed ? 'Mark as Incomplete' : '✓ Mark Session Completed'}
-          </button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <button class="app-btn ${sData.completed ? 'app-btn-ghost' : 'app-btn-green'}" id="btn-toggle-${s.num}" onclick="toggleSessionComplete(${s.num})">
+              ${sData.completed ? 'Mark as Incomplete' : '✓ Mark Session Completed'}
+            </button>
+            <button class="app-btn app-btn-wa" onclick="sendSingleSessionWhatsApp(${s.num})" title="Send this session's progress and your written note to Sotir on WhatsApp">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.53 11.51c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3Z"/></svg>
+              Send Session ${s.num} Note to Sotir
+            </button>
+          </div>
           <span style="font-size:12px;color:var(--mut)">Auto-saved to device</span>
         </div>
       </div>
     `;
     container.appendChild(card);
   });
+  // Restore meta fields
+  const meta = (data && data.meta) || {};
+  const dogEl = document.getElementById('trackerDogName');
+  const handlerEl = document.getElementById('trackerHandlerName');
+  const noteEl = document.getElementById('trackerGlobalNote');
+  if (dogEl && meta.dogName) dogEl.value = meta.dogName;
+  if (handlerEl && meta.handlerName) handlerEl.value = meta.handlerName;
+  if (noteEl && meta.globalNote) noteEl.value = meta.globalNote;
+
   updateProgressUI();
 }
 
@@ -602,21 +660,115 @@ function resetAllProgress() {
   }
 }
 
+function saveTrackerMeta() {
+  const data = loadTrackerData();
+  if (!data.meta) data.meta = {};
+  const dogEl = document.getElementById('trackerDogName');
+  const handlerEl = document.getElementById('trackerHandlerName');
+  const noteEl = document.getElementById('trackerGlobalNote');
+  if (dogEl) data.meta.dogName = dogEl.value;
+  if (handlerEl) data.meta.handlerName = handlerEl.value;
+  if (noteEl) data.meta.globalNote = noteEl.value;
+  localStorage.setItem('cpt_canine_tracker', JSON.stringify(data));
+}
+
 function syncWhatsAppProgress() {
   const data = loadTrackerData();
+  const meta = data.meta || {};
+  const dogName = (meta.dogName || '').trim();
+  const handlerName = (meta.handlerName || '').trim();
+  const globalNote = (meta.globalNote || '').trim();
+
   let completed = [];
+  let sessionNotes = [];
+
   SESSIONS.forEach(s => {
-    if (data[s.num] && data[s.num].completed) {
+    const sData = data[s.num] || {};
+    if (sData.completed) {
       completed.push(`Session ${s.num}: ${s.title}`);
     }
+    if (sData.notes && sData.notes.trim()) {
+      sessionNotes.push(`• Session ${s.num} (${s.title}):\n  "${sData.notes.trim()}"`);
+    }
   });
-  const text = encodeURIComponent(
-    `Hi Coach Sotir, here is my CPT Canine 10-Week Training Record:\n` +
-    `Progress: ${completed.length}/10 Sessions Completed.\n` +
-    (completed.length > 0 ? `Completed: ${completed.join(', ')}\n` : `Currently on Session 1.\n`) +
-    `Ready for review and my next drill check!`
-  );
-  window.open(`https://wa.me/61423269586?text=${text}`, '_blank');
+
+  let lines = [];
+  let header = "Hi Coach Sotir, here is my CPT Canine 10-Week Training Record update";
+  if (dogName) header += ` for *${dogName}*`;
+  if (handlerName) header += ` (Handler: ${handlerName})`;
+  header += ":";
+  lines.push(header);
+  lines.push("");
+
+  const pct = Math.round((completed.length / SESSIONS.length) * 100);
+  lines.push(`📊 *Progress:* ${completed.length}/10 Sessions Completed (${pct}%)`);
+  if (completed.length > 0) {
+    lines.push(`✓ *Completed:* ${completed.join(', ')}`);
+  } else {
+    lines.push(`Currently working on Session 1 foundations.`);
+  }
+
+  // Include Handler's written session notes!
+  if (sessionNotes.length > 0) {
+    lines.push("");
+    lines.push("📝 *Handler Field Notes:*");
+    lines.push(sessionNotes.join("\n\n"));
+  }
+
+  // Include direct custom message if typed!
+  if (globalNote) {
+    lines.push("");
+    lines.push("💬 *Direct Note for Coach Sotir:*");
+    lines.push(`"${globalNote}"`);
+  }
+
+  lines.push("");
+  lines.push("Ready for your review and next drill instructions!");
+
+  const fullText = lines.join("\n");
+  window.open(`https://wa.me/61423269586?text=${encodeURIComponent(fullText)}`, '_blank');
+}
+
+function sendSingleSessionWhatsApp(sNum) {
+  const data = loadTrackerData();
+  const s = SESSIONS.find(x => x.num === sNum);
+  if (!s) return;
+  const sData = data[sNum] || {};
+  const meta = data.meta || {};
+  const dogName = (meta.dogName || '').trim();
+  const handlerName = (meta.handlerName || '').trim();
+
+  let checkedDrills = 0;
+  if (sData.checks) {
+    s.drills.forEach((_, i) => { if (sData.checks[i]) checkedDrills++; });
+  }
+
+  let lines = [];
+  let header = `Hi Coach Sotir, here is my progress update on *Session ${s.num}: ${s.title}*`;
+  if (dogName) header += ` for *${dogName}*`;
+  if (handlerName) header += ` (Handler: ${handlerName})`;
+  header += ":";
+  lines.push(header);
+  lines.push("");
+
+  lines.push(`• *Status:* ${sData.completed ? '✓ Completed' : 'In Progress'}`);
+  lines.push(`• *Drills Checked:* ${checkedDrills}/${s.drills.length}`);
+
+  const note = (sData.notes || '').trim();
+  if (note) {
+    lines.push("");
+    lines.push(`📝 *Handler Field Notes:*`);
+    lines.push(`"${note}"`);
+  } else {
+    lines.push("");
+    lines.push(`📝 *Handler Field Notes:* (No field notes entered for this session yet)`);
+  }
+
+  lines.push("");
+  lines.push("Could you please review this session and let me know your thoughts?");
+
+  const fullText = lines.join("\n");
+  window.open(`https://wa.me/61423269586?text=${encodeURIComponent(fullText)}`, '_blank');
 }
 
 document.addEventListener('DOMContentLoaded', renderSessions);

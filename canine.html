@@ -207,10 +207,31 @@
       <div style="width:100%;height:10px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden">
         <div id="embedProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--red),var(--green));border-radius:999px;transition:width 0.4s var(--ease)"></div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13px;color:var(--soft);flex-wrap:wrap;gap:8px">
+      <!-- Optional Dog Name & Note for Sotir -->
+      <div style="background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:12px 14px;margin-top:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:10px;margin-bottom:10px">
+          <div>
+            <label style="font-size:11px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);letter-spacing:.08em;display:block;margin-bottom:4px">Dog's Name (Optional):</label>
+            <input type="text" id="embedDogName" placeholder="e.g. Ares" oninput="saveEmbedMeta()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:6px;padding:7px 10px;color:var(--bone);font-size:13px;box-sizing:border-box">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);letter-spacing:.08em;display:block;margin-bottom:4px">Handler Name (Optional):</label>
+            <input type="text" id="embedHandlerName" placeholder="e.g. Dimitar" oninput="saveEmbedMeta()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:6px;padding:7px 10px;color:var(--bone);font-size:13px;box-sizing:border-box">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);letter-spacing:.08em;display:flex;justify-content:space-between;margin-bottom:4px">
+            <span>Direct Message / Question for Coach Sotir:</span>
+            <span style="font-size:11px;color:var(--green)">✓ Included in WhatsApp sync</span>
+          </label>
+          <textarea id="embedGlobalNote" placeholder="Write any specific question, how your dog is behaving, or notes you want Sotir to read..." oninput="saveEmbedMeta()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:6px;padding:8px 10px;color:var(--bone);font-size:12.5px;min-height:50px;resize:vertical;box-sizing:border-box"></textarea>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:13px;color:var(--soft);flex-wrap:wrap;gap:8px">
         <span id="embedProgressDesc">0 of 10 Sessions Completed (Practice 2-3 weeks per session)</span>
-        <button onclick="syncEmbedWhatsApp()" style="background:none;border:none;color:var(--green);font-size:13px;font-weight:700;cursor:pointer;text-decoration:underline">
-          Sync Progress to Sotir &rarr;
+        <button onclick="syncEmbedWhatsApp()" class="btn btn-ghost" style="color:#25d366;border-color:rgba(37,211,102,.5);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;padding:8px 16px">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.53 11.51c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3Z"/></svg>
+          Sync Progress & Notes to Sotir &rarr;
         </button>
       </div>
     </div>
@@ -279,14 +300,30 @@ function renderEmbedTracker() {
     '<div style="display:' + (s.num === 1 ? 'block' : 'none') + ';padding:0 20px 20px;border-top:1px solid var(--line)">' +
       '<div style="background:var(--panel2);border-left:3px solid var(--green);padding:10px 12px;font-size:13px;color:var(--soft);margin:14px 0">' + s.why + '</div>' +
       '<div style="margin-bottom:14px">' + checksHtml + '</div>' +
+      '<div style="margin-bottom:6px"><label style="font-size:11.5px;color:var(--mut);text-transform:uppercase;font-family:var(--f-cond);display:flex;justify-content:space-between"><span>Handler Field Notes:</span><span style="color:var(--green)">✓ Sent in WhatsApp sync</span></label></div>' +
       '<textarea oninput="saveEmbedNotes(' + s.num + ', this.value)" placeholder="Field notes & date for Coach Sotir..." style="width:100%;background:var(--panel2);border:1px solid var(--line2);border-radius:6px;padding:8px 10px;color:var(--bone);font-size:13px;min-height:50px">' + (sData.notes || '') + '</textarea>' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">' +
-        '<button onclick="toggleEmbedComplete(' + s.num + ')" class="btn btn-ghost" style="padding:8px 16px;font-size:12.5px;color:' + (sData.completed ? 'var(--bone)' : 'var(--green)') + '">' + (sData.completed ? 'Mark Incomplete' : '✓ Mark Session ' + s.num + ' Complete') + '</button>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;flex-wrap:wrap;gap:8px">' +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+          '<button onclick="toggleEmbedComplete(' + s.num + ')" class="btn btn-ghost" style="padding:8px 16px;font-size:12.5px;color:' + (sData.completed ? 'var(--bone)' : 'var(--green)') + '">' + (sData.completed ? 'Mark Incomplete' : '✓ Mark Session ' + s.num + ' Complete') + '</button>' +
+          '<button onclick="sendEmbedSingleWhatsApp(' + s.num + ')" class="btn btn-ghost" style="padding:8px 14px;font-size:12px;color:#25d366;border-color:rgba(37,211,102,.4);display:inline-flex;align-items:center;gap:6px">' +
+            '<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.53 11.51c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3Z"/></svg>' +
+            'Send Session ' + s.num + ' Note' +
+          '</button>' +
+        '</div>' +
         '<span style="font-size:11px;color:var(--mut)">Saved to phone</span>' +
       '</div>' +
     '</div>';
     container.appendChild(div);
   });
+
+  // Restore meta fields
+  const meta = (d && d.meta) || {};
+  const dogEl = document.getElementById('embedDogName');
+  const handlerEl = document.getElementById('embedHandlerName');
+  const noteEl = document.getElementById('embedGlobalNote');
+  if (dogEl && meta.dogName) dogEl.value = meta.dogName;
+  if (handlerEl && meta.handlerName) handlerEl.value = meta.handlerName;
+  if (noteEl && meta.globalNote) noteEl.value = meta.globalNote;
 }
 
 function toggleEmbedCheck(sNum, dIdx) {
@@ -311,12 +348,111 @@ function toggleEmbedComplete(sNum) {
   setEmbedData(d);
 }
 
+function saveEmbedMeta() {
+  const d = getEmbedData();
+  if (!d.meta) d.meta = {};
+  const dogEl = document.getElementById('embedDogName');
+  const handlerEl = document.getElementById('embedHandlerName');
+  const noteEl = document.getElementById('embedGlobalNote');
+  if (dogEl) d.meta.dogName = dogEl.value;
+  if (handlerEl) d.meta.handlerName = handlerEl.value;
+  if (noteEl) d.meta.globalNote = noteEl.value;
+  localStorage.setItem('cpt_canine_tracker', JSON.stringify(d));
+}
+
 function syncEmbedWhatsApp() {
   const d = getEmbedData();
+  const meta = d.meta || {};
+  const dogName = (meta.dogName || '').trim();
+  const handlerName = (meta.handlerName || '').trim();
+  const globalNote = (meta.globalNote || '').trim();
+
   let done = [];
-  EMBED_SESSIONS.forEach(s => { if (d[s.num] && d[s.num].completed) done.push('Session ' + s.num + ': ' + s.title); });
-  const msg = encodeURIComponent('Hi Coach Sotir, here is my CPT Canine 10-Week Training Record progress: ' + done.length + '/10 Sessions Complete. ' + (done.length ? 'Completed: ' + done.join(', ') : 'Starting Session 1.'));
-  window.open('https://wa.me/61423269586?text=' + msg, '_blank');
+  let sessionNotes = [];
+
+  EMBED_SESSIONS.forEach(s => {
+    const sData = d[s.num] || {};
+    if (sData.completed) done.push('Session ' + s.num + ': ' + s.title);
+    if (sData.notes && sData.notes.trim()) {
+      sessionNotes.push('• Session ' + s.num + ' (' + s.title + '):\n  "' + sData.notes.trim() + '"');
+    }
+  });
+
+  let lines = [];
+  let header = 'Hi Coach Sotir, here is my CPT Canine 10-Week Training Record progress';
+  if (dogName) header += ' for *' + dogName + '*';
+  if (handlerName) header += ' (Handler: ' + handlerName + ')';
+  header += ':';
+  lines.push(header);
+  lines.push('');
+
+  const pct = Math.round((done.length / EMBED_SESSIONS.length) * 100);
+  lines.push('📊 *Progress:* ' + done.length + '/10 Sessions Complete (' + pct + '%)');
+  if (done.length) {
+    lines.push('✓ *Completed:* ' + done.join(', '));
+  } else {
+    lines.push('Currently starting on Session 1.');
+  }
+
+  // Include Handler Notes!
+  if (sessionNotes.length) {
+    lines.push('');
+    lines.push('📝 *Handler Field Notes:*');
+    lines.push(sessionNotes.join('\n\n'));
+  }
+
+  // Include Direct Message to Sotir!
+  if (globalNote) {
+    lines.push('');
+    lines.push('💬 *Direct Note for Coach Sotir:*');
+    lines.push('"' + globalNote + '"');
+  }
+
+  lines.push('');
+  lines.push('Ready for review and my next drill check!');
+
+  window.open('https://wa.me/61423269586?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+}
+
+function sendEmbedSingleWhatsApp(sNum) {
+  const d = getEmbedData();
+  const s = EMBED_SESSIONS.find(x => x.num === sNum);
+  if (!s) return;
+  const sData = d[sNum] || {};
+  const meta = d.meta || {};
+  const dogName = (meta.dogName || '').trim();
+  const handlerName = (meta.handlerName || '').trim();
+
+  let checkedDrills = 0;
+  if (sData.checks) {
+    s.drills.forEach((_, i) => { if (sData.checks[i]) checkedDrills++; });
+  }
+
+  let lines = [];
+  let header = 'Hi Coach Sotir, here is my update on *Session ' + s.num + ': ' + s.title + '*';
+  if (dogName) header += ' for *' + dogName + '*';
+  if (handlerName) header += ' (Handler: ' + handlerName + ')';
+  header += ':';
+  lines.push(header);
+  lines.push('');
+
+  lines.push('• *Status:* ' + (sData.completed ? '✓ Completed' : 'In Progress'));
+  lines.push('• *Drills Checked:* ' + checkedDrills + '/' + s.drills.length);
+
+  const note = (sData.notes || '').trim();
+  if (note) {
+    lines.push('');
+    lines.push('📝 *Handler Field Notes:*');
+    lines.push('"' + note + '"');
+  } else {
+    lines.push('');
+    lines.push('📝 *Handler Field Notes:* (No field notes entered for this session yet)');
+  }
+
+  lines.push('');
+  lines.push('Could you please review this session and let me know your thoughts?');
+
+  window.open('https://wa.me/61423269586?text=' + encodeURIComponent(lines.join('\n')), '_blank');
 }
 
 document.addEventListener('DOMContentLoaded', renderEmbedTracker);
