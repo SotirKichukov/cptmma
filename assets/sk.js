@@ -357,8 +357,20 @@ if ('serviceWorker' in navigator) {
 function toggleDivisionRail(forceState) {
   var rail = document.getElementById('cptDivisionRail');
   if (!rail) return;
-  var isCollapsed = rail.classList.contains('collapsed');
-  var shouldCollapse = (typeof forceState === 'boolean') ? !forceState : !isCollapsed;
+  
+  var isCurrentlyCollapsed = rail.classList.contains('collapsed');
+  var shouldCollapse;
+  
+  if (typeof forceState === 'boolean') {
+    // forceState === false means close/collapse; forceState === true means open
+    shouldCollapse = !forceState;
+  } else if (forceState === 'close' || forceState === 'collapse') {
+    shouldCollapse = true;
+  } else if (forceState === 'open') {
+    shouldCollapse = false;
+  } else {
+    shouldCollapse = !isCurrentlyCollapsed;
+  }
   
   if (shouldCollapse) {
     rail.classList.add('collapsed');
@@ -368,6 +380,7 @@ function toggleDivisionRail(forceState) {
     try { localStorage.setItem('cpt_rail_collapsed', 'false'); } catch (_) {}
   }
 }
+window.toggleDivisionRail = toggleDivisionRail;
 
 // Initialize Rail State on Load
 (function initDivisionRail() {
@@ -375,6 +388,11 @@ function toggleDivisionRail(forceState) {
     var rail = document.getElementById('cptDivisionRail');
     if (!rail) return;
     try {
+      // On mobile / tablet screens (< 1024px), ALWAYS start collapsed so it never covers the screen
+      if (window.innerWidth < 1024) {
+        rail.classList.add('collapsed');
+        return;
+      }
       var saved = localStorage.getItem('cpt_rail_collapsed');
       if (saved === 'true') {
         rail.classList.add('collapsed');
@@ -387,7 +405,9 @@ function toggleDivisionRail(forceState) {
           rail.classList.remove('collapsed');
         }
       }
-    } catch (_) {}
+    } catch (_) {
+      rail.classList.add('collapsed');
+    }
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', applyInitialRail);
@@ -400,7 +420,19 @@ function toggleDivisionRail(forceState) {
     var rail = document.getElementById('cptDivisionRail');
     if (!rail || rail.classList.contains('collapsed')) return;
     if (!rail.contains(e.target)) {
-      toggleDivisionRail(true);
+      toggleDivisionRail(false);
+    }
+  });
+
+  // Automatically close rail when tapping ANY link inside rail on mobile / touch screens
+  document.addEventListener('click', function (e) {
+    var rail = document.getElementById('cptDivisionRail');
+    if (!rail || rail.classList.contains('collapsed')) return;
+    var link = e.target.closest('a');
+    if (link && rail.contains(link)) {
+      if (window.innerWidth < 1024 || (link.getAttribute('href') && (link.getAttribute('href').startsWith('#') || link.getAttribute('href').indexOf('#') !== -1))) {
+        toggleDivisionRail(false);
+      }
     }
   });
 })();

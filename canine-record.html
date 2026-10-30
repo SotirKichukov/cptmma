@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', renderSessions);
 </script>
 
 <!-- ===== CPT SOVEREIGN FULL-HEIGHT DIVISION RAIL ===== -->
-<aside class="cpt-division-rail" id="cptDivisionRail" aria-label="CPT Dual-Division Portal">
+<aside class="cpt-division-rail collapsed" id="cptDivisionRail" aria-label="CPT Dual-Division Portal">
   <button type="button" class="cpt-rail-toggle" id="cptRailToggle" aria-label="Toggle CPT Divisions Panel" onclick="toggleDivisionRail()">
     <span class="cpt-toggle-arrow">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 18 6-6-6-6"/></svg>
@@ -732,5 +732,21 @@ document.addEventListener('DOMContentLoaded', renderSessions);
   </div>
 </aside>
 
+
+<script src="./assets/config.js"></script>
+<script src="./assets/sk.js?v=34" defer></script>
+<script>
+function toggleDivisionRail(forceState) {
+  var rail = document.getElementById('cptDivisionRail');
+  if (!rail) return;
+  if (forceState === false || forceState === 'close') {
+    rail.classList.add('collapsed');
+  } else if (forceState === true || forceState === 'open') {
+    rail.classList.remove('collapsed');
+  } else {
+    rail.classList.toggle('collapsed');
+  }
+}
+</script>
 </body>
 </html>
