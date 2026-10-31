@@ -107,7 +107,6 @@
         '• **Sotir\'s Approach:** No harsh intimidation — we use drive-based positive engagement, structured reward timing, and clear handler boundaries.\n\n' +
         'You can download our official 10-Week PDF manual or message Sotir with your dog\'s breed and age.',
       actions: [
-        { label: 'Download 10-Wk PDF Guide', type: 'link', icon: 'doc', url: BASE + 'assets/docs/cpt-canine-10-week-system.pdf', target: '_blank' },
         { label: 'Chat with Sotir about your Dog', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I have a question about whether my dog is suitable for CPT Canine training.' },
         { label: 'Open Canine Portal', type: 'link', icon: 'canine', url: BASE + 'canine.html' }
       ]
@@ -126,7 +125,6 @@
       actions: [
         { label: 'Open Canine Portal', type: 'link', icon: 'canine', url: BASE + 'canine.html' },
         { label: 'Interactive Training Tracker', type: 'link', icon: 'doc', url: BASE + 'canine-record.html' },
-        { label: 'Download 10-Wk PDF Guide', type: 'link', icon: 'doc', url: BASE + 'assets/docs/cpt-canine-10-week-system.pdf', target: '_blank' },
         { label: 'Inquire for Dog Training', type: 'whatsapp', icon: 'whatsapp', text: 'Hi Sotir, I would like to enquire about CPT Canine dog training in Melbourne.' }
       ]
     },
