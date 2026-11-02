@@ -179,7 +179,7 @@
     <div class="shead center reveal in">
       <span class="eyebrow"><span class="dot"></span> Client Training Record · Interactive App</span>
       <h2 class="big">The 10-Week <span class="grad">Canine System</span></h2>
-      <p>Built on the 5 CPT Classical Pillars (Movement &amp; S-Flow, Visual Source Focus, Vocals &amp; Markers, Drive Ignition, and Grip/Out). Use the interactive tracker below to log your daily drills or download the complete manual.</p>
+      <p>Built on the 5 CPT Classical Pillars (Movement Mechanics, Visual Engagement, Verbal Communication, Motivational Drive and Environmental Stability). Use the interactive tracker below to log your daily drills or download the complete manual.</p>
       
       <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px">
         <a class="btn btn-primary" href="./assets/docs/cpt-canine-10-week-system.pdf" target="_blank" style="padding:14px 24px">
@@ -228,7 +228,7 @@
         </div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:13px;color:var(--soft);flex-wrap:wrap;gap:8px">
-        <span id="embedProgressDesc">0 of 10 Sessions Completed (Practice 2-3 weeks per session)</span>
+        <span id="embedProgressDesc">0 of 10 Sessions Completed (1–3 weeks of homework between sessions)</span>
         <button onclick="syncEmbedWhatsApp()" class="btn btn-ghost" style="color:#25d366;border-color:rgba(37,211,102,.5);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;padding:8px 16px">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.17 8.17 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.53 11.51c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3Z"/></svg>
           Sync Progress & Notes to Sotir &rarr;
@@ -244,16 +244,147 @@
 <!-- SCRIPT FOR EMBEDDED CANINE TRACKER -->
 <script>
 const EMBED_SESSIONS = [
-  { num: 1, title: "Food Drive Ignition & Hand Magnet", period: "Practice: 2 Weeks", pillar: "Pillar 4: Drive", why: "Eliminate bowl feeding. The entire daily meal is converted into high-speed hand-chasing drive so the dog craves training with you.", drills: ["Zero bowl feeding: 100% of daily food earned through hand work", "Hand Chasing (Magnet Hand): Dog pushes nose into palm while handler retreats 3-5m", "Opposition Reflex drill: Pull hand slightly away to trigger intense pursuit", "Conducted in hallway or zero-distraction indoor space"] },
-  { num: 2, title: "Visual Source Focus & The BREAK Release", period: "Practice: 2 Weeks", pillar: "Pillars 2 & 3: Visuals + Markers", why: "Teaching the dog that eye contact with the handler is the trigger that releases the food. Introduces the explosive BREAK release marker.", drills: ["The Power Stare: Food held in closed fist at chest; reward only on eye contact", "5-second locked focus: Dog ignores hand and maintains handler gaze", "The BREAK Marker: Announce energetic 'BREAK!' & throw treat backward to release tension", "10 reps per day alternating focus lock and explosive release"] },
-  { num: 3, title: "S-Flow Movement & 3 Kinesthetic Positions", period: "Practice: 2 Weeks", pillar: "Pillar 1: Movement & S-Flow", why: "Using the handler's lateral curved walking lines (S-Flow) to teach Sit, Down, Stand and a snug Contact Heel without verbal nagging.", drills: ["Puppy Push-Ups: Upward lure (Sit) -> Downward lure (Down) -> Forward draw (Stand)", "S-Flow Contact Heel: Hand pinned to left hip seam walking gentle figure-8s", "Body wrapping: Dog learns to tuck rear quarters cleanly around curves", "3 sessions weekly of 8-10 minutes continuous flow"] },
-  { num: 4, title: "Fading the Lure, Duration & Street Heel", period: "Practice: 2–3 Weeks", pillar: "Pillars 1 & 3: Leash + Duration", why: "Removing the bribe from the hand, introducing the 'GOOD' duration marker, and building true loose-leash sidewalk walking.", drills: ["Fading the Lure: Empty hand guides position; reward pulled from pocket post-marker", "The GOOD Marker: 15-30 second stay with periodic treat reinforcement before BREAK", "Street Heel on loose leash: Zero tension; immediate S-turn pivot upon any pulling", "Daily 15-minute neighborhood walk with 50% heel and 50% free sniffing"] },
-  { num: 5, title: "Ball Drive, Full Grip & Positive OUT", period: "Practice: 2 Weeks", pillar: "Pillar 5: Grip & Play", why: "Channelling prey drive into a ball or tug, developing a confident full-mouth grip, and teaching clean releases without conflict or resource guarding.", drills: ["Prey Drag: Ball on string moved erratically away from dog like prey", "Full Molar Grip: 5 seconds of confident, controlled tugging without head shaking", "Two-Ball Positive Out: Ball 1 goes dead -> Command 'OUT' -> Ball 2 explodes alive as reward", "3 sessions weekly of 5 minutes high-intensity 2-ball play"] },
-  { num: 6, title: "Distraction Proofing During Positions", period: "Practice: 2 Weeks", pillar: "Pillar 4: Impulse Control", why: "Proofing positions (Sit-Stay / Down-Stay) against external temptation so the dog learns that ignoring distractions is the only path to reward.", drills: ["Food Drop Denial: High-value treat dropped 1m away during Down-Stay; reward eye contact", "Toy Fly-By: Ball rolled past dog while in Sit; reward calm posture", "360-Degree Handler Orbit: Walking full circle around the dog without position break", "10 drop trials per session in front yard or quiet park"] },
-  { num: 7, title: "The Magnet Long-Line Recall", period: "Practice: 2 Weeks", pillar: "Pillars 2 & 4: Visuals + Speed", why: "Building an explosive recall reflex from 10 to 15 meters using a long check-cord and enthusiastic jackpot rewards.", drills: ["Restrained Recall: Helper holds dog; handler sprints away 15m calling 'COME!' & helper releases", "Sprint velocity reward: High-energy jackpot or ball throw upon reaching front sit", "Check-cord safety: Line drags on grass; step on line if dog hesitates", "5 recalls daily; never recall dog to administer discipline or baths"] },
-  { num: 8, title: "The Super Recall (Emergency Stop / High Arousal)", period: "Practice: 2 Weeks", pillar: "Pillars 3 & 4: Audio Override", why: "A specialized emergency whistle or distinctive cue ('SUPER!') reserved exclusively for life-or-death situations and high-drive prey call-offs.", drills: ["Charging Recall: Whistle blown while dog is actively running away from handler", "Prey Call-Off: Calling dog off a rolling ball with 180-degree emergency turnaround", "Mega Reward Vault: Fresh roast chicken, liver, or unique high-value tug only for this cue", "Tested only 1-2 times weekly to maintain maximum explosive value"] },
-  { num: 9, title: "The Neutrality Crucible (Trigger Proofing)", period: "Practice: 2 Weeks", pillar: "Pillars 1 & 2: Threshold Management", why: "The critical proofing bridge before retail stores: complete behavioral indifference toward passing dogs, scooters, prams, and outdoor cafe crowds.", drills: ["Parallel Sidewalk Pass: Walking past another dog with a 3m gap in locked Contact Heel", "Cafe Settle: 20-minute Down-Stay under outdoor table while strangers pass within 1m", "Arousal De-Escalation: Dropping dog from high sprint arousal into calm rest in under 60 seconds", "3 sessions weekly outside busy parks or shopping strips"] },
-  { num: 10, title: "Bunnings Warehouse Challenge & Graduation", period: "Graduation Field Test", pillar: "All 5 CPT Pillars", why: "The ultimate public stability test: automatic sliding doors, polished concrete floors, reverberating forklifts, and rattling flatbed trolleys.", drills: ["Automatic Door Entry: Confident entry on loose lead without balking or lunging", "Narrow Hardware Aisle Heeling: Zero sniffing of merchandise or shelf corners", "Trolley Down-Stay: 3-minute Down-Stay while metal trolleys rattle past", "Graduation Sign-Off & CPT Tag awarded by Coach Sotir Kichukov"] }
+  {
+    "num": 1,
+    "title": "Food Drive & Reward Source",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillar 4: Motivational Drive",
+    "why": "Build food drive, engagement and reward source focus without forcing eye contact. Establish a clean motivation base before formal obedience is introduced. Build food drive through hand-feeding first, then develop that engagement into luring: a reward-based training technique using food or toys to direct a dog into specific positions and movements.",
+    "drills": [
+      "Food Drive Ignition: Hand-feed kibble or highly valued food in a quiet environment to build motivation and encourage the dog to engage with the handler and reward source.",
+      "Magnet Hand: Hold treats in the hand and move the hand backward so the dog follows and stays engaged with the handler.",
+      "Opposition Reflex: Pull the reward slightly away to encourage the dog to move forward and commit to the chase or follow.",
+      "Focus on the Reward Source: Allow the dog to look at the food, toy or target without requiring forced eye contact.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Session 1 only until the next session is booked"
+    ]
+  },
+  {
+    "num": 2,
+    "title": "Source Focus & Switching",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillars 2 & 3: Visual Engagement + Verbal Communication",
+    "why": "Build source focus, hand-to-food communication and clear transitions between activities. Develop reward switching and maintain engagement with the handler.",
+    "drills": [
+      "Source Focus: The ability of the dog to channel his energy onto the reward and wait to be released or redirected once he understands the concept. Reward the dog for pausing on the food or toy without demanding eye contact with the handler.",
+      "Switching Focus: Use the marker and reward sequence to reset the dog and redirect attention back to the handler.",
+      "Break Marker: Introduce a clear break or transition cue to signal the end of one activity and the start of another. The same word can be used for switching focus and ending the exercise.",
+      "Handling Mechanics: Practise hand movement, positioning and timing so the dog understands the intended movement without confusion.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1 and 2 until the next session is booked"
+    ]
+  },
+  {
+    "num": 3,
+    "title": "Contact Heel & Positioning",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillar 1: Movement Mechanics",
+    "why": "Introduce Contact Heel and body awareness using luring and guided movement patterns. This session develops coordination, heel positioning and the dog's understanding of working around the handler.",
+    "drills": [
+      "Contact Heel: Introduce heel contact at the handler's side with source focus, forward and backward stepping, and pivots.",
+      "Position Shaping: Use luring to guide the dog into Sit, Down and Stand with smooth transitions.",
+      "Figure-Eight Movement: Teach the dog to move around the handler in tight patterns while maintaining a stable heel and clear body position.",
+      "Directional Changes: Practise turning left and right while the dog stays connected and focused on the handler.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–3 until the next session is booked"
+    ]
+  },
+  {
+    "num": 4,
+    "title": "Street Heel & Lure Fading",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillars 1 & 3: Movement Mechanics + Verbal Communication",
+    "why": "Introduce Street Heel, lure fading, duration, free shaping and leash skills. This session begins the transition from highly guided exercises into more relaxed everyday handling.",
+    "drills": [
+      "Street Heel: Use the same heel position as Contact Heel for calm, everyday walking without requiring continuous source focus.",
+      "Lure Fading: Begin fading out the physical lure and replace it with clearer handler motion and body cues.",
+      "Duration: Build short stays in Sit, Down and Stand while the dog remains calm and responsive.",
+      "Free Shaping: Reward natural choices the dog offers that move closer to the desired behaviour.",
+      "Leash Skills: Practise turning, halting, loose-leash walking and following the handler without tension.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–4 until the next session is booked"
+    ]
+  },
+  {
+    "num": 5,
+    "title": "Drive Switching",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillar 4: Motivational Drive",
+    "why": "Build controlled balance between motivation and handler direction. Teach the dog to enjoy rewards and movement while being able to switch back to the handler.",
+    "drills": [
+      "Ball Drive: Introduce moving ball or toy-based play to increase enthusiasm and engagement.",
+      "Drive Switching: Use the marker, reward, or break cue to redirect the dog back to handler focus from play.",
+      "Reward Swap: Teach the dog that returning to the handler unlocks the next reward, whether food, a toy or movement.",
+      "Calm Return: Encourage a controlled return rather than a chaotic recoil from the reward source.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–5 until the next session is booked"
+    ]
+  },
+  {
+    "num": 6,
+    "title": "Distraction Proofing",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillar 5: Environmental Stability",
+    "why": "Increase confidence and focus in more distracting environments while staying under the dog's threshold.",
+    "drills": [
+      "Front-of-House Exposure: Practise in calmer outdoor areas before progressing to busier locations.",
+      "Loose-Leash Drills: Maintain connection and control when distracting sights, sounds and movement are present.",
+      "Distraction Response: Reward calm focus and recovery when sudden triggers appear.",
+      "Stability Check: The dog should remain responsive without reactivity or losing the handler's position.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–6 until the next session is booked"
+    ]
+  },
+  {
+    "num": 7,
+    "title": "Recall Foundations",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillars 2 & 4: Visual Engagement + Motivational Drive",
+    "why": "Build recall confidence and create a reliable response to the handler under excitement or distance.",
+    "drills": [
+      "Recall Foundations: Practise short recall sequences with the reward source close enough to succeed consistently.",
+      "Long-Line Recall: Increase distance gradually while keeping the dog engaged and moving toward the handler.",
+      "Reward Timing: Reward the correct recall immediately to build association between returning and success.",
+      "Finish in Position: End successful recall with a calm sit or front position before release.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–7 until the next session is booked"
+    ]
+  },
+  {
+    "num": 8,
+    "title": "Drive Control & Emergency Response",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillars 3 & 4: Verbal Communication + Motivational Drive",
+    "why": "Improve drive control and emergency responsiveness during higher excitement, while keeping the dog calm and responsive to handler cues.",
+    "drills": [
+      "Emergency Down: Practise dropping to a calm down from excitement while remaining under control.",
+      "Prey Call-Off: Use the break or transition marker to redirect the dog away from a moving toy or prey-like stimulus.",
+      "Controlled Release: Release the dog back to the activity only when calm and under control.",
+      "Drive Control: Use the dog's engagement without overwhelming the dog emotionally or physically.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–8 until the next session is booked"
+    ]
+  },
+  {
+    "num": 9,
+    "title": "Public Socialisation",
+    "period": "Practice Period: Individual Pace",
+    "pillar": "Pillar 5: Environmental Stability",
+    "why": "Develop environmental stability, confidence and calm behaviour in real-world settings without forcing interactions. This includes socialisation, confidence-building and maintaining emotional neutrality around other dogs and people.",
+    "drills": [
+      "Neutral Socialisation: Walk past other dogs and people at a distance where the dog can stay relaxed and responsive.",
+      "Cafe Settle: Practise calm stationary behaviour in a dog-friendly café or outdoor seating area without greeting strangers.",
+      "Confidence Exposure: Gradually build the dog's ability to stay settled in new environments while using the handler as the anchor.",
+      "Environmental Stability: Includes socialisation, confidence, adaptability, mental stimulation and applying learned skills in different environments.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–9 until the final assessment"
+    ]
+  },
+  {
+    "num": 10,
+    "title": "Final Assessment",
+    "period": "Final Assessment",
+    "pillar": "All 5 CPT Pillars",
+    "why": "Perform a final public environment assessment in a realistic setting to confirm the dog's training readiness, handler confidence and ability to maintain calm behaviour under everyday challenge.",
+    "drills": [
+      "Public Environment Walkthrough: Practise loose-leash walking, controlled movement, sit and down responses and calm transitions in a public area.",
+      "Noise & Movement Exposure: Maintain performance with environmental distractions present without losing focus.",
+      "Recall in Public: Demonstrate the ability to return promptly and calmly to the handler.",
+      "Graduation Criteria: Demonstrate reliability, calmness, responsiveness and a stable working relationship between dog and handler.",
+      "Daily practice: 2–3 sessions, 5–10 minutes. Mix exercises from Sessions 1–10 to maintain and consolidate skills"
+    ]
+  }
 ];
 
 function getEmbedData() {

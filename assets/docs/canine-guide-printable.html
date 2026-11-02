@@ -4,7 +4,15 @@
 <meta charset="utf-8">
 <title>CPT Canine Personal Training — 10-Session Training System</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap');
+  @font-face{font-family:'Anton';font-weight:400;src:url('fonts/anton-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-weight:400;src:url('fonts/archivo-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-weight:500;src:url('fonts/archivo-latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-weight:600;src:url('fonts/archivo-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-weight:700;src:url('fonts/archivo-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-weight:800;src:url('fonts/archivo-latin-800-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:600;src:url('fonts/barlow-condensed-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:700;src:url('fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-weight:800;src:url('fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');}
   
   @page {
     size: A4;
@@ -81,6 +89,7 @@
     color: #f3f4ef;
     padding: 24mm 18mm;
     border-radius: 4px;
+    position: relative;
   }
   .cover-top .eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
@@ -158,6 +167,13 @@
     color: #f3f4ef;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+  .cover-logo {
+    position: absolute;
+    top: 20mm;
+    right: 18mm;
+    width: 36mm;
+    height: auto;
   }
   .cover-coach p {
     font-size: 9.2pt;
@@ -321,6 +337,15 @@
     justify-content: space-between;
     font-weight: 600;
   }
+  .session-hw span {
+    flex: 1;
+    min-width: 0;
+  }
+  .session-hw span + span {
+    border-left: 1px solid #cfe2d4;
+    margin-left: 8px;
+    padding-left: 8px;
+  }
   
   .two-col {
     display: grid;
@@ -357,8 +382,8 @@
 
 <div class="page">
   <div class="cover">
+    <img class="cover-logo" src="cpt-canine-logo-print.png" alt="Canine Personal Training logo">
     <div class="cover-top">
-      <div class="eyebrow">CPT COMBAT & PERFORMANCE TRAINING · MELBOURNE</div>
       <div class="cover-title">CANINE PERSONAL<br><span>TRAINING SYSTEM</span></div>
       <div class="cover-sub">10-Session Foundation Training System with 1–3 weeks of homework between sessions depending on progress</div>
       
@@ -385,10 +410,9 @@
         </div>
       </div>
     </div>
-    
-    <div class="cover-coach">
-      <h4>Developed by Sotir Kichukov</h4>
-      <p>CPT — Canine Personal Training. A structured 10-session foundation system designed to build communication, motivation, confidence and reliable daily obedience in dogs and their handlers.</p>
+  <div class="cover-coach">
+      <h4>Canine Personal Training</h4>
+      <p>A structured 10-session foundation system designed to build communication, motivation, confidence and reliable daily obedience in dogs and their handlers.</p>
     </div>
   </div>
 </div>
@@ -415,7 +439,7 @@
     </div>
     <div class="phil-card">
       <h4>Visual Engagement</h4>
-      <p>Focus creates clarity. Dogs learn to maintain visual engagement with the reward source, track movement and redirect attention when requested. Source focus is required for Street Heel because the dog needs to stay relaxed and responsive while remaining engaged with the reward source without continuous fixation on the handler.</p>
+      <p>Focus creates clarity. Dogs learn to maintain visual engagement with the reward source, track movement and redirect attention when requested. Source focus is required for Contact Heel, and Contact Heel is required for Street Heel.</p>
     </div>
     <div class="phil-card">
       <h4>Verbal Communication</h4>
@@ -465,13 +489,6 @@
     </tbody>
   </table>
 
-  <div class="manifesto-box" style="margin-top:12px;">
-    <div class="manifesto-title">Definition of Luring</div>
-    <div class="manifesto-text">
-      <strong>Luring:</strong> A reward-based training technique using food or toys to direct a dog into specific positions and movements.
-    </div>
-  </div>
-
   <div class="doc-footer">
     <span>CPT Canine Personal Training · Sotir Kichukov</span>
     <span>Page 2 · Official Pillars</span>
@@ -492,9 +509,9 @@
         <span class="session-num">Session 1</span>
         <span class="session-tag">Practice Period: Individual Pace</span>
       </div>
-      <div class="session-why"><strong>Goal:</strong> Build food drive, engagement and reward source focus without forcing eye contact. Establish a clean motivation base before formal obedience is introduced.</div>
+      <div class="session-why"><strong>Goal:</strong> Build food drive, engagement and reward source focus without forcing eye contact. Establish a clean motivation base before formal obedience is introduced.<br><strong>Training progression:</strong> Build food drive through hand-feeding first, then develop that engagement into luring. Luring is a reward-based training technique using food or toys to direct a dog into specific positions and movements.</div>
       <ul class="exercise-list">
-        <li><strong>Food Drive Ignition:</strong> Use kibble or highly valued food in a quiet environment to build motivation and encourage the dog to move toward the reward source.</li>
+        <li><strong>Food Drive Ignition:</strong> Hand-feed kibble or highly valued food in a quiet environment to build motivation and encourage the dog to engage with the handler and reward source.</li>
         <li><strong>Magnet Hand:</strong> Hold treats in the hand and move the hand backward so the dog follows and stays engaged with the handler.</li>
         <li><strong>Opposition Reflex:</strong> Pull the reward slightly away to encourage the dog to move forward and commit to the chase or follow.</li>
         <li><strong>Focus on the Reward Source:</strong> Allow the dog to look at the food, toy or target without requiring forced eye contact.</li>
@@ -519,7 +536,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Mix Session 1 and Session 2 exercises; if needed, keep it as a game</span>
+        <span>Mix exercises from Sessions 1 and 2 until the next session is booked</span>
       </div>
     </div>
   </div>
@@ -539,7 +556,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Mix Session 1, 2 and 3 exercises to keep the dog engaged and progressing</span>
+        <span>Mix exercises from Sessions 1–3 until the next session is booked</span>
       </div>
     </div>
 
@@ -558,7 +575,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Mix Session 1, 2, 3 and 4 exercises as training evolves</span>
+        <span>Mix exercises from Sessions 1–4 until the next session is booked</span>
       </div>
     </div>
   </div>
@@ -592,7 +609,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Mix all previous exercises with the new drive-switching work</span>
+        <span>Mix exercises from Sessions 1–5 until the next session is booked</span>
       </div>
     </div>
 
@@ -610,7 +627,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Use a mixed progression of all earlier session drills</span>
+        <span>Mix exercises from Sessions 1–6 until the next session is booked</span>
       </div>
     </div>
   </div>
@@ -630,7 +647,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Continue mixing earlier patterns with recall work</span>
+        <span>Mix exercises from Sessions 1–7 until the next session is booked</span>
       </div>
     </div>
 
@@ -648,7 +665,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Keep a rotating mix of all ongoing skills</span>
+        <span>Mix exercises from Sessions 1–8 until the next session is booked</span>
       </div>
     </div>
   </div>
@@ -682,7 +699,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Maintain a rotating mix of all earlier skills in public settings</span>
+        <span>Mix exercises from Sessions 1–9 until the final assessment</span>
       </div>
     </div>
 
@@ -700,7 +717,7 @@
       </ul>
       <div class="session-hw">
         <span>Daily practice: 2–3 sessions, 5–10 minutes</span>
-        <span>Keep previous skills alive and consolidate final reliability</span>
+        <span>Mix exercises from Sessions 1–10 to maintain and consolidate skills</span>
       </div>
     </div>
   </div>
@@ -824,7 +841,8 @@
   </table>
 
   <div style="margin-top:20px;padding:14px;border:1.5px dashed #12b551;border-radius:6px;background:#f9fdfa;display:flex;justify-content:space-between;align-items:center">
-    <div>
+    <img src="cpt-canine-logo-print-dark.png" alt="" style="width:20mm;height:auto;margin-right:14px">
+    <div style="flex:1">
       <div style="font-family:'Anton';font-size:13pt;text-transform:uppercase;color:#080a09">CPT Foundation Certification</div>
       <div style="font-size:8.2pt;color:#555;margin-top:2px">Official recognition by CPT coach upon completion of the 10-session foundation system.</div>
     </div>
@@ -834,7 +852,7 @@
   </div>
 
   <div class="doc-footer">
-    <span>CPT Canine Personal Training · Melbourne, Victoria</span>
+    <span>CPT Canine Personal Training · Melbourne · Rowville · www.cptmma.com</span>
     <span>Page 6 · Official Verification</span>
   </div>
 </div>
