@@ -89,6 +89,7 @@
     color: #f3f4ef;
     padding: 24mm 18mm;
     border-radius: 4px;
+    position: relative;
   }
   .cover-top .eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
@@ -154,10 +155,6 @@
   }
   
   .cover-coach {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 21mm;
-    align-items: center;
-    gap: 12px;
     background: #111513;
     border: 1px solid rgba(255,255,255,0.1);
     border-left: 4px solid #e5231b;
@@ -171,13 +168,12 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-  .cover-coach img {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    width: 19mm;
-    max-height: 27mm;
-    justify-self: center;
-    object-fit: contain;
+  .cover-logo {
+    position: absolute;
+    top: 20mm;
+    right: 18mm;
+    width: 36mm;
+    height: auto;
   }
   .cover-coach p {
     font-size: 9.2pt;
@@ -386,6 +382,7 @@
 
 <div class="page">
   <div class="cover">
+    <img class="cover-logo" src="cpt-canine-logo-print.png" alt="Canine Personal Training logo">
     <div class="cover-top">
       <div class="cover-title">CANINE PERSONAL<br><span>TRAINING SYSTEM</span></div>
       <div class="cover-sub">10-Session Foundation Training System with 1–3 weeks of homework between sessions depending on progress</div>
@@ -413,8 +410,6 @@
         </div>
       </div>
     </div>
-    
-    <div style="text-align:center;margin:10mm 0 0"><img src="cpt-canine-logo-print.png" alt="Canine Personal Training logo" style="width:68mm;height:auto"></div>
   <div class="cover-coach">
       <h4>Canine Personal Training</h4>
       <p>A structured 10-session foundation system designed to build communication, motivation, confidence and reliable daily obedience in dogs and their handlers.</p>
@@ -846,7 +841,8 @@
   </table>
 
   <div style="margin-top:20px;padding:14px;border:1.5px dashed #12b551;border-radius:6px;background:#f9fdfa;display:flex;justify-content:space-between;align-items:center">
-    <div>
+    <img src="cpt-canine-logo-print-dark.png" alt="" style="width:20mm;height:auto;margin-right:14px">
+    <div style="flex:1">
       <div style="font-family:'Anton';font-size:13pt;text-transform:uppercase;color:#080a09">CPT Foundation Certification</div>
       <div style="font-size:8.2pt;color:#555;margin-top:2px">Official recognition by CPT coach upon completion of the 10-session foundation system.</div>
     </div>
