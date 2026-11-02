@@ -22,7 +22,7 @@
 <meta name="application-name" content="CPT MMA">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/sk.css?v=33">
+<link rel="stylesheet" href="./assets/sk.css?v=34">
 <script>if(!/[?&]reveal=1/.test(location.search))document.documentElement.classList.add('js')</script>
 <meta name="twitter:image" content="https://cptmma.com/assets/img/og/home.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -200,11 +200,45 @@
       <img loading="lazy" decoding="async" class="mark" src="./assets/img/cpt-mark.png" width="235" height="277" alt="" aria-hidden="true"><span class="wm">CPT MMA<small>Combat &amp; Performance</small></span>
     </a>
     <nav>
+      <div class="cpt-nav-dropdown">
+        <button class="cpt-drop-btn" aria-haspopup="true" aria-expanded="false">
+          <span>Shop</span>
+          <svg class="cpt-drop-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="cpt-drop-menu" role="menu">
+          <a href="./programs.html" class="cpt-drop-item" role="menuitem">
+            <div class="cpt-drop-icon">🥊</div>
+            <div class="cpt-drop-text">
+              <strong>1-on-1 Fight Programs</strong>
+              <small>Weekly coaching &amp; single sessions ($90–$120)</small>
+            </div>
+          </a>
+          <a href="./index.html#speed-punching" class="cpt-drop-item" role="menuitem">
+            <div class="cpt-drop-icon">⚡</div>
+            <div class="cpt-drop-text">
+              <strong>Speed Punching Course</strong>
+              <small>Instant video access &amp; breakdowns ($79 AUD)</small>
+            </div>
+          </a>
+          <a href="./rashguard.html" class="cpt-drop-item" role="menuitem">
+            <div class="cpt-drop-icon">🛡️</div>
+            <div class="cpt-drop-text">
+              <strong>Fight Gear &amp; 3D T-Shirt</strong>
+              <small>Official 3D competition rashguard ($75 AUD)</small>
+            </div>
+          </a>
+          <a href="./magnesium.html" class="cpt-drop-item" role="menuitem">
+            <div class="cpt-drop-icon">🌊</div>
+            <div class="cpt-drop-text">
+              <strong>Anchialo Recovery</strong>
+              <small>Natural Black Sea magnesium gel &amp; salts</small>
+            </div>
+          </a>
+        </div>
+      </div>
+      <a href="./canine.html" style="color:#d8b45a;font-weight:700">Canine</a>
       <a href="./index.html#coach">Coach</a>
       <a href="./index.html#training">Training</a>
-      <a href="./index.html#canine">Canine</a>
-      <a href="./programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
-      <a href="./index.html#reviews">Reviews</a>
       <a href="./blog.html">Journal</a>
       <a href="./intake.html" aria-current="page">Intake</a>
     </nav>
@@ -216,14 +250,37 @@
 <!-- mobile menu -->
 <div class="mobmenu" role="dialog" aria-label="Menu">
   <button class="mclose" aria-label="Close">&times;</button>
+
+  <div class="mob-shop-section">
+    <div class="mob-shop-title">
+      <span>Shop &amp; Programs</span>
+      <span class="mob-shop-badge">Instant Access</span>
+    </div>
+    <a href="./programs.html" class="mob-shop-item" style="color:var(--green)">
+      <span>🥊 1-on-1 Price List</span>
+      <span class="mob-price-tag">$90–$120</span>
+    </a>
+    <a href="./index.html#speed-punching" class="mob-shop-item" style="color:var(--green)">
+      <span>⚡ Speed Punching Video</span>
+      <span class="mob-price-tag">$79 AUD</span>
+    </a>
+    <a href="./rashguard.html" class="mob-shop-item" style="color:var(--green)">
+      <span>🛡️ Fight Gear &amp; 3D T-Shirt</span>
+      <span class="mob-price-tag">$75 AUD</span>
+    </a>
+    <a href="./magnesium.html" class="mob-shop-item" style="color:var(--green)">
+      <span>🌊 Anchialo Magnesium Gel</span>
+      <span class="mob-price-tag">Recovery</span>
+    </a>
+  </div>
+
+  <a href="./index.html">Back to Home</a>
   <a href="./index.html#coach">Coach</a>
+  <a href="./canine.html" style="color:#d8b45a;font-weight:700">Canine K9</a>
   <a href="./index.html#training">Training</a>
-  <a href="./index.html#canine">Canine</a>
-  <a href="./programs.html" style="color:var(--green);font-weight:700">Prices &amp; Courses</a>
-  <a href="./index.html#reviews">Reviews</a>
   <a href="./blog.html">Journal</a>
   <a href="./intake.html">Intake</a>
-  <a href="./index.html#apply">Register interest</a>
+  <a class="btn btn-primary btn-block" href="./index.html#apply" style="margin-top:20px">Register interest</a>
   <div class="socials mob-socials">
     <a href="https://www.facebook.com/ProFighterAndCoach" target="_blank" rel="noopener" aria-label="Sotir Kichukov on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8.2h2.76l.41-3.2H13.5V7.55c0-.93.26-1.56 1.59-1.56h1.7V3.13A22.7 22.7 0 0 0 14.31 3c-2.46 0-4.14 1.5-4.14 4.25V9.6H7.4v3.2h2.77V21h3.33z"/></svg></a>
     <a href="https://www.instagram.com/sotir_kichukov/" target="_blank" rel="noopener" aria-label="Sotir Kichukov on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"/></svg></a>
