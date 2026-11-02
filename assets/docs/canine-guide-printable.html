@@ -146,6 +146,10 @@
   }
   
   .cover-coach {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 21mm;
+    align-items: center;
+    gap: 12px;
     background: #111513;
     border: 1px solid rgba(255,255,255,0.1);
     border-left: 4px solid #e5231b;
@@ -158,6 +162,14 @@
     color: #f3f4ef;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+  .cover-coach img {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 19mm;
+    max-height: 27mm;
+    justify-self: center;
+    object-fit: contain;
   }
   .cover-coach p {
     font-size: 9.2pt;
@@ -397,6 +409,7 @@
     <div class="cover-coach">
       <h4>Canine Personal Training</h4>
       <p>A structured 10-session foundation system designed to build communication, motivation, confidence and reliable daily obedience in dogs and their handlers.</p>
+      <img src="cpt-canine-dog-mark-print.png" alt="">
     </div>
   </div>
 </div>
