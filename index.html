@@ -1456,7 +1456,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </div>
               <h3>Speed Punching Maximizer</h3>
-              <p>Watch Lesson 1 free as an instant demo, or unlock full lifetime access for $79 AUD to stream all 40 HD video lessons and download official training PDFs.</p>
+              <p>Watch Lessons 1–2 free as an instant demo, or unlock full lifetime access for $79 AUD to stream all 40 HD video lessons and download official training PDFs.</p>
               
               <div style="display:flex;flex-direction:column;gap:12px;align-items:center;width:100%">
                 <div style="display:flex;flex-direction:column;gap:10px;align-items:center;width:100%;max-width:340px">
@@ -2447,6 +2447,7 @@ const courseLessons = [
   }
 ];
 
+const FREE_LESSON_COUNT = 2; // lessons 1-2 are free
 let isCourseUnlocked = false;
 let isDemoModeActive = false;
 
@@ -2464,7 +2465,7 @@ function initPlaylist() {
     // Badge based on lock status: Lesson 1 is Free Demo, Lessons 2..40 are Pro
     let badgeHtml = '';
     if (!isCourseUnlocked) {
-      if (idx === 0) {
+      if (idx < FREE_LESSON_COUNT) {
         badgeHtml = '<span class="lesson-tag free-tag">FREE DEMO</span>';
       } else {
         badgeHtml = '<span class="lesson-tag pro-tag"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> PRO</span>';
@@ -2535,7 +2536,7 @@ let activeLessonIndex = 0;
 
 // Switch Active Video
 function selectLesson(idx, isDemoTrigger = false) {
-  if (idx > 0 && !isCourseUnlocked && !isDemoTrigger) {
+  if (idx >= FREE_LESSON_COUNT && !isCourseUnlocked && !isDemoTrigger) {
     showProLockPrompt(idx);
     return;
   }
@@ -2564,7 +2565,7 @@ function selectLesson(idx, isDemoTrigger = false) {
 
 // Cinema / Expanded Theater View
 function openCinemaTheater() {
-  if (!isCourseUnlocked && activeLessonIndex > 0) {
+  if (!isCourseUnlocked && activeLessonIndex >= FREE_LESSON_COUNT) {
     showProLockPrompt(activeLessonIndex);
     return;
   }
